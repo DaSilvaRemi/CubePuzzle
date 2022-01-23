@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
      */
     private void Move()
     {
+        
         //VERTICAL INPUT
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 worldmovVect = m_TranslationSpeed * Time.fixedDeltaTime * transform.forward * verticalInput;
@@ -50,5 +51,6 @@ public class PlayerController : MonoBehaviour
         float deltaAngle = m_RotatingSpeed * Time.fixedDeltaTime * horizontalInput;
         Quaternion qRot = Quaternion.AngleAxis(deltaAngle, transform.up);
         m_Rigidbody.MoveRotation(qRot * transform.rotation);
+        
     }
 }
