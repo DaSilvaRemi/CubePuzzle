@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("Mvt Setup")]
     [Tooltip("unit m/s")]
     [SerializeField] private float m_TranslationSpeed;
+    [Tooltip("unit m/s")]
+    [SerializeField] private float m_JumpSpeed;
     [Tooltip("unit: °/s")]
     [SerializeField] private float m_RotatingSpeed;
 
@@ -18,21 +20,11 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         Move();
+        Jump();
+        ResetRbVelocity();
     }
 
     /**
@@ -51,10 +43,21 @@ public class PlayerController : MonoBehaviour
         float deltaAngle = m_RotatingSpeed * Time.fixedDeltaTime * horizontalInput;
         Quaternion qRot = Quaternion.AngleAxis(deltaAngle, transform.up);
         m_Rigidbody.MoveRotation(qRot * transform.rotation);
+    }
 
+    private void Jump()
+    {
+        if (Input.GetButton("Jump"))
+        {
+            // VERTICAL INPUT
+            Vector3 worldmovVect = m_JumpSpeed * Time.fixedDeltaTime * transform.up;
+            m_Rigidbody.MovePosition(transform.position + worldmovVect);
+        }
+    }
+
+    private void ResetRbVelocity()
+    {
         m_Rigidbody.velocity = Vector3.zero;
         m_Rigidbody.angularVelocity = Vector3.zero;
-
-
     }
 }
