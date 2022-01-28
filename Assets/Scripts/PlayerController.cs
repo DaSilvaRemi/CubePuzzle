@@ -52,5 +52,9 @@ public class PlayerController : MonoBehaviour
         Quaternion qRot = Quaternion.AngleAxis(deltaAngle, transform.up);
         m_Rigidbody.MoveRotation(qRot * transform.rotation);
 
+        m_Rigidbody.velocity = Vector3.zero;
+        m_Rigidbody.angularVelocity = Vector3.zero;
+
+
     }
 }
