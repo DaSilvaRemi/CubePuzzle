@@ -8,12 +8,7 @@ public class MenuHandler : MonoBehaviour
 {
     public void HandleCreateNewGameButton()
     {
-        SceneManager.LoadScene("MainScene");
-    }
-
-    public void HandleLoadGameButton()
-    {
-
+        SceneManager.LoadScene("FirstLevelScene");
     }
 
     public void HandleHelpButton()
@@ -24,6 +19,11 @@ public class MenuHandler : MonoBehaviour
     public void HandleCreditButton()
     {
         SceneManager.LoadScene("CreditScene");
+    }
+
+    public void HandleBackToMenuButton()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void HandleExitButton()
