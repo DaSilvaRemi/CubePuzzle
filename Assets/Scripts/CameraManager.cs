@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour
 
     private void HandleCameraChangeKey()
     {
-        if (Input.GetButton("ChangeCamera"))
+        if (Input.GetButtonDown("ChangeCamera"))
         {
             ChangeCamera();
         }
