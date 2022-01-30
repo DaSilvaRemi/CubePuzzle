@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IScore
 {
-	int Score { get; }
+    int Score { get; }
 }
