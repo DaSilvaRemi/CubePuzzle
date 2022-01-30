@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump"))
         {
-            // VERTICAL INPUT
             Vector3 worldmovVect = m_JumpSpeed * Time.fixedDeltaTime * transform.up;
             m_Rigidbody.MovePosition(transform.position + worldmovVect);
         }

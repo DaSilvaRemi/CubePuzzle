@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     {
         if (GameState.Equals(Tools.GameState.PLAY))
         {
+            if (Input.GetButton("ResetGame")) Reset();
+
             UpdateGameState();
         }
     }
@@ -37,6 +39,14 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateGameState();
+    }
+
+    private void Reset()
+    {
+        Debug.Log("Reset");
+
+        GameState = Tools.GameState.PLAY;
+        SceneManager.LoadScene((int) m_CurrentLvl);
     }
 
     /**
