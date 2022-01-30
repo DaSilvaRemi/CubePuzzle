@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ccca13984c971429ec2cde619908a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timer: 1
+  m_timer: 120
 --- !u!1001 &79390254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8687,6 +8687,10 @@ PrefabInstance:
     - target: {fileID: 4476969445833896436, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476969445833896437, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
+      propertyPath: m_Mass
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
       propertyPath: m_RotatingSpeed

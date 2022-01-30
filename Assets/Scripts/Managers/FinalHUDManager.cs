@@ -11,6 +11,7 @@ public class FinalHUDManager : MonoBehaviour
     private void Start()
     {
         UpdateEndScene(GameManager.GameState);
+        GameManager.GameState = Tools.GameState.PLAY;
     }
 
     public void UpdateEndScene(Tools.GameState gameState)
