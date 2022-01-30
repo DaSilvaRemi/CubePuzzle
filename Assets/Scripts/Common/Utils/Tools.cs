@@ -9,6 +9,7 @@ public class Tools
     {
         PLAY,
         WIN,
-        LOOSE
+        LOOSE,
+        LVLFINISH
     }
 }

@@ -60,4 +60,12 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody.velocity = Vector3.zero;
         m_Rigidbody.angularVelocity = Vector3.zero;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Finish"))
+        {
+            GameManager.GameState = Tools.GameState.LVLFINISH;
+        }
+    }
 }
