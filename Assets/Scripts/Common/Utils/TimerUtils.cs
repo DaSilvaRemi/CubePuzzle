@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class TimerUtils : MonoBehaviour
 {
-    [SerializeField] public float Timer { get; private set; }
+    [SerializeField] float m_timer;
+
+
+    public float Timer { 
+        get
+        {
+            return m_timer;
+        }
+        private set
+        {
+            m_timer = value;
+        }
+    }
 
     public bool IsFinish { get => Timer <= 0; }
 
+    /**
+     * <summary>Start the timer</summary>
+     */
     public void StartTimer()
     {
         StartCoroutine(Countdown());
     }
 
+    /**
+     * <summary>Reset the timer</summary> 
+     */
     public void ResetTimer()
     {
         Timer = 0;

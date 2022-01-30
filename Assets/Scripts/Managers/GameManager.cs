@@ -6,41 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI m_TimeLeftTXT;
-    [SerializeField] private TimerUtils m_TimerUtils;
-
     public static Tools.GameState GameState { get; set; }
 
-    private void Awake()
+    /**
+     * 
+     */
+    protected void UpdateGameState(TimerUtils timerUtils)
     {
-        if (m_TimerUtils == null)
+        if (timerUtils.IsFinish)
         {
-            m_TimerUtils = GetComponentInParent<TimerUtils>();
-        }
-        UpdateTimeLeftTXT();
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateGameState();
-        UpdateTimeLeftTXT();
-    }
-
-    private void UpdateTimeLeftTXT()
-    {
-        m_TimeLeftTXT.SetText("Time Left : " + m_TimerUtils.Timer);
-    }
-
-    private void UpdateGameState()
-    {
-        if (m_TimerUtils.IsFinish)
-        {
+            timerUtils.StopTimer();
             GameState = Tools.GameState.LOOSE;
         }
 
         HoldOnVictory();
     }
 
+    /**
+     * 
+     */
     private void HoldOnVictory()
     {
         switch (GameState)
