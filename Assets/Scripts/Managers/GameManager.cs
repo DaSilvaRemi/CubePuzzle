@@ -10,8 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private uint m_CurrentLvl = 0;
 
     public static Tools.GameState GameState { get; set; }
+    protected uint CurrentLVL { get => m_CurrentLvl;}
 
     private void FixedUpdate()
+    {
+        UpdateGame();
+    }
+
+    protected void UpdateGame()
     {
         if (GameState.Equals(Tools.GameState.PLAY))
         {
@@ -43,10 +49,8 @@ public class GameManager : MonoBehaviour
 
     private void Reset()
     {
-        Debug.Log("Reset");
-
         GameState = Tools.GameState.PLAY;
-        SceneManager.LoadScene((int) m_CurrentLvl);
+        SceneManager.LoadScene((int)CurrentLVL);
     }
 
     /**

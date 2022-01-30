@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : GameManager
 {
@@ -23,5 +24,6 @@ public class LevelManager : GameManager
     {
         base.UpdateGameState(m_TimerUtils);
         m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
+        UpdateGame();
     }
 }

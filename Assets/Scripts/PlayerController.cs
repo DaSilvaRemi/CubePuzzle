@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("unit: °/s")]
     [SerializeField] private float m_RotatingSpeed;
 
+    private bool canJump = true;
     private Rigidbody m_Rigidbody;
 
 
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
-        ResetRbVelocity();
+        //ResetRbVelocity();
     }
 
     /**
@@ -32,14 +33,13 @@ public class PlayerController : MonoBehaviour
      */
     private void Move()
     {
-        
-        //VERTICAL INPUT
         float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        //VERTICAL INPUT
         Vector3 worldmovVect = m_TranslationSpeed * Time.fixedDeltaTime * transform.forward * verticalInput;
         m_Rigidbody.MovePosition(transform.position + worldmovVect);
 
         //HORIZONTAL INPUT
-        float horizontalInput = Input.GetAxis("Horizontal");
         float deltaAngle = m_RotatingSpeed * Time.fixedDeltaTime * horizontalInput;
         Quaternion qRot = Quaternion.AngleAxis(deltaAngle, transform.up);
         m_Rigidbody.MoveRotation(qRot * transform.rotation);
@@ -47,8 +47,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButton("Jump"))
+        if (canJump && Input.GetButton("Jump"))
         {
+            canJump = false;
             Vector3 worldmovVect = m_JumpSpeed * Time.fixedDeltaTime * transform.up;
             m_Rigidbody.MovePosition(transform.position + worldmovVect);
         }
@@ -65,6 +66,14 @@ public class PlayerController : MonoBehaviour
         if (other.tag.Equals("Finish"))
         {
             GameManager.GameState = Tools.GameState.LVLFINISH;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<CanJump>())
+        {
+            canJump = true;
         }
     }
 }
