@@ -8,7 +8,13 @@ public class MenuHandler : MonoBehaviour
 {
     public void HandleCreateNewGameButton()
     {
+        SaveGame.Save(new SaveGame(0, 0));
         SceneManager.LoadScene("FirstLevelScene");
+    }
+
+    public void HandleLoadGameButton()
+    {
+
     }
 
     public void HandleHelpButton()

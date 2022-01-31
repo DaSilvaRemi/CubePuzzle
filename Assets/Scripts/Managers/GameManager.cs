@@ -10,11 +10,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] private uint m_CurrentLvl = 0;
 
     public static Tools.GameState GameState { get; set; }
-    protected uint CurrentLVL { get => m_CurrentLvl;}
 
-    private void FixedUpdate()
+    protected uint CurrentLVL { get => m_CurrentLvl;  }
+
+    public static void LoadGame()
     {
-        UpdateGame();
+        SaveGame saveGame = SaveGame.Load();
+        GameState = saveGame.GameState;
+
+        switch (saveGame.Level)
+        {
+            case 1:
+                SceneManager.LoadScene("FirstLevelScene");
+                break;
+            case 2:
+                SceneManager.LoadScene("SecondLevelScene");
+                break;
+            case 3:
+                SceneManager.LoadScene("ThirdLevelScene");
+                break;
+            case 4:
+                SceneManager.LoadScene("FourthLevelScene");
+                break;
+            default:
+                break;
+        }
     }
 
     protected void UpdateGame()
@@ -47,6 +67,11 @@ public class GameManager : MonoBehaviour
         UpdateGameState();
     }
 
+    private void FixedUpdate()
+    {
+        UpdateGame();
+    }
+
     private void Reset()
     {
         GameState = Tools.GameState.PLAY;
@@ -65,16 +90,10 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("VictoryScene");
                 break;
             case Tools.GameState.LVLFINISH:
-                Debug.Log("Trigger !");
                 if (m_CurrentLvl == 4)
                 {
                     GameState = Tools.GameState.WIN;
                     HoldOnVictory();
-                }
-                else
-                {
-                    GameState = Tools.GameState.PLAY;
-                    SceneManager.LoadScene((int)m_CurrentLvl + 1);
                 }
                 break;
         }

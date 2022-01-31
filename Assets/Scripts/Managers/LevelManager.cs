@@ -25,5 +25,15 @@ public class LevelManager : GameManager
         base.UpdateGameState(m_TimerUtils);
         m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
         UpdateGame();
+        LoadNextLevel();
+    }
+
+    private void LoadNextLevel()
+    {
+        if (GameState.Equals(Tools.GameState.LVLFINISH))
+        {
+            GameState = Tools.GameState.PLAY;
+            SceneManager.LoadScene((int) CurrentLVL + 1);
+        }
     }
 }
