@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 public interface IBonus
 {
-
+    public int Bonus { get; }
 }
