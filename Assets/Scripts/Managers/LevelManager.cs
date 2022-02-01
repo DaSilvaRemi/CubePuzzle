@@ -10,30 +10,32 @@ public class LevelManager : GameManager
 
     private void Awake()
     {
-        m_TimerUtils = GetComponentInChildren<TimerUtils>();
-        m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
+        this.m_TimerUtils = GetComponentInChildren<TimerUtils>();
+        this.m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
+        GameManager.GameTimePassed = 0;
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        m_TimerUtils.StartTimer();
+        this.m_TimerUtils.StartTimer();
     }
 
     private void FixedUpdate()
     {
         base.UpdateGameState(m_TimerUtils);
-        m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
-        UpdateGame();
-        LoadNextLevel();
+        this.m_HUDManager.UpdateTimeLeftTXT(m_TimerUtils);
+        base.UpdateGame(m_TimerUtils);
+        this.LoadNextLevel();
     }
 
     private void LoadNextLevel()
     {
-        if (GameState.Equals(Tools.GameState.LVLFINISH))
+        if (GameManager.GameState.Equals(Tools.GameState.LVLFINISH))
         {
-            GameState = Tools.GameState.PLAY;
-            SceneManager.LoadScene((int) CurrentLVL + 1);
+            GameManager.GameState = Tools.GameState.PLAY;
+            GameManager.GameTimePassed += this.m_TimerUtils.TimePassed;
+            SceneManager.LoadScene((int) base.CurrentLVL + 1);
         }
     }
 }

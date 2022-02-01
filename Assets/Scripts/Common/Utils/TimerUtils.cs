@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class TimerUtils : MonoBehaviour
 {
-    [SerializeField] float m_timer;
+    [SerializeField] private float m_timer;
 
+    public float TimeLeft { get; private set; }
 
-    public float Timer { 
-        get
-        {
-            return m_timer;
-        }
-        private set
-        {
-            m_timer = value;
-        }
-    }
+    public float TimePassed { get => Timer - TimeLeft; }
 
-    public bool IsFinish { get => Timer <= 0; }
+    public float Timer { get => m_timer;  }
+
+    public int FormatedTimerLeft { get => GetFormatedTime(TimeLeft); }
+
+    public int FormatedTimePassed { get => GetFormatedTime(TimePassed); }
+
+    public int FormatedTimer { get => GetFormatedTime(Timer); }
+
+    public bool IsFinish { get => TimeLeft <= 0; }
 
     /**
      * <summary>Start the timer</summary>
@@ -33,7 +33,7 @@ public class TimerUtils : MonoBehaviour
      */
     public void ResetTimer()
     {
-        Timer = 0;
+        TimeLeft = 0;
     }
 
     public void StopTimer()
@@ -49,11 +49,16 @@ public class TimerUtils : MonoBehaviour
         }
     }
 
+    public static int GetFormatedTime(float time)
+    {
+        return Mathf.RoundToInt(time);
+    }
+
     private IEnumerator Countdown()
     {
-        while (Timer > 0f)
+        while (TimeLeft > 0f)
         {
-            Timer -= Time.deltaTime;
+            TimeLeft -= Time.deltaTime;
             yield return null;
         }
     }

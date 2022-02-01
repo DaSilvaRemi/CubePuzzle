@@ -9,14 +9,20 @@ public class GameManager : MonoBehaviour
     [Tooltip("Unsigned Int")]
     [SerializeField] private uint m_CurrentLvl = 0;
 
+    protected uint CurrentLVL { get => m_CurrentLvl;  }
+
     public static Tools.GameState GameState { get; set; }
 
-    protected uint CurrentLVL { get => m_CurrentLvl;  }
+    public static float GameTimePassed { get; protected set; }
+
+    public static float GameBestTime { get; protected set; }
 
     public static void LoadGame()
     {
         SaveGame saveGame = SaveGame.Load();
-        GameState = saveGame.GameState;
+        GameManager.GameState = saveGame.GameState;
+        GameManager.GameTimePassed = 0;
+        GameManager.GameBestTime = saveGame.BestTime;
 
         switch (saveGame.Level)
         {
@@ -32,56 +38,71 @@ public class GameManager : MonoBehaviour
             case 4:
                 SceneManager.LoadScene("FourthLevelScene");
                 break;
-            default:
-                break;
         }
-    }
-
-    protected void UpdateGame()
-    {
-        if (GameState.Equals(Tools.GameState.PLAY))
-        {
-            if (Input.GetButton("ResetGame")) Reset();
-
-            UpdateGameState();
-        }
-    }
-
-
-    protected void UpdateGameState()
-    {
-        HoldOnVictory();
     }
 
     /**
+     * <summary>Update the Game</summary>
+     * <remarks>It run only if the game state is PLAY</remarks>
      * 
+     * <param name="timerUtils">The TimerUtils object</param>
+     */
+    protected void UpdateGame(TimerUtils timerUtils)
+    {
+        if (GameManager.GameState.Equals(Tools.GameState.PLAY))
+        {
+            if (Input.GetButton("ResetGame")) Reset();
+
+            UpdateGameState(timerUtils);
+        }
+    }
+
+    /**
+     * <summary>Update the GameTime</summary>
+     * <remarks>If GameState is not equal to PLAY so we save the time passed</remarks>
+     * 
+     * <param name="timerUtils">The TimerUtils object</param>
+     */
+    protected void UpdateGameTime(TimerUtils timerUtils)
+    {
+        if (!GameManager.GameState.Equals(Tools.GameState.PLAY))
+        {
+            GameManager.GameTimePassed = timerUtils.FormatedTimePassed;
+        }
+    }
+
+    /**
+     * <summary>Update the GameState</summary>
+     * <remarks>If the timer is finish the game state is set to LOOSE. Also we call everytime UpdateGameTime and CheckGameState</remarks>
+     * 
+     * <param name="timerUtils">The TimerUtils object</param>
      */
     protected void UpdateGameState(TimerUtils timerUtils)
     {
         if (timerUtils.IsFinish)
         {
             timerUtils.StopTimer();
-            GameState = Tools.GameState.LOOSE;
+            GameManager.GameState = Tools.GameState.LOOSE;
         }
 
-        UpdateGameState();
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateGame();
-    }
-
-    private void Reset()
-    {
-        GameState = Tools.GameState.PLAY;
-        SceneManager.LoadScene((int)CurrentLVL);
+        UpdateGameTime(timerUtils);
+        CheckGameState();
     }
 
     /**
-     * 
+     * <summary>Reset the game</summary> 
      */
-    private void HoldOnVictory()
+    private void Reset()
+    {
+        GameManager.GameState = Tools.GameState.PLAY;
+        GameManager.GameTimePassed = 0;
+        SceneManager.LoadScene((int) CurrentLVL);
+    }
+
+    /**
+     * <summary>Check the game state and do appropriate action according to them</summary>
+     */
+    private void CheckGameState()
     {
         switch (GameState)
         {
@@ -90,10 +111,10 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("VictoryScene");
                 break;
             case Tools.GameState.LVLFINISH:
+                SaveGame.Save(new SaveGame(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
                 if (m_CurrentLvl == 4)
                 {
-                    GameState = Tools.GameState.WIN;
-                    HoldOnVictory();
+                    GameManager.GameState = Tools.GameState.WIN;
                 }
                 break;
         }

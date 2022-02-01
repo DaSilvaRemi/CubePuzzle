@@ -11,6 +11,6 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateTimeLeftTXT(TimerUtils timerUtils)
     {
-        m_TimeLeftTXT.SetText("Time : " + Mathf.Round(timerUtils.Timer));
+        m_TimeLeftTXT.SetText("Time : " + timerUtils.FormatedTimerLeft);
     }
 }

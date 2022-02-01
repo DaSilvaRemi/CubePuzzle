@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
 /**
  * <summary>Serializable class for save the game </summary>
  */
-public class SaveGame : IScore, IGameState { 
+public class SaveGame : IGameState, ITime { 
 
-    public int Score { get; set; }
+    public float Time { get; set; }
+
+    public float BestTime { get; set; }
 
     public uint Level { get; set; }
 
@@ -21,22 +19,27 @@ public class SaveGame : IScore, IGameState {
     /**
      * <summary>The default constructor</summary> 
      */
-    public SaveGame() : this(0, 0)
+    public SaveGame() : this(0f, 0)
     {
     }
 
     /**
      * <summary>The constructor</summary>
      * 
-     * <param name="score"></param>
+     * <param name="time"></param>
      * <param name="level"></param>
      */
-    public SaveGame(int score, int level)
+    public SaveGame(float time, uint level) : this(time, level, time, Tools.GameState.PLAY)
     {
-        Score = score;
+    }
+    
+    public SaveGame(float time, uint level, float bestTime, Tools.GameState gameState)
+    {
+        Time = time;
         Level = level;
-        Save(this);
-    } 
+        BestTime = bestTime;
+        GameState = gameState;
+    }
 
     /**
      * <summary>Save the game</summary>
@@ -52,20 +55,17 @@ public class SaveGame : IScore, IGameState {
         }
         catch (FileNotFoundException)
         {
-            data = new SaveGame(0, 0);
+            data = new SaveGame();
         }
         finally
         {
-            if (game.Score > data.Score)
+            if (game.BestTime > data.BestTime)
             {
-                data.Score = game.Score;
+                data.Time = game.Time;
             }
 
-            if (game.Level != data.Level)
-            {
-                data.Level = game.Level;
-            }
-
+            data.Level = game.Level;
+            data.Time = game.Time;
             data.GameState = game.GameState;
 
             SaveFile(data);
@@ -116,7 +116,7 @@ public class SaveGame : IScore, IGameState {
      */
     public static SaveGame Load(string path)
     {
-        SaveGame loadedSave = new SaveGame(0, 0);
+        SaveGame loadedSave = new SaveGame();
 
         try
         {
