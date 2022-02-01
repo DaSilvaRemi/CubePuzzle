@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IScore
+public interface ITime
 {
-    int Score { get; }
+    float Time { get; set; }
+
+    float BestTime { get; set; }
 }

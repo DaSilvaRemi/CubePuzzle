@@ -7,6 +7,8 @@ public class FinalHUDManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_VictoryText;
     [SerializeField] private TextMeshProUGUI m_GameOverText;
+    [SerializeField] private TextMeshProUGUI m_ScoreText;
+    [SerializeField] private TextMeshProUGUI m_BestScoreText;
 
     private void Start()
     {
@@ -14,6 +16,9 @@ public class FinalHUDManager : MonoBehaviour
         GameManager.GameState = Tools.GameState.PLAY;
     }
 
+    /**
+     * <summary>Update the HUD of the end scene</summary> 
+     */
     public void UpdateEndScene(Tools.GameState gameState)
     {
         switch (gameState)
@@ -27,5 +32,7 @@ public class FinalHUDManager : MonoBehaviour
             default:
                 break;
         }
+        m_ScoreText.text = "Time : " + GameManager.GameTimePassed;
+        m_BestScoreText.text = "Best Time : " + GameManager.GameBestTime;
     }
 }
