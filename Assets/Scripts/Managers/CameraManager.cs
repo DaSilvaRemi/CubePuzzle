@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [Header("Cameras")]
+    [Tooltip("Camera")]
+    /**
+     * <summary>Array of cameras</summary> 
+     */
     [SerializeField] private Camera[] m_Cameras;
 
     private static int indexCameraSelected = 1;
+
+    /**
+     * <summary>Handle the camera change UI button</summary> 
+     */
+    public void HandleCameraChangeUIButton()
+    {
+        ChangeCamera();
+    }
 
     private void FixedUpdate()
     {
         HandleCameraChangeKey();
     }
 
+    /**
+     * <summary>Handle the camera change key</summary> 
+     */
     private void HandleCameraChangeKey()
     {
         if (Input.GetButtonDown("ChangeCamera"))
@@ -21,6 +37,9 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    /**
+     * <summary>Change the camera</summary>
+     */
     private void ChangeCamera()
     {
         int nextCameraWillBeSelected = indexCameraSelected + 1;
@@ -31,10 +50,5 @@ public class CameraManager : MonoBehaviour
         m_Cameras[nextCameraWillBeSelected].enabled = true;
 
         indexCameraSelected = nextCameraWillBeSelected;
-    }
-
-    public void HandleCameraChangeUIButton()
-    {
-        ChangeCamera();
     }
 }

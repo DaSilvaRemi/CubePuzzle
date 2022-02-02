@@ -9,14 +9,26 @@ public class GameManager : MonoBehaviour
     [Tooltip("Unsigned Int")]
     [SerializeField] private uint m_CurrentLvl = 0;
 
-    protected uint CurrentLVL { get => m_CurrentLvl;  }
+    protected uint CurrentLVL { get => m_CurrentLvl; }
 
+    /**
+     * <summary>The game state</summary> 
+     */
     public static Tools.GameState GameState { get; set; }
 
+    /**
+     * <summary>The game time passed</summary> 
+     */
     public static float GameTimePassed { get; protected set; }
 
+    /**
+     * <summary>The best time</summary>
+     */
     public static float GameBestTime { get; protected set; }
 
+    /**
+     * <summary>Load the game</summary> 
+     */
     public static void LoadGame()
     {
         SaveGame saveGame = SaveGame.Load();
@@ -96,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.GameState = Tools.GameState.PLAY;
         GameManager.GameTimePassed = 0;
-        SceneManager.LoadScene((int) CurrentLVL);
+        SceneManager.LoadScene((int)CurrentLVL);
     }
 
     /**
@@ -112,10 +124,7 @@ public class GameManager : MonoBehaviour
                 break;
             case Tools.GameState.LVLFINISH:
                 SaveGame.Save(new SaveGame(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
-                if (m_CurrentLvl == 4)
-                {
-                    GameManager.GameState = Tools.GameState.WIN;
-                }
+                if (m_CurrentLvl == 4) GameManager.GameState = Tools.GameState.WIN;
                 break;
         }
     }

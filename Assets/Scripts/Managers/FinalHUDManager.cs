@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class FinalHUDManager : MonoBehaviour
 {
+    [Header("HUD TEXT")]
+    [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_VictoryText;
+    [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_GameOverText;
-    [SerializeField] private TextMeshProUGUI m_ScoreText;
-    [SerializeField] private TextMeshProUGUI m_BestScoreText;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_TimeText;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_BestTimeText;
 
     private void Start()
     {
@@ -32,7 +37,7 @@ public class FinalHUDManager : MonoBehaviour
             default:
                 break;
         }
-        m_ScoreText.text = "Time : " + GameManager.GameTimePassed;
-        m_BestScoreText.text = "Best Time : " + GameManager.GameBestTime;
+        m_TimeText.text = "Time : " + GameManager.GameTimePassed;
+        m_BestTimeText.text = "Best Time : " + GameManager.GameBestTime;
     }
 }

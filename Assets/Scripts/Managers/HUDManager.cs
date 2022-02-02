@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    [Header("GameObjects")]
+    [Header("HUD TEXT")]
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_TimeLeftTXT;
 

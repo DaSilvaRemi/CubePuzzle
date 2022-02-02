@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : GameManager
 {
-    private TimerUtils m_TimerUtils;
+    [Header("Managers")]
+    [Tooltip("HUDManager")]
     [SerializeField] private HUDManager m_HUDManager;
+
+    private TimerUtils m_TimerUtils;
 
     private void Awake()
     {

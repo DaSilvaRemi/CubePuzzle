@@ -26,13 +26,21 @@ public class SaveGame : IGameState, ITime {
     /**
      * <summary>The constructor</summary>
      * 
-     * <param name="time"></param>
-     * <param name="level"></param>
+     * <param name="time">The time</param>
+     * <param name="level">The level</param>
      */
     public SaveGame(float time, uint level) : this(time, level, time, Tools.GameState.PLAY)
     {
     }
-    
+
+    /**
+     * <summary>The constructor</summary>
+     * 
+     * <param name="time">The time</param>
+     * <param name="level">The level</param>
+     * <param name="bestTime">The best time</param>
+     * <param name="gameState">The game state</param>
+     */
     public SaveGame(float time, uint level, float bestTime, Tools.GameState gameState)
     {
         Time = time;
