@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
      */
     public static void LoadGame()
     {
-        SaveGame saveGame = SaveGame.Load();
+        SaveData saveGame = SaveData.Load();
         GameManager.GameState = saveGame.GameState;
         GameManager.GameTimePassed = 0;
         GameManager.GameBestTime = saveGame.BestTime;
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("VictoryScene");
                 break;
             case Tools.GameState.LVLFINISH:
-                SaveGame.Save(new SaveGame(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
+                SaveData.Save(new SaveData(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
                 if (m_CurrentLvl == 4) GameManager.GameState = Tools.GameState.WIN;
                 break;
         }

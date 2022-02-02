@@ -2,24 +2,25 @@
 using System.IO;
 using UnityEngine;
 
-[Serializable]
 /**
  * <summary>Serializable class for save the game </summary>
  */
-public class SaveGame : IGameState, ITime { 
+public class SaveData: ITime, IGameState 
+{
+    private SerializableGame m_SerializableGame;
 
-    public float Time { get; set; }
+    public float Time { get => m_SerializableGame.time; set => m_SerializableGame.time = value; }
 
-    public float BestTime { get; set; }
+    public float BestTime { get => m_SerializableGame.bestTime; set => m_SerializableGame.bestTime = value; }
 
-    public uint Level { get; set; }
+    public uint Level { get => m_SerializableGame.level; set => m_SerializableGame.level = value; }
 
-    public Tools.GameState GameState { get; set; }
+    public Tools.GameState GameState { get => m_SerializableGame.gameState; set => m_SerializableGame.gameState = value; }
 
     /**
      * <summary>The default constructor</summary> 
      */
-    public SaveGame() : this(0f, 0)
+    public SaveData() : this(0f, 0)
     {
     }
 
@@ -29,7 +30,7 @@ public class SaveGame : IGameState, ITime {
      * <param name="time">The time</param>
      * <param name="level">The level</param>
      */
-    public SaveGame(float time, uint level) : this(time, level, time, Tools.GameState.PLAY)
+    public SaveData(float time, uint level) : this(time, level, time, Tools.GameState.PLAY)
     {
     }
 
@@ -41,40 +42,41 @@ public class SaveGame : IGameState, ITime {
      * <param name="bestTime">The best time</param>
      * <param name="gameState">The game state</param>
      */
-    public SaveGame(float time, uint level, float bestTime, Tools.GameState gameState)
+    public SaveData(float time, uint level, float bestTime, Tools.GameState gameState) : this(new SerializableGame(time, level, bestTime, gameState))
     {
-        Time = time;
-        Level = level;
-        BestTime = bestTime;
-        GameState = gameState;
+    }
+
+    public SaveData(SerializableGame serializableGame)
+    {
+        m_SerializableGame = new SerializableGame(serializableGame);
     }
 
     /**
      * <summary>Save the game</summary>
-     * <param name="game">The game to save</param>
+     * <param name="save">The save</param>
      */
-    public static void Save(SaveGame game)
+    public static void Save(SaveData save)
     {
 
-        SaveGame data = null;
+        SaveData data = null;
         try
         {
             data = Load();
         }
         catch (FileNotFoundException)
         {
-            data = new SaveGame();
+            data = new SaveData();
         }
         finally
         {
-            if (game.BestTime > data.BestTime)
+            if (save.BestTime > data.BestTime)
             {
-                data.Time = game.Time;
+                data.Time = save.Time;
             }
 
-            data.Level = game.Level;
-            data.Time = game.Time;
-            data.GameState = game.GameState;
+            data.Level = save.Level;
+            data.Time = save.Time;
+            data.GameState = save.GameState;
 
             SaveFile(data);
         }
@@ -85,9 +87,10 @@ public class SaveGame : IGameState, ITime {
      * 
      * <param name="saveGame">The save game</param>
      */
-    public static void SaveFile(SaveGame saveGame)
+    public static void SaveFile(SaveData saveGame)
     {
-        SaveFile("/savefile.json", JsonUtility.ToJson(saveGame));
+        Debug.Log(saveGame);
+        SaveFile("/savefile.json", JsonUtility.ToJson(saveGame.m_SerializableGame));
     }
 
     /**
@@ -108,13 +111,14 @@ public class SaveGame : IGameState, ITime {
      */
     public static void SaveFile(string path, string fileName, string jsonData)
     {
+        Debug.Log(jsonData);
         File.WriteAllText(path + fileName, jsonData);
     }
 
     /**
      * <summary>Load the save</summary>
      */
-    public static SaveGame Load()
+    public static SaveData Load()
     {
         return Load(Application.persistentDataPath + "/savefile.json");
     }
@@ -122,13 +126,13 @@ public class SaveGame : IGameState, ITime {
     /**
      * <summary>Load the save game</summary>
      */
-    public static SaveGame Load(string path)
+    public static SaveData Load(string path)
     {
-        SaveGame loadedSave = new SaveGame();
+        SaveData loadedSave = new SaveData();
 
         try
         {
-            loadedSave = JsonUtility.FromJson<SaveGame>(LoadFile(path));
+            loadedSave.m_SerializableGame = JsonUtility.FromJson<SerializableGame>(LoadFile(path));
         }
         catch (FileNotFoundException ex)
         {
