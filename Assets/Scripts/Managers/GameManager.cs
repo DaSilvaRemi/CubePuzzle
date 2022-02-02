@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [Tooltip("Unsigned Int")]
-    [SerializeField] private uint m_CurrentLvl = 0;
+    [SerializeField] private uint m_CurrentLvl = 1;
 
     protected uint CurrentLVL { get => m_CurrentLvl; }
 
@@ -31,9 +31,10 @@ public class GameManager : MonoBehaviour
      */
     public static void LoadGame()
     {
+        Debug.Log("Load Game");
         SaveData saveGame = SaveData.Load();
         GameManager.GameState = saveGame.GameState;
-        GameManager.GameTimePassed = 0;
+        GameManager.GameTimePassed = saveGame.Time;
         GameManager.GameBestTime = saveGame.BestTime;
 
         switch (saveGame.Level)
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         if (!GameManager.GameState.Equals(Tools.GameState.PLAY))
         {
-            GameManager.GameTimePassed = timerUtils.FormatedTimePassed;
+            GameManager.GameTimePassed += timerUtils.FormatedTimePassed;
         }
     }
 
@@ -123,8 +124,8 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("VictoryScene");
                 break;
             case Tools.GameState.LVLFINISH:
-                SaveData.Save(new SaveData(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
                 if (m_CurrentLvl == 4) GameManager.GameState = Tools.GameState.WIN;
+                SaveData.Save(new SaveData(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
                 break;
         }
     }

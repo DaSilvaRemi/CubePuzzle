@@ -37,7 +37,6 @@ public class LevelManager : GameManager
         if (GameManager.GameState.Equals(Tools.GameState.LVLFINISH))
         {
             GameManager.GameState = Tools.GameState.PLAY;
-            GameManager.GameTimePassed += this.m_TimerUtils.TimePassed;
             SceneManager.LoadScene((int) base.CurrentLVL + 1);
         }
     }

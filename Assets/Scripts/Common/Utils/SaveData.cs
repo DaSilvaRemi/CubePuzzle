@@ -20,7 +20,7 @@ public class SaveData: ITime, IGameState
     /**
      * <summary>The default constructor</summary> 
      */
-    public SaveData() : this(0f, 0)
+    public SaveData() : this(0f, 1)
     {
     }
 
@@ -69,9 +69,9 @@ public class SaveData: ITime, IGameState
         }
         finally
         {
-            if (save.BestTime > data.BestTime)
+            if (data.BestTime == 0 || save.BestTime <= data.BestTime)
             {
-                data.Time = save.Time;
+                data.BestTime = save.BestTime;
             }
 
             data.Level = save.Level;
@@ -89,7 +89,6 @@ public class SaveData: ITime, IGameState
      */
     public static void SaveFile(SaveData saveGame)
     {
-        Debug.Log(saveGame);
         SaveFile("/savefile.json", JsonUtility.ToJson(saveGame.m_SerializableGame));
     }
 
@@ -111,6 +110,7 @@ public class SaveData: ITime, IGameState
      */
     public static void SaveFile(string path, string fileName, string jsonData)
     {
+        Debug.Log("Save");
         Debug.Log(jsonData);
         File.WriteAllText(path + fileName, jsonData);
     }
@@ -138,6 +138,9 @@ public class SaveData: ITime, IGameState
         {
             Debug.Log(ex.Message);
         }
+
+        Debug.Log("Load");
+        Debug.Log(loadedSave.m_SerializableGame.ToString());
 
         return loadedSave;
     }
