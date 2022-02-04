@@ -5,16 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class Tools
 {
-    /**
-     * <summary>The game state enum</summary> 
-     */
     public enum GameState
     {
+        MENU,
         PLAY,
+        PAUSE,
         WIN,
-        LOOSE,
-        LVLFINISH
+        GAMEOVER,
+        ENDLVL
     }
+
+    public enum GameScene
+    {
+        MENUSCENE = 0, 
+        FIRSTLEVELSCENE, 
+        SECONDLVLSCENE, 
+        THIRDLEVELSCENE, 
+        FOURTHLEVELSCENE, 
+        HELPSCENE, 
+        CREDITSCENE
+    }
+
+    public static void Log(Component component, string msg)
+    {
+        Debug.Log(Time.frameCount + " " + component.GetType().Name + " " + msg);
+    }
+
 
     /**
      * <summary>Formar a float to int</summary>

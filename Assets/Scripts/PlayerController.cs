@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("unit: °/s")]
     [SerializeField] private float m_RotatingSpeed;
 
-    private bool canJump = true;
+    private bool m_IsOnGround = true;
     private Rigidbody m_Rigidbody;
 
 
@@ -25,7 +26,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
-        //ResetRbVelocity();
+
+        if (m_IsOnGround)
+        {
+            ResetRbVelocity();
+        }
     }
 
     /**
@@ -47,9 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (canJump && Input.GetButton("Jump"))
+        if (m_IsOnGround && Input.GetButton("Jump"))
         {
-            canJump = false;
+            m_IsOnGround = false;
             Vector3 worldmovVect = m_JumpSpeed * Time.fixedDeltaTime * transform.up;
             m_Rigidbody.MovePosition(transform.position + worldmovVect);
         }
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag.Equals("Finish"))
         {
-            GameManager.GameState = Tools.GameState.LVLFINISH;
+            EventManager.Instance.Raise(new LevelFinishEvent());
         }
     }
 
@@ -73,7 +78,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<CanJump>())
         {
-            canJump = true;
+            m_IsOnGround = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<CanJump>())
+        {
+            m_IsOnGround = false;
         }
     }
 }
