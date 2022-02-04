@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsPlaying)
         {
-            GameManager.GameTimePassed += timerUtils.FormatedTimePassed;
+            GameManager.GameTimePassed += timerUtils.TimePassed;
         }
     }
 
@@ -192,25 +192,6 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateGameTime(timerUtils);
-        CheckGameState();
-    }
-
-    /**
-     * <summary>Check the game state and do appropriate action according to them</summary>
-     */
-    private void CheckGameState()
-    {
-        switch (m_GameState)
-        {
-            case Tools.GameState.WIN:
-            case Tools.GameState.LOOSE:
-                SceneManager.LoadScene("VictoryScene");
-                break;
-            case Tools.GameState.LVLFINISH:
-                if (m_CurrentLvl == 4) GameManager.GameState = Tools.GameState.WIN;
-                SaveData.Save(new SaveData(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
-                break;
-        }
     }
 
     private void ChangeScene(GameScene gameScene)
@@ -274,7 +255,7 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.PLAY);
         GameManager.GameTimePassed = 0;
-        ChangeScene(CurrentScene);
+        ChangeScene(m_CurrentScene);
     }
     #endregion
 }

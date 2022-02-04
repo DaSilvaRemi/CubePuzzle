@@ -30,4 +30,9 @@ public class MenuManager : MonoBehaviour
     {
         EventManager.Instance.Raise(new ExitButtonClickedEvent());
     }
+
+    public void HandleBackToMenuButton()
+    {
+        EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
+    }
 }

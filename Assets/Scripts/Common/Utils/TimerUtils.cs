@@ -29,17 +29,17 @@ public class TimerUtils : MonoBehaviour
     /**
      * <summary>A int format for the time left</summary>
      */
-    public int FormatedTimerLeft { get => Tools.FormatFloatToInt(TimeLeft); }
+    public string FormatedTimerLeft { get => Tools.FormatFloatNumberToString(TimeLeft); }
 
     /**
      * <summary>A int format for the time passed</summary>
      */
-    public int FormatedTimePassed { get => Tools.FormatFloatToInt(TimePassed); }
+    public string FormatedTimePassed { get => Tools.FormatFloatNumberToString(TimePassed); }
 
     /**
      * <summary>A int format for the timer</summary>
      */
-    public int FormatedTimer { get => Tools.FormatFloatToInt(Timer); }
+    public string FormatedTimer { get => Tools.FormatFloatNumberToString(Timer); }
 
     /**
      * <summary>If the timer is finish</summary>
@@ -53,7 +53,7 @@ public class TimerUtils : MonoBehaviour
     public void StartTimer()
     {
         TimeLeft = Timer;
-        StartCoroutine(Countdown());
+        StartCoroutine(MyCountdownCoroutine());
     }
 
     /**
@@ -69,7 +69,7 @@ public class TimerUtils : MonoBehaviour
      */
     public void StopTimer()
     {
-        StopCoroutine(Countdown());
+        StopCoroutine(MyCountdownCoroutine());
     }
 
     /**
@@ -77,7 +77,7 @@ public class TimerUtils : MonoBehaviour
      * <param name="time">The time</param>
      * <returns>The IEnumerator</returns>
      */
-    public static IEnumerator Wait(float time)
+    public static IEnumerator MyWaitCoroutine(float time)
     {
         while (true)
         {
@@ -89,7 +89,7 @@ public class TimerUtils : MonoBehaviour
      * <summary>Countdown the timer</summary>
      * <returns>The IEnumerator</returns>
      */
-    private IEnumerator Countdown()
+    private IEnumerator MyCountdownCoroutine()
     {
         while (TimeLeft > 0f)
         {
