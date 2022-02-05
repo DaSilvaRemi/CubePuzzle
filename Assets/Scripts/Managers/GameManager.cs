@@ -3,52 +3,149 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using SDD.Events;
+using static Tools;
+using UnityEditor;
+
+
 
 public class GameManager : MonoBehaviour
 {
     [Tooltip("Unsigned Int")]
-    [SerializeField] private uint m_CurrentLvl = 0;
+    [SerializeField] private GameScene m_CurrentScene = GameScene.MENUSCENE;
 
-    protected uint CurrentLVL { get => m_CurrentLvl; }
+    [SerializeField] private TimerUtils m_TimerUtils;
 
-    /**
-     * <summary>The game state</summary> 
-     */
-    public static Tools.GameState GameState { get; set; }
-
-    /**
-     * <summary>The game time passed</summary> 
-     */
     public static float GameTimePassed { get; protected set; }
 
-    /**
-     * <summary>The best time</summary>
-     */
     public static float GameBestTime { get; protected set; }
 
-    /**
-     * <summary>Load the game</summary> 
-     */
-    public static void LoadGame()
-    {
-        SaveGame saveGame = SaveGame.Load();
-        GameManager.GameState = saveGame.GameState;
-        GameManager.GameTimePassed = 0;
-        GameManager.GameBestTime = saveGame.BestTime;
+    #region GameState
 
-        switch (saveGame.Level)
+    private static GameState m_GameState;
+
+    public static bool IsMenu { get => m_GameState.Equals(GameState.MENU) ;}
+    public static bool IsPlaying { get => m_GameState.Equals(GameState.PLAY) ;}
+    public static bool IsPausing { get => m_GameState.Equals(GameState.PAUSE) ;}
+    public static bool IsWinning { get => m_GameState.Equals(GameState.WIN) ;}
+    public static bool IsGameOver { get => m_GameState.Equals(GameState.GAMEOVER) ;}
+    public static bool IsEndLVL { get => m_GameState.Equals(GameState.ENDLVL) ;}
+
+    #endregion
+
+    #region GameScene
+    public bool IsMenuScene { get => m_CurrentScene.Equals(GameScene.MENUSCENE); }
+    public bool IsFirstLevelScene { get => m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
+    public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
+    public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
+    public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
+    public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
+    public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
+    #endregion
+
+    #region Event Listeners Methods
+
+    private void OnNewGameButtonClickedEvent(NewGameButtonClickedEvent e)
+    {
+        NewGame();
+    }
+
+    private void OnLoadGameButtonClickedEvent(LoadGameButtonClickedEvent e)
+    {
+        LoadGame();
+    }
+
+    private void OnHelpButtonClickedEvent(HelpButtonClickedEvent e)
+    {
+        Help();
+    }
+
+    private void OnCreditButtonClickedEvent(CreditButtonClickedEvent e)
+    {
+        CreditGame();
+    }
+
+    private void OnExitButtonClickedEvent(ExitButtonClickedEvent e)
+    {
+        ExitGame();
+    }
+
+    private void OnLevelFinishEvent(LevelFinishEvent e)
+    {
+        ChangeLevel();
+    }
+
+    private void NewGame()
+    {
+        SaveData.Save(new SaveData());
+        ChangeScene(GameScene.FIRSTLEVELSCENE);
+    }
+
+    private void LoadGame()
+    {
+        Debug.Log("Load Game");
+        SaveData saveGame = SaveData.Load();
+        SetGameState(saveGame.GameState);
+        GameManager.GameTimePassed = saveGame.Time;
+        GameManager.GameBestTime = saveGame.BestTime;
+    }
+
+    private void ChangeLevel()
+    {
+        if (IsEndLVL)
         {
-            case 1:
-                SceneManager.LoadScene("FirstLevelScene");
+            SetGameState(GameState.WIN);
+        }
+        SaveGame();
+    }
+
+    private void Help()
+    {
+        ChangeScene(GameScene.HELPSCENE);
+    }
+
+    private void CreditGame()
+    {
+        ChangeScene(GameScene.CREDITSCENE);
+    }
+
+    private void ExitGame()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
+    #endregion
+
+    private void SaveGame()
+    {
+        //SaveData.Save(new SaveData(GameTimePassed, CurrentScene, GameTimePassed, m_GameState));
+    }
+
+    private void SetGameState(GameState newGameState)
+    {
+        m_GameState = newGameState;
+        switch (m_GameState)
+        {
+            case GameState.MENU:
+                EventManager.Instance.Raise(new GameMenuEvent());
                 break;
-            case 2:
-                SceneManager.LoadScene("SecondLevelScene");
+            case GameState.PLAY:
+                EventManager.Instance.Raise(new GamePlayEvent());
                 break;
-            case 3:
-                SceneManager.LoadScene("ThirdLevelScene");
+            case GameState.PAUSE:
+                EventManager.Instance.Raise(new GamePauseEvent());
                 break;
-            case 4:
-                SceneManager.LoadScene("FourthLevelScene");
+            case GameState.WIN:
+                EventManager.Instance.Raise(new GameVictoryEvent());
+                break;
+            case GameState.GAMEOVER:
+                EventManager.Instance.Raise(new GameOverEvent());
+                break;
+            default:
                 break;
         }
     }
@@ -61,12 +158,9 @@ public class GameManager : MonoBehaviour
      */
     protected void UpdateGame(TimerUtils timerUtils)
     {
-        if (GameManager.GameState.Equals(Tools.GameState.PLAY))
-        {
-            if (Input.GetButton("ResetGame")) Reset();
+        if (IsPlaying && Input.GetButton("ResetGame")) Reset();
 
-            UpdateGameState(timerUtils);
-        }
+        UpdateGameState(timerUtils);
     }
 
     /**
@@ -77,9 +171,9 @@ public class GameManager : MonoBehaviour
      */
     protected void UpdateGameTime(TimerUtils timerUtils)
     {
-        if (!GameManager.GameState.Equals(Tools.GameState.PLAY))
+        if (IsPlaying)
         {
-            GameManager.GameTimePassed = timerUtils.FormatedTimePassed;
+            GameManager.GameTimePassed += timerUtils.TimePassed;
         }
     }
 
@@ -94,38 +188,74 @@ public class GameManager : MonoBehaviour
         if (timerUtils.IsFinish)
         {
             timerUtils.StopTimer();
-            GameManager.GameState = Tools.GameState.LOOSE;
+            SetGameState(GameState.GAMEOVER);
         }
 
         UpdateGameTime(timerUtils);
-        CheckGameState();
     }
 
-    /**
-     * <summary>Reset the game</summary> 
-     */
-    private void Reset()
+    private void ChangeScene(GameScene gameScene)
     {
-        GameManager.GameState = Tools.GameState.PLAY;
-        GameManager.GameTimePassed = 0;
-        SceneManager.LoadScene((int)CurrentLVL);
-    }
 
-    /**
-     * <summary>Check the game state and do appropriate action according to them</summary>
-     */
-    private void CheckGameState()
-    {
-        switch (GameState)
+        switch (gameScene)
         {
-            case Tools.GameState.WIN:
-            case Tools.GameState.LOOSE:
-                SceneManager.LoadScene("VictoryScene");
+            case GameScene.MENUSCENE:
+                SceneManager.LoadScene("MenuScene");
                 break;
-            case Tools.GameState.LVLFINISH:
-                SaveGame.Save(new SaveGame(GameTimePassed, CurrentLVL, GameTimePassed, GameState));
-                if (m_CurrentLvl == 4) GameManager.GameState = Tools.GameState.WIN;
+            case GameScene.FIRSTLEVELSCENE:
+                SceneManager.LoadScene("FirstLevelScene");
+                break;
+            case GameScene.SECONDLVLSCENE:
+                SceneManager.LoadScene("SecondLevelScene");
+                break;
+            case GameScene.THIRDLEVELSCENE:
+                SceneManager.LoadScene("ThirdLevelScene");
+                break;
+            case GameScene.FOURTHLEVELSCENE:
+                SceneManager.LoadScene("FourthLevelScene");
+                break;
+            case GameScene.HELPSCENE:
+                SceneManager.LoadScene("HelpScene");
+                break;
+            case GameScene.CREDITSCENE:
+                SceneManager.LoadScene("CreditScene");
+                break;
+            default:
                 break;
         }
     }
+
+    #region UNITY METHODS
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.AddListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
+        EventManager.Instance.AddListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
+        EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
+        EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
+        EventManager.Instance.RemoveListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
+        EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
+        EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateGame(m_TimerUtils);
+    }
+
+    private void Reset()
+    {
+        SetGameState(GameState.PLAY);
+        GameManager.GameTimePassed = 0;
+        ChangeScene(m_CurrentScene);
+    }
+    #endregion
 }
