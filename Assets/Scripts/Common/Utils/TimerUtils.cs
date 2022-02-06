@@ -11,6 +11,8 @@ public class TimerUtils : MonoBehaviour
     [Tooltip("float")]
     [SerializeField] private float m_timer;
 
+    private IEnumerator m_MyCountdownCoroutineRef;
+
     /**
      * <summary>The time left to the counter</summary> 
      */
@@ -53,7 +55,14 @@ public class TimerUtils : MonoBehaviour
     public void StartTimer()
     {
         TimeLeft = Timer;
-        StartCoroutine(MyCountdownCoroutine());
+
+        if (m_MyCountdownCoroutineRef != null)
+        {
+            StopTimer();
+        }
+
+        m_MyCountdownCoroutineRef = MyCountdownCoroutine();
+        StartCoroutine(m_MyCountdownCoroutineRef);
     }
 
     /**
@@ -69,7 +78,11 @@ public class TimerUtils : MonoBehaviour
      */
     public void StopTimer()
     {
-        StopCoroutine(MyCountdownCoroutine());
+        if (m_MyCountdownCoroutineRef != null)
+        {
+            StopCoroutine(m_MyCountdownCoroutineRef);
+            m_MyCountdownCoroutineRef = null;
+        }
     }
 
     /**

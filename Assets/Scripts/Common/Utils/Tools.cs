@@ -26,7 +26,8 @@ public class Tools
         THIRDLEVELSCENE, 
         FOURTHLEVELSCENE, 
         HELPSCENE, 
-        CREDITSCENE
+        CREDITSCENE,
+        VICTORYSCENE
     }
 
     public static void Log(Component component, string msg)

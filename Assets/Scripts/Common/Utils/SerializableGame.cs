@@ -11,7 +11,7 @@ public class SerializableGame
 
     public float bestTime;
 
-    public uint level;
+    public Tools.GameScene level;
 
     public Tools.GameState gameState;
 
@@ -19,7 +19,7 @@ public class SerializableGame
     {
     }
 
-    public SerializableGame(float time, uint level, float bestTime, Tools.GameState gameState)
+    public SerializableGame(float time, Tools.GameScene level, float bestTime, Tools.GameState gameState)
     {
         this.time = time;
         this.level = level;

@@ -28,8 +28,8 @@ public class GameVictoryEvent : SDD.Events.Event
 
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
-	public int eBestScore { get; set; }
-	public int eScore { get; set; }
+	public float eBestTime { get; set; }
+	public float eTime { get; set; }
 	public float eCountdown { get; set; }
 }
 #endregion

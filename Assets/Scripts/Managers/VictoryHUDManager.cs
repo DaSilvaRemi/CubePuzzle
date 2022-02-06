@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using SDD.Events;
 
 public class VictoryHUDManager : MonoBehaviour
 {
@@ -24,38 +25,30 @@ public class VictoryHUDManager : MonoBehaviour
         m_Panels.ForEach(item => { if (item) { item.SetActive(item == panel); } });
     }
 
-    private void OnGameWinEvent()
+    private void OnGameWinEvent(GameVictoryEvent e)
     {
+        OpenPanel(m_WinPanel);
+    }
 
+    private void OnGameOverEvent(GameOverEvent e)
+    {
+        OpenPanel(m_GameOverPanel);
+    }
+
+    private void Awake()
+    {
+        m_Panels.AddRange(new GameObject[] { m_WinPanel, m_GameOverPanel });
     }
 
     private void OnEnable()
     {
-        
+        EventManager.Instance.AddListener<GameVictoryEvent>(OnGameWinEvent);
+        EventManager.Instance.AddListener<GameOverEvent>(OnGameOverEvent);
     }
 
     private void OnDisable()
     {
-        
+        EventManager.Instance.RemoveListener<GameVictoryEvent>(OnGameWinEvent);
+        EventManager.Instance.RemoveListener<GameOverEvent>(OnGameOverEvent);
     }
-
-    /**
-     * <summary>Update the HUD of the end scene</summary> 
-     */
-   /* public void UpdateEndScene(Tools.GameState gameState)
-    {
-        switch (gameState)
-        {
-            case Tools.GameState.WIN:
-                m_VictoryText.gameObject.SetActive(true);
-                break;
-            case Tools.GameState.LOOSE:
-                m_GameOverText.gameObject.SetActive(true);
-                break;
-            default:
-                break;
-        }
-        m_TimeText.text = GameManager.GameTimePassed;
-        m_BestTimeText.text = GameManager.GameBestTime;
-    }*/
 }
