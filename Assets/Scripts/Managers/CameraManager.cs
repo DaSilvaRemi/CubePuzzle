@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
      */
     [SerializeField] private Camera[] m_Cameras;
 
-    private static int indexCameraSelected = 1;
+    private static int m_IndexCameraSelected = 1;
 
     /**
      * <summary>Handle the camera change UI button</summary> 
@@ -42,13 +42,13 @@ public class CameraManager : MonoBehaviour
      */
     private void ChangeCamera()
     {
-        int nextCameraWillBeSelected = indexCameraSelected + 1;
+        int nextCameraWillBeSelected = m_IndexCameraSelected + 1;
 
         if (nextCameraWillBeSelected >= m_Cameras.Length) nextCameraWillBeSelected = 0;
 
-        m_Cameras[indexCameraSelected].enabled = false;
+        m_Cameras[m_IndexCameraSelected].enabled = false;
         m_Cameras[nextCameraWillBeSelected].enabled = true;
 
-        indexCameraSelected = nextCameraWillBeSelected;
+        m_IndexCameraSelected = nextCameraWillBeSelected;
     }
 }

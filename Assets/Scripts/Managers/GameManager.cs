@@ -14,11 +14,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("Unsigned Int")]
     [SerializeField] private GameScene m_CurrentScene = GameScene.MENUSCENE;
 
-    [SerializeField] private TimerUtils m_TimerUtils;
+    private TimerUtils m_TimerUtils;
 
-    public static float GameTimePassed { get; protected set; }
+    private static float m_TimePassed;
 
-    public static float GameBestTime { get; protected set; }
+    private static float m_BestTime;
 
     #region GameState
 
@@ -47,66 +47,78 @@ public class GameManager : MonoBehaviour
 
     private void OnNewGameButtonClickedEvent(NewGameButtonClickedEvent e)
     {
-        NewGame();
+        this.NewGame();
     }
 
     private void OnLoadGameButtonClickedEvent(LoadGameButtonClickedEvent e)
     {
-        LoadGame();
+        this.LoadGame();
     }
 
     private void OnHelpButtonClickedEvent(HelpButtonClickedEvent e)
     {
-        Help();
+        this.Help();
     }
 
     private void OnCreditButtonClickedEvent(CreditButtonClickedEvent e)
     {
-        CreditGame();
+        this.CreditGame();
     }
 
     private void OnExitButtonClickedEvent(ExitButtonClickedEvent e)
     {
-        ExitGame();
+        this.ExitGame();
     }
 
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
-        ChangeLevel();
+       GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
+       this.ChangeLevel();
+    }
+
+    private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
+    {
+        ChangeScene(GameScene.MENUSCENE);
     }
 
     private void NewGame()
     {
         SaveData.Save(new SaveData());
-        ChangeScene(GameScene.FIRSTLEVELSCENE);
+        this.ResetGameVar();
+        this.ChangeScene(GameScene.FIRSTLEVELSCENE);
     }
 
     private void LoadGame()
     {
         Debug.Log("Load Game");
         SaveData saveGame = SaveData.Load();
-        SetGameState(saveGame.GameState);
-        GameManager.GameTimePassed = saveGame.Time;
-        GameManager.GameBestTime = saveGame.BestTime;
+        this.SetGameState(saveGame.GameState);
+        this.SetTimePassed(saveGame.Time);
+        this.SetBestTime(saveGame.BestTime);
+        this.ChangeScene(saveGame.Level);
     }
 
     private void ChangeLevel()
     {
-        if (IsEndLVL)
+        m_CurrentScene += 1;
+        if (this.IsFourthLevelScene && GameManager.IsEndLVL)
         {
-            SetGameState(GameState.WIN);
+            this.SetGameState(GameState.WIN);
+            m_CurrentScene = GameScene.VICTORYSCENE;
         }
-        SaveGame();
+
+        this.SaveGame();
+        this.ChangeScene(m_CurrentScene);
     }
 
     private void Help()
     {
-        ChangeScene(GameScene.HELPSCENE);
+        this.ChangeScene(GameScene.HELPSCENE);
     }
 
     private void CreditGame()
     {
-        ChangeScene(GameScene.CREDITSCENE);
+        this.ChangeScene(GameScene.CREDITSCENE);
     }
 
     private void ExitGame()
@@ -122,13 +134,13 @@ public class GameManager : MonoBehaviour
 
     private void SaveGame()
     {
-        //SaveData.Save(new SaveData(GameTimePassed, CurrentScene, GameTimePassed, m_GameState));
+        SaveData.Save(new SaveData(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState));
     }
 
     private void SetGameState(GameState newGameState)
     {
-        m_GameState = newGameState;
-        switch (m_GameState)
+        GameManager.m_GameState = newGameState;
+        switch (GameManager.m_GameState)
         {
             case GameState.MENU:
                 EventManager.Instance.Raise(new GameMenuEvent());
@@ -150,6 +162,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SetTimePassed(float timePassed)
+    {
+        GameManager.m_TimePassed = timePassed;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = timePassed, eCountdown = m_TimerUtils.TimeLeft });
+    }
+
+    private void SetBestTime(float bestTime)
+    {
+        GameManager.m_BestTime = bestTime;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = bestTime, eCountdown = m_TimerUtils.TimeLeft });
+    }
+
+    private void SetCountdown(float countdown)
+    {
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown });
+    }
+
+    private void PlayGame()
+    {
+        this.m_TimerUtils.StartTimer();
+    }
+
     /**
      * <summary>Update the Game</summary>
      * <remarks>It run only if the game state is PLAY</remarks>
@@ -158,9 +192,9 @@ public class GameManager : MonoBehaviour
      */
     protected void UpdateGame(TimerUtils timerUtils)
     {
-        if (IsPlaying && Input.GetButton("ResetGame")) Reset();
+        if (GameManager.IsPlaying && Input.GetButton("ResetGame")) this.Reset();
 
-        UpdateGameState(timerUtils);
+        this.UpdateGameState(timerUtils);
     }
 
     /**
@@ -169,11 +203,11 @@ public class GameManager : MonoBehaviour
      * 
      * <param name="timerUtils">The TimerUtils object</param>
      */
-    protected void UpdateGameTime(TimerUtils timerUtils)
+    protected void UpdateCountdown(TimerUtils timerUtils)
     {
-        if (IsPlaying)
+        if (GameManager.IsPlaying)
         {
-            GameManager.GameTimePassed += timerUtils.TimePassed;
+            this.SetCountdown(timerUtils.TimeLeft);
         }
     }
 
@@ -185,13 +219,14 @@ public class GameManager : MonoBehaviour
      */
     protected void UpdateGameState(TimerUtils timerUtils)
     {
-        if (timerUtils.IsFinish)
+        if (GameManager.IsPlaying && timerUtils.IsFinish)
         {
             timerUtils.StopTimer();
-            SetGameState(GameState.GAMEOVER);
+            this.SetGameState(GameState.GAMEOVER);
+            this.ChangeScene(GameScene.VICTORYSCENE);
         }
 
-        UpdateGameTime(timerUtils);
+        UpdateCountdown(timerUtils);
     }
 
     private void ChangeScene(GameScene gameScene)
@@ -220,6 +255,9 @@ public class GameManager : MonoBehaviour
             case GameScene.CREDITSCENE:
                 SceneManager.LoadScene("CreditScene");
                 break;
+            case GameScene.VICTORYSCENE:
+                SceneManager.LoadScene("VictoryScene");
+                break;
             default:
                 break;
         }
@@ -233,6 +271,7 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.AddListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
     }
 
@@ -243,19 +282,39 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.RemoveListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
         EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
+    }
+
+    private void Awake()
+    {
+        this.m_TimerUtils = GetComponent<TimerUtils>();
+    }
+
+    private void Start()
+    {
+        SetGameState(m_GameState);
+        if (GameManager.IsPlaying)
+        {
+            this.PlayGame();
+        }
     }
 
     private void FixedUpdate()
     {
-        UpdateGame(m_TimerUtils);
+        this.UpdateGame(this.m_TimerUtils);
     }
 
     private void Reset()
     {
-        SetGameState(GameState.PLAY);
-        GameManager.GameTimePassed = 0;
-        ChangeScene(m_CurrentScene);
+        this.ResetGameVar();
+        this.ChangeScene(this.m_CurrentScene);
     }
     #endregion
+
+    private void ResetGameVar()
+    {
+        this.SetGameState(GameState.PLAY);
+        this.SetTimePassed(0);
+    }
 }

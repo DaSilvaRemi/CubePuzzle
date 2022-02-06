@@ -80,6 +80,10 @@ public class PlayerController : MonoBehaviour
         {
             m_IsOnGround = true;
         }
+        else if (collision.gameObject.tag.Equals("Ennemy"))
+        {
+            EventManager.Instance.Raise(new GameOverEvent());
+        }
     }
 
     private void OnCollisionExit(Collision collision)

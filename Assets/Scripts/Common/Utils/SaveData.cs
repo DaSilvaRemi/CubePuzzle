@@ -13,14 +13,14 @@ public class SaveData: ITime, IGameState
 
     public float BestTime { get => m_SerializableGame.bestTime; set => m_SerializableGame.bestTime = value; }
 
-    public uint Level { get => m_SerializableGame.level; set => m_SerializableGame.level = value; }
+    public Tools.GameScene Level { get => m_SerializableGame.level; set => m_SerializableGame.level = value; }
 
     public Tools.GameState GameState { get => m_SerializableGame.gameState; set => m_SerializableGame.gameState = value; }
 
     /**
      * <summary>The default constructor</summary> 
      */
-    public SaveData() : this(0f, 1)
+    public SaveData() : this(0f, Tools.GameScene.FIRSTLEVELSCENE)
     {
     }
 
@@ -30,7 +30,7 @@ public class SaveData: ITime, IGameState
      * <param name="time">The time</param>
      * <param name="level">The level</param>
      */
-    public SaveData(float time, uint level) : this(time, level, time, Tools.GameState.PLAY)
+    public SaveData(float time, Tools.GameScene level) : this(time, level, time, Tools.GameState.PLAY)
     {
     }
 
@@ -42,7 +42,7 @@ public class SaveData: ITime, IGameState
      * <param name="bestTime">The best time</param>
      * <param name="gameState">The game state</param>
      */
-    public SaveData(float time, uint level, float bestTime, Tools.GameState gameState) : this(new SerializableGame(time, level, bestTime, gameState))
+    public SaveData(float time, Tools.GameScene level, float bestTime, Tools.GameState gameState) : this(new SerializableGame(time, level, bestTime, gameState))
     {
     }
 
