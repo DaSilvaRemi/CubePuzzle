@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour, IEventHandler
     public static bool IsPausing { get => m_GameState.Equals(GameState.PAUSE) ;}
     public static bool IsWinning { get => m_GameState.Equals(GameState.WIN) ;}
     public static bool IsGameOver { get => m_GameState.Equals(GameState.GAMEOVER) ;}
-    public static bool IsEndLVL { get => m_GameState.Equals(GameState.ENDLVL) ;}
 
     #endregion
 
@@ -138,7 +137,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     private void ChangeLevel()
     {
         this.m_CurrentScene += 1;
-        if (this.IsFourthLevelScene && GameManager.IsEndLVL)
+        if (this.IsFourthLevelScene)
         {
             this.SetGameState(GameState.WIN);
             this.m_CurrentScene = GameScene.VICTORYSCENE;
