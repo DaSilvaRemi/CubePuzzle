@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * <summary>Serializable class for save the game </summary>
  */
-public class SaveData: ITime, IGameState 
+public class SaveData: IGameState 
 {
     private SerializableGame m_SerializableGame;
 

@@ -1227,6 +1227,7 @@ MonoBehaviour:
   m_Cameras:
   - {fileID: 4476969447125468463}
   - {fileID: 4476969447125468462}
+  m_CooldownDuration: 0.5
 --- !u!1001 &391736959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6199,9 +6200,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579756954}
+  - component: {fileID: 1579756955}
   - component: {fileID: 1579756953}
   - component: {fileID: 1579756952}
-  - component: {fileID: 1579756955}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Ground
