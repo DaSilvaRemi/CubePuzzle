@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private static GameState m_GameState;
 
-    public static bool IsMenu { get => m_GameState.Equals(GameState.MENU) ;}
-    public static bool IsPlaying { get => m_GameState.Equals(GameState.PLAY) ;}
-    public static bool IsPausing { get => m_GameState.Equals(GameState.PAUSE) ;}
-    public static bool IsWinning { get => m_GameState.Equals(GameState.WIN) ;}
-    public static bool IsGameOver { get => m_GameState.Equals(GameState.GAMEOVER) ;}
+    public static bool IsMenu { get => m_GameState.Equals(GameState.MENU); }
+    public static bool IsPlaying { get => m_GameState.Equals(GameState.PLAY); }
+    public static bool IsPausing { get => m_GameState.Equals(GameState.PAUSE); }
+    public static bool IsWinning { get => m_GameState.Equals(GameState.WIN); }
+    public static bool IsGameOver { get => m_GameState.Equals(GameState.GAMEOVER); }
+    public static bool IsEndLVL { get => m_GameState.Equals(GameState.ENDLVL); }
 
     #endregion
 
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
     public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
     public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
+    public bool IsLastLevel { get => IsFourthLevelScene; }
     public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
     public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
     #endregion
@@ -71,8 +73,9 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
-       GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
-       this.ChangeLevel();
+        GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
+        this.SetGameState(GameState.ENDLVL);
+        this.ChangeLevel();
     }
 
     private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
@@ -92,6 +95,13 @@ public class GameManager : MonoBehaviour, IEventHandler
         this.m_TimerUtils.StartTimer();
     }
 
+    private void VictoryGame()
+    {
+        if (!IsWinning && !IsGameOver) return;
+
+        SetGameScene(GameScene.VICTORYSCENE);
+    }
+
     private void NewGame()
     {
         SaveData.Save(new SaveData());
@@ -106,11 +116,18 @@ public class GameManager : MonoBehaviour, IEventHandler
         this.SetTimePassed(saveGame.Time);
         this.SetBestTime(saveGame.BestTime);
         this.SetGameScene(saveGame.Level);
+        VictoryGame();
+        ChangeLevel();
     }
 
     private void SaveGame()
     {
-        SaveData.Save(new SaveData(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState));
+        GameManager.SaveGame(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState);
+    }
+
+    private static void SaveGame(float timePassed, GameScene gameScene, float bestTime, GameState gameState)
+    {
+        SaveData.Save(new SaveData(timePassed, gameScene, bestTime, gameState));
     }
 
     private void EarnTime(GameObject gameObject)
@@ -136,15 +153,19 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void ChangeLevel()
     {
-        this.m_CurrentScene += 1;
-        if (this.IsFourthLevelScene)
+        if (!GameManager.IsEndLVL) return;
+
+        GameState nextGameState = GameState.PLAY;
+        GameScene nextGameScene = m_CurrentScene + 1;
+        if (this.IsLastLevel)
         {
-            this.SetGameState(GameState.WIN);
-            this.m_CurrentScene = GameScene.VICTORYSCENE;
+            nextGameState = GameState.WIN;
+            nextGameScene = GameScene.VICTORYSCENE;
         }
 
-        this.SaveGame();
-        this.SetGameScene(m_CurrentScene);
+        GameManager.SaveGame(GameManager.m_TimePassed, nextGameScene, GameManager.m_TimePassed, nextGameState);
+        this.SetGameState(nextGameState);
+        this.SetGameScene(nextGameScene);
     }
 
     private void Help()
@@ -159,11 +180,11 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void ExitGame()
     {
-        #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
     }
 
     #endregion
@@ -189,6 +210,9 @@ public class GameManager : MonoBehaviour, IEventHandler
             case GameState.GAMEOVER:
                 EventManager.Instance.Raise(new GameOverEvent());
                 break;
+            case GameState.ENDLVL:
+                EventManager.Instance.Raise(new GameEndLVLEvent());
+                break;
             default:
                 break;
         }
@@ -213,7 +237,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void SetGameScene(GameScene gameScene)
     {
-
+        m_CurrentScene = gameScene;
         switch (gameScene)
         {
             case GameScene.MENUSCENE:
@@ -328,7 +352,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void OnDisable()
     {
-       UnsubscribeEvents();
+        UnsubscribeEvents();
     }
 
     private void Awake()
