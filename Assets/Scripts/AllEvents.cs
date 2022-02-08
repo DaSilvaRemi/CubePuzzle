@@ -26,6 +26,10 @@ public class GameVictoryEvent : SDD.Events.Event
 {
 }
 
+public class GameEndLVLEvent : SDD.Events.Event
+{
+}
+
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
 	public float eBestTime { get; set; }

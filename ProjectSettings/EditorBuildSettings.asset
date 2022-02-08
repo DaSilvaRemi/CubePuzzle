@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ThirdLevelScene.unity
     guid: 168b4c7d24647214582226c4357e4f8e
   - enabled: 1
-    path: Assets/Scenes/CreditScene.unity
-    guid: c4726e367d7efb745a78c6f92bab847d
-  - enabled: 1
     path: Assets/Scenes/VictoryScene.unity
     guid: 226c08c4d5f65d54698f033946b54edf
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: c4726e367d7efb745a78c6f92bab847d
   m_configObjects: {}
