@@ -6,12 +6,13 @@ public class CameraManager : MonoBehaviour
 {
     [Header("Cameras")]
     [Tooltip("Camera")]
-    /**
-     * <summary>Array of cameras</summary> 
-     */
     [SerializeField] private Camera[] m_Cameras;
+    [Tooltip("Unit : s")]
+    [SerializeField] private float m_CooldownDuration;
 
-    private static int m_IndexCameraSelected = 1;
+    private int m_IndexCameraSelected = 1;
+
+    private float m_NextCameraChangedTime;
 
     /**
      * <summary>Handle the camera change UI button</summary> 
@@ -21,19 +22,15 @@ public class CameraManager : MonoBehaviour
         ChangeCamera();
     }
 
-    private void FixedUpdate()
-    {
-        HandleCameraChangeKey();
-    }
-
     /**
      * <summary>Handle the camera change key</summary> 
      */
     private void HandleCameraChangeKey()
     {
-        if (Input.GetButtonDown("ChangeCamera"))
+        if (Input.GetButton("ChangeCamera") && Time.time > m_NextCameraChangedTime)
         {
             ChangeCamera();
+            m_NextCameraChangedTime = Time.time + m_CooldownDuration;
         }
     }
 
@@ -50,5 +47,15 @@ public class CameraManager : MonoBehaviour
         m_Cameras[nextCameraWillBeSelected].enabled = true;
 
         m_IndexCameraSelected = nextCameraWillBeSelected;
+    }
+
+    private void Start()
+    {
+        m_NextCameraChangedTime = Time.time;
+    }
+
+    private void FixedUpdate()
+    {
+        HandleCameraChangeKey();
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface IBonus
+public interface IScore
 {
-    public int Bonus { get; }
+    int Score { get; }
 }

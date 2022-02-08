@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanJump>())
+        if (collision.gameObject.GetComponent<Ground>())
         {
             m_IsOnGround = true;
         }
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanJump>())
+        if (collision.gameObject.GetComponent<Ground>())
         {
             m_IsOnGround = false;
         }
