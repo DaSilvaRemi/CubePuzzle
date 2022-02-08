@@ -85,6 +85,11 @@ public class TimerUtils : MonoBehaviour
         }
     }
 
+    public void LateTime(float addTime)
+    {
+        TimeLeft += addTime;
+    }
+
     /**
      * <summary>Wait a time</summary> 
      * <param name="time">The time</param>

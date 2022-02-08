@@ -9,7 +9,7 @@ using UnityEditor;
 
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IEventHandler
 {
     [Tooltip("Unsigned Int")]
     [SerializeField] private GameScene m_CurrentScene = GameScene.MENUSCENE;
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private static float m_BestTime;
 
-    #region GameState
+    #region GameState Properties
 
     private static GameState m_GameState;
 
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region GameScene
+    #region GameScene Properties
     public bool IsMenuScene { get => m_CurrentScene.Equals(GameScene.MENUSCENE); }
     public bool IsFirstLevelScene { get => m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
     public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
@@ -78,47 +78,84 @@ public class GameManager : MonoBehaviour
 
     private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
     {
-        ChangeScene(GameScene.MENUSCENE);
+        SetGameScene(GameScene.MENUSCENE);
+    }
+
+    private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
+    {
+        if (IsPlaying) EarnTime(e.eTriggeredGO);
+    }
+    #endregion
+
+    #region  GameMangers Utils Methods
+    private void PlayGame()
+    {
+        this.m_TimerUtils.StartTimer();
     }
 
     private void NewGame()
     {
         SaveData.Save(new SaveData());
         this.ResetGameVar();
-        this.ChangeScene(GameScene.FIRSTLEVELSCENE);
+        this.SetGameScene(GameScene.FIRSTLEVELSCENE);
     }
 
     private void LoadGame()
     {
-        Debug.Log("Load Game");
         SaveData saveGame = SaveData.Load();
         this.SetGameState(saveGame.GameState);
         this.SetTimePassed(saveGame.Time);
         this.SetBestTime(saveGame.BestTime);
-        this.ChangeScene(saveGame.Level);
+        this.SetGameScene(saveGame.Level);
+    }
+
+    private void SaveGame()
+    {
+        SaveData.Save(new SaveData(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState));
+    }
+
+    private void EarnTime(GameObject gameObject)
+    {
+        if (!gameObject) return;
+
+        float totalNewlyGainedTime = 0;
+        ITime[] times = gameObject.GetComponentsInChildren<ITime>();
+
+        for (int i = 0; i < times.Length; i++)
+        {
+            totalNewlyGainedTime += times[i].Time;
+        }
+
+        this.m_TimerUtils.LateTime(totalNewlyGainedTime);
+    }
+
+    private void ResetGameVar()
+    {
+        this.SetGameState(GameState.PLAY);
+        this.SetTimePassed(0);
     }
 
     private void ChangeLevel()
     {
-        m_CurrentScene += 1;
+        this.m_CurrentScene += 1;
         if (this.IsFourthLevelScene && GameManager.IsEndLVL)
         {
             this.SetGameState(GameState.WIN);
-            m_CurrentScene = GameScene.VICTORYSCENE;
+            this.m_CurrentScene = GameScene.VICTORYSCENE;
         }
 
         this.SaveGame();
-        this.ChangeScene(m_CurrentScene);
+        this.SetGameScene(m_CurrentScene);
     }
 
     private void Help()
     {
-        this.ChangeScene(GameScene.HELPSCENE);
+        this.SetGameScene(GameScene.HELPSCENE);
     }
 
     private void CreditGame()
     {
-        this.ChangeScene(GameScene.CREDITSCENE);
+        this.SetGameScene(GameScene.CREDITSCENE);
     }
 
     private void ExitGame()
@@ -132,11 +169,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private void SaveGame()
-    {
-        SaveData.Save(new SaveData(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState));
-    }
-
+    #region Setters
     private void SetGameState(GameState newGameState)
     {
         GameManager.m_GameState = newGameState;
@@ -165,13 +198,13 @@ public class GameManager : MonoBehaviour
     private void SetTimePassed(float timePassed)
     {
         GameManager.m_TimePassed = timePassed;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = timePassed, eCountdown = m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = timePassed, eCountdown = this.m_TimerUtils.TimeLeft });
     }
 
     private void SetBestTime(float bestTime)
     {
         GameManager.m_BestTime = bestTime;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = bestTime, eCountdown = m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = bestTime, eCountdown = this.m_TimerUtils.TimeLeft });
     }
 
     private void SetCountdown(float countdown)
@@ -179,10 +212,68 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown });
     }
 
-    private void PlayGame()
+    private void SetGameScene(GameScene gameScene)
     {
-        this.m_TimerUtils.StartTimer();
+
+        switch (gameScene)
+        {
+            case GameScene.MENUSCENE:
+                SceneManager.LoadScene("MenuScene");
+                break;
+            case GameScene.FIRSTLEVELSCENE:
+                SceneManager.LoadScene("FirstLevelScene");
+                break;
+            case GameScene.SECONDLVLSCENE:
+                SceneManager.LoadScene("SecondLevelScene");
+                break;
+            case GameScene.THIRDLEVELSCENE:
+                SceneManager.LoadScene("ThirdLevelScene");
+                break;
+            case GameScene.FOURTHLEVELSCENE:
+                SceneManager.LoadScene("FourthLevelScene");
+                break;
+            case GameScene.HELPSCENE:
+                SceneManager.LoadScene("HelpScene");
+                break;
+            case GameScene.CREDITSCENE:
+                SceneManager.LoadScene("CreditScene");
+                break;
+            case GameScene.VICTORYSCENE:
+                SceneManager.LoadScene("VictoryScene");
+                break;
+            default:
+                break;
+        }
     }
+    #endregion
+
+    #region Events Suscribption
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.AddListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
+        EventManager.Instance.AddListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
+        EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
+        EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
+        EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
+        EventManager.Instance.RemoveListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
+        EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
+        EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
+        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
+        EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
+    }
+    #endregion
+
+    #region GameManagers OWN UPDATE METHODS
 
     /**
      * <summary>Update the Game</summary>
@@ -223,67 +314,22 @@ public class GameManager : MonoBehaviour
         {
             timerUtils.StopTimer();
             this.SetGameState(GameState.GAMEOVER);
-            this.ChangeScene(GameScene.VICTORYSCENE);
+            this.SetGameScene(GameScene.VICTORYSCENE);
         }
 
         UpdateCountdown(timerUtils);
     }
+    #endregion
 
-    private void ChangeScene(GameScene gameScene)
-    {
-
-        switch (gameScene)
-        {
-            case GameScene.MENUSCENE:
-                SceneManager.LoadScene("MenuScene");
-                break;
-            case GameScene.FIRSTLEVELSCENE:
-                SceneManager.LoadScene("FirstLevelScene");
-                break;
-            case GameScene.SECONDLVLSCENE:
-                SceneManager.LoadScene("SecondLevelScene");
-                break;
-            case GameScene.THIRDLEVELSCENE:
-                SceneManager.LoadScene("ThirdLevelScene");
-                break;
-            case GameScene.FOURTHLEVELSCENE:
-                SceneManager.LoadScene("FourthLevelScene");
-                break;
-            case GameScene.HELPSCENE:
-                SceneManager.LoadScene("HelpScene");
-                break;
-            case GameScene.CREDITSCENE:
-                SceneManager.LoadScene("CreditScene");
-                break;
-            case GameScene.VICTORYSCENE:
-                SceneManager.LoadScene("VictoryScene");
-                break;
-            default:
-                break;
-        }
-    }
-
-    #region UNITY METHODS
+    #region MonoBehaviour METHODS
     private void OnEnable()
     {
-        EventManager.Instance.AddListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
-        EventManager.Instance.AddListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
-        EventManager.Instance.AddListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
-        EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
-        EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
-        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
-        EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
+        SubscribeEvents();
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.RemoveListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
-        EventManager.Instance.RemoveListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
-        EventManager.Instance.RemoveListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
-        EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
-        EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
-        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
-        EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
+       UnsubscribeEvents();
     }
 
     private void Awake()
@@ -308,13 +354,7 @@ public class GameManager : MonoBehaviour
     private void Reset()
     {
         this.ResetGameVar();
-        this.ChangeScene(this.m_CurrentScene);
+        this.SetGameScene(this.m_CurrentScene);
     }
     #endregion
-
-    private void ResetGameVar()
-    {
-        this.SetGameState(GameState.PLAY);
-        this.SetTimePassed(0);
-    }
 }
