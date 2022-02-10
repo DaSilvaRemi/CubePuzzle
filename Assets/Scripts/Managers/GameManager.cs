@@ -8,8 +8,7 @@ using static Tools;
 using UnityEditor;
 
 
-
-public class GameManager : MonoBehaviour, IEventHandler
+public class GameManager : Manager<GameManager>, IEventHandler
 {
     [Tooltip("Unsigned Int")]
     [SerializeField] private GameScene m_CurrentScene = GameScene.MENUSCENE;
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
     public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
     public bool IsLastLevel { get => IsFourthLevelScene; }
+    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
     public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
     public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
     #endregion
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
     {
-        if (e.eTriggeredGO.tag.Equals("Player") && IsPlaying) EarnTime(e.eChestGO);
+        if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) EarnTime(e.eChestGO);
     }
     #endregion
 
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void VictoryGame()
     {
-        if (!IsWinning && !IsGameOver) return;
+        if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
         SetGameScene(GameScene.VICTORYSCENE);
     }
@@ -357,6 +357,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void Awake()
     {
+        base.InitManager();
         this.m_TimerUtils = GetComponent<TimerUtils>();
     }
 
