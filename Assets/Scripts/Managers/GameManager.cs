@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
     {
-        if (IsPlaying) EarnTime(e.eTriggeredGO);
+        if (e.eTriggeredGO.tag.Equals("Player") && IsPlaying) EarnTime(e.eChestGO);
     }
     #endregion
 

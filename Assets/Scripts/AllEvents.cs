@@ -87,6 +87,7 @@ public class LevelFinishEvent : SDD.Events.Event
 #region Chest events
 public class ChestHasTrigerEnterEvent : SDD.Events.Event
 {
+	public GameObject eChestGO;
 	public GameObject eTriggeredGO;
 }
 #endregion
