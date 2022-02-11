@@ -37,13 +37,18 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        //MODE VELOCITY
-        Vector3 targetVelocity = m_TranslationSpeed * Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized * verticalInput;
-        Vector3 velocityChange = targetVelocity - m_Rigidbody.velocity;
-        m_Rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-        Vector3 targetAngularVelocity = horizontalInput * m_RotatingSpeed * transform.up;
-        Vector3 angularVelocityChange = targetAngularVelocity - m_Rigidbody.angularVelocity;
-        m_Rigidbody.AddTorque(angularVelocityChange, ForceMode.VelocityChange);
+        if (this.m_IsOnGround)
+        {
+            //MODE VELOCITY
+            Vector3 targetVelocity = m_TranslationSpeed * Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized * verticalInput;
+            Vector3 velocityChange = targetVelocity - m_Rigidbody.velocity;
+            m_Rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+
+            Vector3 targetAngularVelocity = horizontalInput * m_RotatingSpeed * transform.up;
+            Vector3 angularVelocityChange = targetAngularVelocity - m_Rigidbody.angularVelocity;
+            m_Rigidbody.AddTorque(angularVelocityChange, ForceMode.VelocityChange);
+
+        }
     }
 
     private void Jump()
@@ -82,9 +87,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Ground>())
         {
+            Tools.Log(this, "in collision");
             m_IsOnGround = true;
         }
-        else if (collision.gameObject.CompareTag("Ennemy"))
+        
+        if (collision.gameObject.CompareTag("Ennemy"))
         {
             EventManager.Instance.Raise(new GameOverEvent());
         }
@@ -105,6 +112,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Tools.Log(this, m_IsOnGround.ToString());
+
         Move();
         Jump();
 
