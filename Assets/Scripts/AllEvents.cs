@@ -32,6 +32,7 @@ public class GameEndLVLEvent : SDD.Events.Event
 
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
+	public int eScore { get; set; }
 	public float eBestTime { get; set; }
 	public float eTime { get; set; }
 	public float eCountdown { get; set; }
@@ -88,10 +89,17 @@ public class LevelGameOverEvent : SDD.Events.Event
 }
 #endregion
 
-#region Chest events
+#region Trigger/Collider events
 public class ChestHasTrigerEnterEvent : SDD.Events.Event
 {
 	public GameObject eChestGO;
 	public GameObject eTriggeredGO;
 }
+
+public class OnTargetHasCollidedEnterEvent : SDD.Events.Event
+{
+	public GameObject eTargetGO;
+	public GameObject eCollidedGO;
+}
+
 #endregion
