@@ -38,10 +38,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
     public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
     public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
     public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
-    public bool IsLastLevel { get => IsFourthLevelScene; }
-    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
     public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
     public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
+    public bool IsLastLevel { get => IsFourthLevelScene; }
+    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
     #endregion
 
     #region Event Listeners Methods
