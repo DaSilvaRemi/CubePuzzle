@@ -71,6 +71,11 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.ExitGame();
     }
 
+    private void OnLevelGameOverEvent(LevelGameOverEvent e)
+    {
+        GameOver();
+    }
+
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
         GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
@@ -100,6 +105,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
         SetGameScene(GameScene.VICTORYSCENE);
+    }
+
+    private void GameOver()
+    {
+        this.SetGameState(GameState.GAMEOVER);
+        this.SetGameScene(GameScene.VICTORYSCENE);
     }
 
     private void NewGame()
@@ -279,6 +290,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.AddListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
     }
@@ -291,6 +303,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
     }
@@ -336,8 +349,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (GameManager.IsPlaying && timerUtils.IsFinish)
         {
             timerUtils.StopTimer();
-            this.SetGameState(GameState.GAMEOVER);
-            this.SetGameScene(GameScene.VICTORYSCENE);
+            GameOver();
         }
 
         UpdateCountdown(timerUtils);

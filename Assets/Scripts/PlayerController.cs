@@ -85,15 +85,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Tools.Log(this, collision.gameObject.name);
+
         if (collision.gameObject.GetComponent<Ground>())
         {
-            Tools.Log(this, "in collision");
             m_IsOnGround = true;
         }
         
         if (collision.gameObject.CompareTag("Ennemy"))
         {
-            EventManager.Instance.Raise(new GameOverEvent());
+            Tools.Log(this, "Ennemy");
+            EventManager.Instance.Raise(new LevelGameOverEvent());
         }
     }
 
@@ -112,8 +114,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Tools.Log(this, m_IsOnGround.ToString());
-
         Move();
         Jump();
 

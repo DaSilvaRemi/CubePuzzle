@@ -82,6 +82,10 @@ public class LevelHasBeenInitializedEvent:SDD.Events.Event
 public class LevelFinishEvent : SDD.Events.Event
 {
 }
+
+public class LevelGameOverEvent : SDD.Events.Event
+{
+}
 #endregion
 
 #region Chest events
