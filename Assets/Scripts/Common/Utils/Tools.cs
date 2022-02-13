@@ -30,6 +30,17 @@ public class Tools
         VICTORYSCENE
     }
 
+    public enum MoveDirection 
+    { 
+        LEFT, 
+        RIGHT, 
+        UP, 
+        DOWN, 
+        FORWARD, 
+        BACK, 
+        NONE 
+    };
+
     public static void Log(Component component, string msg)
     {
         Debug.Log(Time.frameCount + " " + component.GetType().Name + " " + msg);

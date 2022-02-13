@@ -19,6 +19,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private static float m_BestTime;
 
+    private int m_Score;
+
     #region GameState Properties
 
     private static GameState m_GameState;
@@ -38,10 +40,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
     public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
     public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
     public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
-    public bool IsLastLevel { get => IsFourthLevelScene; }
-    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
     public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
     public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
+    public bool IsLastLevel { get => IsFourthLevelScene; }
+    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
     #endregion
 
     #region Event Listeners Methods
@@ -71,6 +73,11 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.ExitGame();
     }
 
+    private void OnLevelGameOverEvent(LevelGameOverEvent e)
+    {
+        this.GameOver();
+    }
+
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
         GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
@@ -80,12 +87,17 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
     {
-        SetGameScene(GameScene.MENUSCENE);
+        this.SetGameScene(GameScene.MENUSCENE);
     }
 
     private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
     {
-        if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) EarnTime(e.eChestGO);
+        if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) this.EarnTime(e.eChestGO);
+    }
+
+    private void OnTargetHasCollidedEnterEvent(OnTargetHasCollidedEnterEvent e)
+    {
+        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying) this.EarnScore(e.eTargetGO);
     }
     #endregion
 
@@ -99,7 +111,13 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
-        SetGameScene(GameScene.VICTORYSCENE);
+        this.SetGameScene(GameScene.VICTORYSCENE);
+    }
+
+    private void GameOver()
+    {
+        this.SetGameState(GameState.GAMEOVER);
+        this.SetGameScene(GameScene.VICTORYSCENE);
     }
 
     private void NewGame()
@@ -116,8 +134,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.SetTimePassed(saveGame.Time);
         this.SetBestTime(saveGame.BestTime);
         this.SetGameScene(saveGame.Level);
-        VictoryGame();
-        ChangeLevel();
+        this.VictoryGame();
+        this.ChangeLevel();
     }
 
     private void SaveGame()
@@ -143,6 +161,21 @@ public class GameManager : Manager<GameManager>, IEventHandler
         }
 
         this.m_TimerUtils.LateTime(totalNewlyGainedTime);
+    }
+
+    private void EarnScore(GameObject gameObject)
+    {
+        if (!gameObject) return;
+
+        int totalNewlyGainedScore = this.m_Score;
+        IScore[] scores = gameObject.GetComponentsInChildren<IScore>();
+
+        for (int i = 0; i < scores.Length; i++)
+        {
+            totalNewlyGainedScore += scores[i].Score;
+        }
+
+        SetScore(totalNewlyGainedScore);
     }
 
     private void ResetGameVar()
@@ -235,6 +268,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown });
     }
 
+    private void SetScore(int score)
+    {
+        this.m_Score = score;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = this.m_TimerUtils.TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
+    }
+
     private void SetGameScene(GameScene gameScene)
     {
         m_CurrentScene = gameScene;
@@ -279,6 +318,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.AddListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.AddListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
     }
@@ -291,6 +331,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
         EventManager.Instance.RemoveListener<ExitButtonClickedEvent>(OnExitButtonClickedEvent);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
+        EventManager.Instance.RemoveListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
     }
@@ -336,23 +377,22 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (GameManager.IsPlaying && timerUtils.IsFinish)
         {
             timerUtils.StopTimer();
-            this.SetGameState(GameState.GAMEOVER);
-            this.SetGameScene(GameScene.VICTORYSCENE);
+            this.GameOver();
         }
 
-        UpdateCountdown(timerUtils);
+        this.UpdateCountdown(timerUtils);
     }
     #endregion
 
     #region MonoBehaviour METHODS
     private void OnEnable()
     {
-        SubscribeEvents();
+        this.SubscribeEvents();
     }
 
     private void OnDisable()
     {
-        UnsubscribeEvents();
+        this.UnsubscribeEvents();
     }
 
     private void Awake()
@@ -363,7 +403,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void Start()
     {
-        SetGameState(m_GameState);
+        this.SetGameState(m_GameState);
         if (GameManager.IsPlaying)
         {
             this.PlayGame();
