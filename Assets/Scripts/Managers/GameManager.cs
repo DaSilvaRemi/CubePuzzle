@@ -321,6 +321,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
+        EventManager.Instance.AddListener<OnTargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
     }
 
     public void UnsubscribeEvents()
@@ -334,6 +335,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
+        EventManager.Instance.RemoveListener<OnTargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
     }
     #endregion
 
