@@ -33,7 +33,6 @@ public class PlayerController : CharController
         {
             base.TranslateObject(verticalInput, transform.forward);
             base.RotateObject(horizontalInput);
-
         }
     }
 
@@ -41,14 +40,19 @@ public class PlayerController : CharController
     {
         if (this.m_IsOnGround && Input.GetButton("Jump"))
         {
-            m_IsOnGround = false;
+            this.m_IsOnGround = false;
             base.Jump();
         }
     }
 
     private void Shoot()
     {
-        base.Shoot(m_ThrowableGOPrefab, m_ThrowableGOSpawnTransform.position, m_ThrowableGOSpawnTransform.forward, m_ThrowableGOInitSpeed, m_ThrowableGOLifeDuration);
+        base.Shoot(this.m_ThrowableGOPrefab, this.m_ThrowableGOSpawnTransform.position, this.m_ThrowableGOSpawnTransform.forward, this.m_ThrowableGOInitSpeed, this.m_ThrowableGOLifeDuration);
+    }
+
+    private void SetIsOnGround(bool isOnGround)
+    {
+        this.m_IsOnGround = isOnGround;
     }
 
     #region MonoBehaviour METHODS
@@ -62,15 +66,18 @@ public class PlayerController : CharController
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Ground>())
-        {
-            m_IsOnGround = true;
-        }
-        
+    {        
         if (collision.gameObject.CompareTag("Ennemy"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Ground>())
+        {
+            this.SetIsOnGround(true);
         }
     }
 
@@ -78,18 +85,19 @@ public class PlayerController : CharController
     {
         if (collision.gameObject.GetComponent<Ground>())
         {
-            m_IsOnGround = false;
+            this.SetIsOnGround(false);
         }
     }
 
     private void FixedUpdate()
     {
-        Move();
-        Jump();
+        this.Move();
+        this.Jump();
 
-        if ((GameManager.Instance && GameManager.Instance.IsShootableScene) && (Input.GetButton("Fire1") && Time.time > m_NextShootTime))
+        if ((GameManager.Instance && GameManager.Instance.IsShootableScene) && (Input.GetButton("Fire1") && Time.time > this.m_NextShootTime))
         {
-            Shoot();
+            this.Shoot();
+            this.m_NextShootTime = Time.time + this.m_CooldownDuration;
         }
     }
     #endregion

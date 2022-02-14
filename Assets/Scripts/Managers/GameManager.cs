@@ -347,7 +347,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     protected void UpdateGame(TimerUtils timerUtils)
     {
-        if (GameManager.IsPlaying && Input.GetButton("ResetGame")) this.Reset();
+        if (GameManager.IsPlaying && Input.GetButton("ResetGame"))
+        {
+            this.Reset();
+        }
 
         this.UpdateGameState(timerUtils);
     }
