@@ -289,14 +289,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47dde51e08866d4c9e0f41431c9eb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TranslationSpeed: 10
+  m_TranslationSpeed: 5
   m_JumpSpeed: 50
-  m_RotatingSpeed: 100
+  m_RotatingSpeed: 2
   m_ThrowableGOPrefab: {fileID: 1267119015072085285, guid: 5ea9749b578144a4eae8f77d0009b24c, type: 3}
-  m_ThrowableGOInitSpeed: 2
+  m_ThrowableGOInitSpeed: 20
   m_ThrowableGOSpawnTransform: {fileID: 9142988388161770739}
   m_ThrowableGOLifeDuration: 3
-  m_CooldownDuration: 0.5
+  m_CooldownDuration: 1
 --- !u!136 &4476969445833896442
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -433,13 +433,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4797403571576616072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 1.5, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4476969445833896436}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
 --- !u!1 &5110108708039336812
 GameObject:
   m_ObjectHideFlags: 0
