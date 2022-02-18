@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,6 +173,10 @@ PrefabInstance:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
@@ -574,6 +578,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
       value: DedaleFinalSlab (1)
@@ -837,6 +845,10 @@ PrefabInstance:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
@@ -1218,6 +1230,10 @@ PrefabInstance:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
@@ -2059,6 +2075,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
       value: DedaleFinalSlab
@@ -2278,7 +2298,7 @@ GameObject:
   - component: {fileID: 1103627154}
   m_Layer: 0
   m_Name: EnemyWall
-  m_TagString: Ennemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2989,6 +3009,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
       value: DedaleFinalSlab (5)
@@ -3315,6 +3339,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
       value: DedaleFinalSlab (6)
@@ -3542,6 +3570,10 @@ PrefabInstance:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
