@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Kryz.Tweening;
+using Random = UnityEngine.Random;
 
 public delegate float EasingFuncDelegate(float t);
 
@@ -74,6 +75,27 @@ public class Tools
         if (endAction != null)
         {
             endAction();
+        }
+    }
+
+    public static void SetRandomColor(GameObject gameObject)
+    {
+        MeshRenderer[] mr = gameObject.GetComponentsInChildren<MeshRenderer>();
+
+        if (mr != null && mr.Length > 0)
+        {
+            for (int i = 0; i < mr.Length; i++)
+            {
+                Tools.SetColor(mr[i], Random.ColorHSV());
+            }
+        }
+    }
+
+    public static void SetColor(MeshRenderer meshRenderer, Color color)
+    {
+        if (meshRenderer != null && color != null)
+        {
+            meshRenderer.material.color = color;
         }
     }
 }
