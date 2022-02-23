@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2655757530191923654}
+  - component: {fileID: 2166687236517003612}
+  - component: {fileID: 3248861161385641307}
   m_Layer: 0
   m_Name: CiblePrefab
   m_TagString: Untagged
@@ -33,6 +35,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2166687236517003612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751888076259360312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50406f92b9219664eb08f1c6c419eb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GamesObjectsLinked: []
+--- !u!114 &3248861161385641307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751888076259360312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fdd2cb32d137044a19fe4921b65afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Score: 2
 --- !u!1 &1305026344520681833
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7667480859106062985
 Transform:
   m_ObjectHideFlags: 0
