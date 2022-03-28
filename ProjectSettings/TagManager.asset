@@ -11,6 +11,7 @@ TagManager:
   - Ball
   - Button
   - Dalle
+  - Target
   layers:
   - Default
   - TransparentFX

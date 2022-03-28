@@ -4630,6 +4630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CiblePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
       value: 0
