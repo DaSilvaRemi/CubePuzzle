@@ -11,32 +11,33 @@ public class TimerUtils : MonoBehaviour
     [Tooltip("float")]
     [SerializeField] private float m_timer;
 
+    private float m_timeLeft;
     private IEnumerator m_MyCountdownCoroutineRef;
 
     /**
      * <summary>The time left to the counter</summary> 
      */
-    public float TimeLeft { get; private set; }
+    public float TimeLeft { get => this.m_timeLeft; private set { if (value >= 0) this.m_timeLeft = value; } }
 
     /**
      * <summary>The time passed</summary> 
      */
-    public float TimePassed { get => Timer - TimeLeft; }
+    public float TimePassed { get => this.Timer - this.TimeLeft; }
 
     /**
      * <summary>The timer definied in the component</summary>
      */
-    public float Timer { get => m_timer; }
+    public float Timer { get => this.m_timer; }
 
     /**
      * <summary>A int format for the time left</summary>
      */
-    public string FormatedTimerLeft { get => Tools.FormatFloatNumberToString(TimeLeft); }
+    public string FormatedTimerLeft { get => Tools.FormatFloatNumberToString(this.TimeLeft); }
 
     /**
      * <summary>A int format for the time passed</summary>
      */
-    public string FormatedTimePassed { get => Tools.FormatFloatNumberToString(TimePassed); }
+    public string FormatedTimePassed { get => Tools.FormatFloatNumberToString(this.TimePassed); }
 
     /**
      * <summary>A int format for the timer</summary>
@@ -47,22 +48,22 @@ public class TimerUtils : MonoBehaviour
      * <summary>If the timer is finish</summary>
      * <remarks>The timer is finish only if the TimeLeft <= 0 </remarks>
      */
-    public bool IsFinish { get => TimeLeft <= 0; }
+    public bool IsFinish { get => this.TimeLeft <= 0; }
 
     /**
      * <summary>Start the timer</summary>
      */
     public void StartTimer()
     {
-        TimeLeft = Timer;
+        this.ResetTimer();
+        this.ContinueTimer();
+    }
 
-        if (m_MyCountdownCoroutineRef != null)
-        {
-            StopTimer();
-        }
-
-        m_MyCountdownCoroutineRef = MyCountdownCoroutine();
-        StartCoroutine(m_MyCountdownCoroutineRef);
+    public void ContinueTimer()
+    {
+        this.StopTimer();
+        this.m_MyCountdownCoroutineRef = this.MyCountdownCoroutine();
+        this.StartCoroutine(this.m_MyCountdownCoroutineRef);
     }
 
     /**
@@ -70,7 +71,7 @@ public class TimerUtils : MonoBehaviour
      */
     public void ResetTimer()
     {
-        TimeLeft = 0;
+        this.TimeLeft = this.Timer;
     }
 
     /**
@@ -78,16 +79,16 @@ public class TimerUtils : MonoBehaviour
      */
     public void StopTimer()
     {
-        if (m_MyCountdownCoroutineRef != null)
+        if (this.m_MyCountdownCoroutineRef != null)
         {
-            StopCoroutine(m_MyCountdownCoroutineRef);
-            m_MyCountdownCoroutineRef = null;
+            this.StopCoroutine(this.m_MyCountdownCoroutineRef);
+            this.m_MyCountdownCoroutineRef = null;
         }
     }
 
     public void LateTime(float addTime)
     {
-        TimeLeft += addTime;
+        this.TimeLeft += addTime;
     }
 
     /**
@@ -109,20 +110,20 @@ public class TimerUtils : MonoBehaviour
      */
     private IEnumerator MyCountdownCoroutine()
     {
-        while (TimeLeft > 0f)
+        while (this.TimeLeft > 0f)
         {
-            TimeLeft -= Time.deltaTime;
+            this.TimeLeft -= Time.deltaTime;
             yield return null;
         }
     }
 
     private void Start()
     {
-        StartTimer();
+        this.StartTimer();
     }
 
     private void OnDestroy()
     {
-        StopTimer();
+        this.StopTimer();
     }
 }

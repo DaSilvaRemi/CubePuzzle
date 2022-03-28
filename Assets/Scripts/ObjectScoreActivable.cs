@@ -9,7 +9,7 @@ public class ObjectScoreActivable : MonoBehaviour, IEventHandler
 
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent e)
     {
-        if (e.eScore >= m_TargetScore)
+        if (e.eScore >= this.m_TargetScore)
         {
             this.gameObject.SetActive(!this.gameObject.activeSelf);
         }
@@ -30,12 +30,12 @@ public class ObjectScoreActivable : MonoBehaviour, IEventHandler
     #region MonoBehaviour METHODS
     private void Awake()
     {
-        SubscribeEvents();
+        this.SubscribeEvents();
     }
 
     private void OnDestroy()
     {
-        UnsubscribeEvents();
+        this.UnsubscribeEvents();
     }
     #endregion
 }

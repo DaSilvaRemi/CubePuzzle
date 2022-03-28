@@ -8,13 +8,13 @@ public class Manager<T> : MonoBehaviour where T : Component
 
     protected void InitManager()
     {
-        if (!Instance)
+        if (!Manager<T>.Instance)
         {
-            Instance = this as T;
+            Manager<T>.Instance = this as T;
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

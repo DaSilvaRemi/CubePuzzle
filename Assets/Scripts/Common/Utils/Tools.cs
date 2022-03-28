@@ -57,10 +57,7 @@ public class Tools
     {
         float elapsedTime = 0;
 
-        if (startAction != null)
-        {
-            startAction();
-        }
+        startAction?.Invoke();
 
         while (elapsedTime < duration)
         {
@@ -72,10 +69,7 @@ public class Tools
 
         transform.position = endPos;
 
-        if (endAction != null)
-        {
-            endAction();
-        }
+        endAction?.Invoke();
     }
 
     public static void SetRandomColor(GameObject gameObject)

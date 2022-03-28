@@ -18,26 +18,26 @@ public class VictoryHUDManager : MonoBehaviour
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_BestTimeValueText;
 
-    private List<GameObject> m_Panels = new List<GameObject>();
+    private readonly List<GameObject> m_Panels = new List<GameObject>();
 
     private void OpenPanel(GameObject panel)
     {
-        m_Panels.ForEach(item => { if (item) { item.SetActive(item == panel); } });
+        this.m_Panels.ForEach(item => { if (item) { item.SetActive(item.Equals(panel)); } });
     }
 
     private void OnGameWinEvent(GameVictoryEvent e)
     {
-        OpenPanel(m_WinPanel);
+        this.OpenPanel(this.m_WinPanel);
     }
 
     private void OnGameOverEvent(GameOverEvent e)
     {
-        OpenPanel(m_GameOverPanel);
+        this.OpenPanel(this.m_GameOverPanel);
     }
 
     private void Awake()
     {
-        m_Panels.AddRange(new GameObject[] { m_WinPanel, m_GameOverPanel });
+        this.m_Panels.AddRange(new GameObject[] { this.m_WinPanel, this.m_GameOverPanel });
     }
 
     private void OnEnable()

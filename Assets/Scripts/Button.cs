@@ -9,15 +9,15 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        OnButtonTriggered();
+        this.OnButtonTriggered();
     }
 
     private void OnButtonTriggered()
     {
-        foreach (GameObject item in m_GamesObjectsLinked)
+        foreach (GameObject item in this.m_GamesObjectsLinked)
         {
             if (item) { 
-                item.SetActive(item == m_GameObjectToActivate); 
+                item.SetActive(item.Equals(this.m_GameObjectToActivate)); 
             }
         }
     }

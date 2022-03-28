@@ -12,17 +12,17 @@ public class Target : MonoBehaviour
         if (collision != null && collision.gameObject.CompareTag("ThrowableObject"))
         {
             EventManager.Instance.Raise(new OnTargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
-            ChangeGameObjectsLinkedTag();
+            this.ChangeGameObjectsLinkedTag();
         } 
     }
 
     private void ChangeGameObjectsLinkedTag()
     {
-        foreach (GameObject gameObject in m_GamesObjectsLinked)
+        foreach (GameObject gameObject in this.m_GamesObjectsLinked)
         {
             if (gameObject.CompareTag("Enemy"))
             {
-                gameObject.tag = "Unknow";
+                gameObject.tag = "Untagged";
             }
 
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));

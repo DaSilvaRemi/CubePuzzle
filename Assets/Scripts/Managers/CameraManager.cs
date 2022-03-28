@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
      */
     public void HandleCameraChangeUIButton()
     {
-        ChangeCamera();
+        this.ChangeCamera();
     }
 
     /**
@@ -27,10 +27,10 @@ public class CameraManager : MonoBehaviour
      */
     private void HandleCameraChangeKey()
     {
-        if (Input.GetButton("ChangeCamera") && Time.time > m_NextCameraChangedTime)
+        if (Input.GetButton("ChangeCamera") && Time.time > this.m_NextCameraChangedTime)
         {
-            ChangeCamera();
-            m_NextCameraChangedTime = Time.time + m_CooldownDuration;
+            this.ChangeCamera();
+            this.m_NextCameraChangedTime = Time.time + this.m_CooldownDuration;
         }
     }
 
@@ -39,23 +39,23 @@ public class CameraManager : MonoBehaviour
      */
     private void ChangeCamera()
     {
-        int nextCameraWillBeSelected = m_IndexCameraSelected + 1;
+        int nextCameraWillBeSelected = this.m_IndexCameraSelected + 1;
 
-        if (nextCameraWillBeSelected >= m_Cameras.Length) nextCameraWillBeSelected = 0;
+        if (nextCameraWillBeSelected >= this.m_Cameras.Length) nextCameraWillBeSelected = 0;
 
-        m_Cameras[m_IndexCameraSelected].enabled = false;
-        m_Cameras[nextCameraWillBeSelected].enabled = true;
+        this.m_Cameras[this.m_IndexCameraSelected].enabled = false;
+        this.m_Cameras[nextCameraWillBeSelected].enabled = true;
 
-        m_IndexCameraSelected = nextCameraWillBeSelected;
+        this.m_IndexCameraSelected = nextCameraWillBeSelected;
     }
 
     private void Start()
     {
-        m_NextCameraChangedTime = Time.time;
+        this.m_NextCameraChangedTime = Time.time;
     }
 
     private void FixedUpdate()
     {
-        HandleCameraChangeKey();
+        this.HandleCameraChangeKey();
     }
 }
