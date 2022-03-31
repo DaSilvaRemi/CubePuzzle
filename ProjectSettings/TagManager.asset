@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Enemy
   - ThrowableObject
+  - Ball
+  - Ennemy
+  - Dalle
   layers:
   - Default
   - TransparentFX

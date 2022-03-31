@@ -5,7 +5,10 @@ using SDD.Events;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField] GameObject[] m_GamesObjectsLinked;
+    [SerializeField]
+    private GameObject[] m_GamesObjectsLinked;
+
+    private IEnumerator m_MyActionCoroutine = null;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,10 +25,25 @@ public class Target : MonoBehaviour
         {
             if (gameObject.CompareTag("Enemy"))
             {
-                gameObject.tag = "Untagged";
+                gameObject.tag = "Dalle";
             }
 
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
+
+        this.m_MyActionCoroutine = Tools.MyActionCoroutine(3.0f, null, null, () =>
+        {
+            for (int i = 0; i < m_GamesObjectsLinked.Length; i++)
+            {
+                Tools.SetColor(m_GamesObjectsLinked[i].GetComponentInChildren<MeshRenderer>(), new Color(255, 0, 0));
+            }
+        });
+        StartCoroutine(this.m_MyActionCoroutine);
     }
+
+    private void OnDestroy()
+    {
+        if (this.m_MyActionCoroutine != null) StopCoroutine(this.m_MyActionCoroutine);
+    }
+
 }
