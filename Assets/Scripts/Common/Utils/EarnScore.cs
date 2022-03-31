@@ -6,5 +6,5 @@ public class EarnScore : MonoBehaviour, IScore
 {
     [SerializeField] private int m_Score;
 
-    public int Score { get => m_Score; }
+    public int Score { get => this.m_Score; }
 }

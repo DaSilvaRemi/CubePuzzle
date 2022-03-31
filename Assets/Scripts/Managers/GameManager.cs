@@ -25,12 +25,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private static GameState m_GameState;
 
-    public static bool IsMenu { get => m_GameState.Equals(GameState.MENU); }
-    public static bool IsPlaying { get => m_GameState.Equals(GameState.PLAY); }
-    public static bool IsPausing { get => m_GameState.Equals(GameState.PAUSE); }
-    public static bool IsWinning { get => m_GameState.Equals(GameState.WIN); }
-    public static bool IsGameOver { get => m_GameState.Equals(GameState.GAMEOVER); }
-    public static bool IsEndLVL { get => m_GameState.Equals(GameState.ENDLVL); }
+    public static bool IsMenu { get => GameManager.m_GameState.Equals(GameState.MENU); }
+    public static bool IsPlaying { get => GameManager.m_GameState.Equals(GameState.PLAY); }
+    public static bool IsPausing { get => GameManager.m_GameState.Equals(GameState.PAUSE); }
+    public static bool IsWinning { get => GameManager.m_GameState.Equals(GameState.WIN); }
+    public static bool IsGameOver { get => GameManager.m_GameState.Equals(GameState.GAMEOVER); }
+    public static bool IsEndLVL { get => GameManager.m_GameState.Equals(GameState.ENDLVL); }
 
     #endregion
 
@@ -107,6 +107,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.m_TimerUtils.StartTimer();
     }
 
+    private void PauseGame()
+    {
+        this.m_TimerUtils.StopTimer();
+        this.SetGameState(GameState.PAUSE);
+    }
+
     private void VictoryGame()
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
@@ -143,11 +149,22 @@ public class GameManager : Manager<GameManager>, IEventHandler
         GameManager.SaveGame(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState);
     }
 
+    /**
+     * <summary>Save the current game</summary>
+     * <param name="timePassed">The time passed in the game</param>
+     * <param name="gameScene">The game scene</param>
+     * <param name="bestTime">The best time in the game</param>
+     * <param name="gameState">The game state of the game</param>
+     */
     private static void SaveGame(float timePassed, GameScene gameScene, float bestTime, GameState gameState)
     {
         SaveData.Save(new SaveData(timePassed, gameScene, bestTime, gameState));
     }
 
+    /**
+     * <summary>Earn time on game</summary>
+     * <param name="gameObject">The game object with ITime interface</param>
+     */
     private void EarnTime(GameObject gameObject)
     {
         if (!gameObject) return;
@@ -163,6 +180,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.m_TimerUtils.LateTime(totalNewlyGainedTime);
     }
 
+    /**
+     * <summary>Earn score on game</summary>
+     * <param name="gameObject">The game object with Iscore interface</param>
+     */
     private void EarnScore(GameObject gameObject)
     {
         if (!gameObject) return;
@@ -178,12 +199,28 @@ public class GameManager : Manager<GameManager>, IEventHandler
         SetScore(totalNewlyGainedScore);
     }
 
+    /**
+     * <summary>Reset the game</summary> 
+     */
+    private void ResetGame()
+    {
+        this.ResetGameVar();
+        this.SetGameScene(this.m_CurrentScene);
+    }
+
+    /**
+     * <summary>Reset the game variable</summary> 
+     */
     private void ResetGameVar()
     {
         this.SetGameState(GameState.PLAY);
         this.SetTimePassed(0);
     }
 
+    /**
+     * <summary>Change to the next level when the current LVL is finish</summary>
+     * <remarks>If it is the last level so we go on victory scene</remarks>
+     */
     private void ChangeLevel()
     {
         if (!GameManager.IsEndLVL) return;
@@ -253,12 +290,16 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void SetTimePassed(float timePassed)
     {
+        if (!this.m_TimerUtils) return;
+
         GameManager.m_TimePassed = timePassed;
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = timePassed, eCountdown = this.m_TimerUtils.TimeLeft });
     }
 
     private void SetBestTime(float bestTime)
     {
+        if (!this.m_TimerUtils) return;
+
         GameManager.m_BestTime = bestTime;
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = bestTime, eCountdown = this.m_TimerUtils.TimeLeft });
     }
@@ -351,7 +392,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (GameManager.IsPlaying && Input.GetButton("ResetGame"))
         {
-            this.Reset();
+            this.ResetGame();
         }
 
         this.UpdateGameState(timerUtils);
@@ -408,7 +449,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void Start()
     {
-        this.SetGameState(m_GameState);
+        this.SetGameState(GameManager.m_GameState);
         if (GameManager.IsPlaying)
         {
             this.PlayGame();
@@ -418,12 +459,6 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void FixedUpdate()
     {
         this.UpdateGame(this.m_TimerUtils);
-    }
-
-    private void Reset()
-    {
-        this.ResetGameVar();
-        this.SetGameScene(this.m_CurrentScene);
     }
     #endregion
 }

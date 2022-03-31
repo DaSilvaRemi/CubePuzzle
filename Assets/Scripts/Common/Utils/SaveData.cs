@@ -78,7 +78,7 @@ public class SaveData: IGameState
             data.Time = save.Time;
             data.GameState = save.GameState;
 
-            SaveFile(data);
+            SaveData.SaveFile(data);
         }
     }
 
@@ -89,7 +89,7 @@ public class SaveData: IGameState
      */
     public static void SaveFile(SaveData saveGame)
     {
-        SaveFile("/savefile.json", JsonUtility.ToJson(saveGame.m_SerializableGame));
+        SaveData.SaveFile("/savefile.json", JsonUtility.ToJson(saveGame.m_SerializableGame));
     }
 
     /**
@@ -99,7 +99,7 @@ public class SaveData: IGameState
      */
     public static void SaveFile(string fileName, string jsonData)
     {
-        SaveFile(Application.persistentDataPath, fileName, jsonData);
+        SaveData.SaveFile(Application.persistentDataPath, fileName, jsonData);
     }
 
     /**
@@ -120,7 +120,7 @@ public class SaveData: IGameState
      */
     public static SaveData Load()
     {
-        return Load(Application.persistentDataPath + "/savefile.json");
+        return SaveData.Load(Application.persistentDataPath + "/savefile.json");
     }
 
     /**
