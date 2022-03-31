@@ -72,6 +72,22 @@ public class Tools
         endAction?.Invoke();
     }
 
+    public static IEnumerator MyActionCoroutine(float duration, Action startAction = null, Action duringAction = null, Action endAction = null)
+    {
+        float elapsedTime = 0;
+
+        startAction?.Invoke();
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            duringAction?.Invoke();
+            yield return null;
+        }
+
+        endAction?.Invoke();
+    }
+
     public static void SetRandomColor(GameObject gameObject)
     {
         MeshRenderer[] mr = gameObject.GetComponentsInChildren<MeshRenderer>();
