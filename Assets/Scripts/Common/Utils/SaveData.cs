@@ -9,13 +9,13 @@ public class SaveData: IGameState
 {
     private SerializableGame m_SerializableGame;
 
-    public float Time { get => m_SerializableGame.time; set => m_SerializableGame.time = value; }
+    public float Time { get => this.m_SerializableGame.time; set => this.m_SerializableGame.time = value; }
 
-    public float BestTime { get => m_SerializableGame.bestTime; set => m_SerializableGame.bestTime = value; }
+    public float BestTime { get => this.m_SerializableGame.bestTime; set => this.m_SerializableGame.bestTime = value; }
 
-    public Tools.GameScene Level { get => m_SerializableGame.level; set => m_SerializableGame.level = value; }
+    public Tools.GameScene Level { get => this.m_SerializableGame.level; set => this.m_SerializableGame.level = value; }
 
-    public Tools.GameState GameState { get => m_SerializableGame.gameState; set => m_SerializableGame.gameState = value; }
+    public Tools.GameState GameState { get => this.m_SerializableGame.gameState; set => this.m_SerializableGame.gameState = value; }
 
     /**
      * <summary>The default constructor</summary> 
@@ -48,7 +48,7 @@ public class SaveData: IGameState
 
     public SaveData(SerializableGame serializableGame)
     {
-        m_SerializableGame = new SerializableGame(serializableGame);
+        this.m_SerializableGame = new SerializableGame(serializableGame);
     }
 
     /**

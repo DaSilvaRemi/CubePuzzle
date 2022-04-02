@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using SDD.Events;
 
-public class VictoryHUDManager : MonoBehaviour
+public class VictoryHUDManager : Manager<VictoryHUDManager>
 {
     [Header("Victory / GameOver txt")]
     [Tooltip("TextMeshPro")]
@@ -35,8 +35,10 @@ public class VictoryHUDManager : MonoBehaviour
         this.OpenPanel(this.m_GameOverPanel);
     }
 
+    #region MonoBehaviour Methods
     private void Awake()
     {
+        base.InitManager();
         this.m_Panels.AddRange(new GameObject[] { this.m_WinPanel, this.m_GameOverPanel });
     }
 
@@ -51,4 +53,5 @@ public class VictoryHUDManager : MonoBehaviour
         EventManager.Instance.RemoveListener<GameVictoryEvent>(OnGameWinEvent);
         EventManager.Instance.RemoveListener<GameOverEvent>(OnGameOverEvent);
     }
+    #endregion
 }

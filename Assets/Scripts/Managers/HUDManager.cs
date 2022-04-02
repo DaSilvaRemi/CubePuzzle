@@ -4,13 +4,14 @@ using TMPro;
 using SDD.Events;
 using UnityEngine;
 
-public class HUDManager : MonoBehaviour, IEventHandler
+public class HUDManager : Manager<HUDManager>, IEventHandler
 {
     [Header("HUD TEXT")]
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_TimeLeftValueTxt;
     [SerializeField] private TextMeshProUGUI m_ScoreValueTxt;
 
+    #region Setters
     private void SetTimeValueText(float time)
     {
         this.m_TimeLeftValueTxt.text = time.ToString("N01");
@@ -20,14 +21,34 @@ public class HUDManager : MonoBehaviour, IEventHandler
     {
         this.m_ScoreValueTxt.text = score.ToString("N01");
     }
+    #endregion
 
+    #region Event Listeners
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent gameStatisticsChangedEvent)
     {
         this.SetTimeValueText(gameStatisticsChangedEvent.eCountdown);
         this.SetScoreValueText(gameStatisticsChangedEvent.eScore);
     }
+    #endregion
+
+    #region Events Suscribption
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+    }
+    #endregion
 
     #region MonoBehaviour methods
+    private void Awake()
+    {
+        base.InitManager();
+    }
+
     private void OnEnable()
     {
         this.SubscribeEvents();
@@ -38,14 +59,4 @@ public class HUDManager : MonoBehaviour, IEventHandler
         this.UnsubscribeEvents();
     }
     #endregion
-
-    public void SubscribeEvents()
-    {
-        EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
-    }
-
-    public void UnsubscribeEvents()
-    {
-        EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
-    }
 }

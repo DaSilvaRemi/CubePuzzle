@@ -10,16 +10,15 @@ public class PlayerController : CharController
     [SerializeField] private GameObject m_ThrowableGOPrefab;
     [Tooltip("Unit: m/s")]
     [SerializeField] private float m_ThrowableGOInitSpeed;
-    [Tooltip("Element")]
+    [Tooltip("Transform component")]
     [SerializeField] private Transform m_ThrowableGOSpawnTransform;
     [Tooltip("Unit : s")]
     [SerializeField] private float m_ThrowableGOLifeDuration;
     [Tooltip("Unit : s")]
     [SerializeField] private float m_CooldownDuration;
-
+    
     private bool m_IsOnGround = true;
     private float m_NextShootTime;
-
 
     /**
      * <summary>Move the player according to the Vertical and Horizontal input</summary> 
@@ -31,6 +30,8 @@ public class PlayerController : CharController
 
         if (this.m_IsOnGround)
         {
+            if(verticalInput == 0 || horizontalInput == 0) base.PlayWalkSound();
+
             base.TranslateObject(verticalInput, transform.forward);
             base.RotateObject(horizontalInput);
         }
@@ -62,6 +63,7 @@ public class PlayerController : CharController
         if (other.CompareTag("Finish"))
         {
             EventManager.Instance.Raise(new LevelFinishEvent());
+            base.StopAllSounds();
         }
     }
 
