@@ -23,6 +23,5 @@ public class EnemyController : CharController
     private void OnDisable()
     {
         if (this.m_MyTranslateCoroutine != null) StopCoroutine(this.m_MyTranslateCoroutine);
-        if (this.m_MyTranslateCoroutine != null) StopCoroutine(this.m_MyTranslateCoroutine);
     }
 }

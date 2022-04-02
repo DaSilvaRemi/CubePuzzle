@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Manager<CameraManager>
 {
     [Header("Cameras")]
     [Tooltip("Camera")]
@@ -11,9 +11,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float m_CooldownDuration;
 
     private int m_IndexCameraSelected = 1;
-
     private float m_NextCameraChangedTime;
 
+    #region Handler
     /**
      * <summary>Handle the camera change UI button</summary> 
      */
@@ -33,6 +33,7 @@ public class CameraManager : MonoBehaviour
             this.m_NextCameraChangedTime = Time.time + this.m_CooldownDuration;
         }
     }
+    #endregion
 
     /**
      * <summary>Change the camera</summary>
@@ -49,6 +50,13 @@ public class CameraManager : MonoBehaviour
         this.m_IndexCameraSelected = nextCameraWillBeSelected;
     }
 
+    #region MonoBehaviour methods
+
+    private void Awake()
+    {
+        base.InitManager();
+    }
+
     private void Start()
     {
         this.m_NextCameraChangedTime = Time.time;
@@ -58,4 +66,5 @@ public class CameraManager : MonoBehaviour
     {
         this.HandleCameraChangeKey();
     }
+    #endregion
 }

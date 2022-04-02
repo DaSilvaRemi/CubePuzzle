@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 using SDD.Events;
 using static Tools;
@@ -95,7 +94,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) this.EarnTime(e.eChestGO);
     }
 
-    private void OnTargetHasCollidedEnterEvent(OnTargetHasCollidedEnterEvent e)
+    private void OnTargetHasCollidedEnterEvent(TargetHasCollidedEnterEvent e)
     {
         if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying) this.EarnScore(e.eTargetGO);
     }
@@ -293,7 +292,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!this.m_TimerUtils) return;
 
         GameManager.m_TimePassed = timePassed;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = timePassed, eCountdown = this.m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = GameManager.m_TimePassed, eCountdown = this.m_TimerUtils.TimeLeft });
     }
 
     private void SetBestTime(float bestTime)
@@ -301,7 +300,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!this.m_TimerUtils) return;
 
         GameManager.m_BestTime = bestTime;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = bestTime, eCountdown = this.m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = GameManager.m_BestTime, eCountdown = this.m_TimerUtils.TimeLeft });
     }
 
     private void SetCountdown(float countdown)
@@ -362,7 +361,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
-        EventManager.Instance.AddListener<OnTargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.AddListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
     }
 
     public void UnsubscribeEvents()
@@ -376,7 +375,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
-        EventManager.Instance.RemoveListener<OnTargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.RemoveListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
     }
     #endregion
 

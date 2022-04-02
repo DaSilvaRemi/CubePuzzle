@@ -40,29 +40,38 @@ public class GameStatisticsChangedEvent : SDD.Events.Event
 #endregion
 
 #region MenuManager Events
-public class NewGameButtonClickedEvent : SDD.Events.Event
+public class CustomButtonClickedEvent : SDD.Events.Event
 {
+	public AudioClip eOnCustomButtonClick { get; set; }
 }
-public class LoadGameButtonClickedEvent : SDD.Events.Event
-{
-}
-public class HelpButtonClickedEvent : SDD.Events.Event
+
+public class ButtonClickedEvent : CustomButtonClickedEvent
 {
 }
 
-public class CreditButtonClickedEvent : SDD.Events.Event
+public class NewGameButtonClickedEvent : ButtonClickedEvent
+{
+}
+public class LoadGameButtonClickedEvent : ButtonClickedEvent
+{
+}
+public class HelpButtonClickedEvent : ButtonClickedEvent
 {
 }
 
-public class ExitButtonClickedEvent : SDD.Events.Event
+public class CreditButtonClickedEvent : ButtonClickedEvent
+{
+}
+
+public class ExitButtonClickedEvent : ButtonClickedEvent
 { 
 }
 
-public class ChangeCameraButtonClickedEvent : SDD.Events.Event
+public class ChangeCameraButtonClickedEvent : ButtonClickedEvent
 {
 }
 
-public class MainMenuButtonClickedEvent : SDD.Events.Event
+public class MainMenuButtonClickedEvent : ButtonClickedEvent
 {
 }
 #endregion
@@ -96,10 +105,22 @@ public class ChestHasTrigerEnterEvent : SDD.Events.Event
 	public GameObject eTriggeredGO;
 }
 
-public class OnTargetHasCollidedEnterEvent : SDD.Events.Event
+public class TargetHasCollidedEnterEvent : SDD.Events.Event
 {
 	public GameObject eTargetGO;
 	public GameObject eCollidedGO;
 }
 
 #endregion
+
+public class PlaySFXEvent : SDD.Events.Event
+{
+	public AudioSource eAudioSource { get; set; }
+	public AudioClip eAudioClip { get; set; }
+}
+
+public class StopSFXWithEvent : SDD.Events.Event
+{
+	public AudioSource eAudioSource { get; set; }
+	public AudioClip eAudioClip { get; set; }
+}
