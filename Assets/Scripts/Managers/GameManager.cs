@@ -59,22 +59,27 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void OnHelpButtonClickedEvent(HelpButtonClickedEvent e)
     {
-        this.Help();
+       this.Help();
     }
 
     private void OnCreditButtonClickedEvent(CreditButtonClickedEvent e)
     {
-        this.CreditGame();
+       this.CreditGame();
     }
 
     private void OnExitButtonClickedEvent(ExitButtonClickedEvent e)
     {
-        this.ExitGame();
+       this.ExitGame();
     }
 
     private void OnLevelGameOverEvent(LevelGameOverEvent e)
     {
         this.GameOver();
+    }
+
+    public void OnClickButton()
+    {
+        EventManager.Instance.Raise(new ButtonClickedEvent());
     }
 
     private void OnLevelFinishEvent(LevelFinishEvent e)

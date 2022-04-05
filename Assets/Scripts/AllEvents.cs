@@ -45,33 +45,33 @@ public class CustomButtonClickedEvent : SDD.Events.Event
 	public AudioClip eOnCustomButtonClick { get; set; }
 }
 
-public class ButtonClickedEvent : CustomButtonClickedEvent
+public class ButtonClickedEvent : SDD.Events.Event
 {
 }
 
-public class NewGameButtonClickedEvent : ButtonClickedEvent
+public class NewGameButtonClickedEvent : SDD.Events.Event
 {
 }
-public class LoadGameButtonClickedEvent : ButtonClickedEvent
+public class LoadGameButtonClickedEvent : SDD.Events.Event
 {
 }
-public class HelpButtonClickedEvent : ButtonClickedEvent
-{
-}
-
-public class CreditButtonClickedEvent : ButtonClickedEvent
+public class HelpButtonClickedEvent : SDD.Events.Event
 {
 }
 
-public class ExitButtonClickedEvent : ButtonClickedEvent
+public class CreditButtonClickedEvent : SDD.Events.Event
+{
+}
+
+public class ExitButtonClickedEvent : SDD.Events.Event
 { 
 }
 
-public class ChangeCameraButtonClickedEvent : ButtonClickedEvent
+public class ChangeCameraButtonClickedEvent : SDD.Events.Event
 {
 }
 
-public class MainMenuButtonClickedEvent : ButtonClickedEvent
+public class MainMenuButtonClickedEvent : SDD.Events.Event
 {
 }
 #endregion
