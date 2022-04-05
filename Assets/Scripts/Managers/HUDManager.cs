@@ -14,12 +14,18 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
     #region Setters
     private void SetTimeValueText(float time)
     {
-        this.m_TimeLeftValueTxt.text = time.ToString("N01");
+        if (this.m_TimeLeftValueTxt)
+        {
+            this.m_TimeLeftValueTxt.text = time.ToString("N01");
+        }
     }
 
     private void SetScoreValueText(int score)
     {
-        this.m_ScoreValueTxt.text = score.ToString("N01");
+        if (this.m_ScoreValueTxt)
+        {
+            this.m_ScoreValueTxt.text = score.ToString();
+        }
     }
     #endregion
 

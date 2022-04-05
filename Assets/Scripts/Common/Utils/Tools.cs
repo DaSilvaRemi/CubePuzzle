@@ -47,6 +47,16 @@ public class Tools
         Debug.Log(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    public static void LogWarning(Component component, string msg)
+    {
+        Debug.LogWarning(Time.frameCount + " " + component.GetType().Name + " " + msg);
+    }
+
+    public static void LogError(Component component, string msg)
+    {
+        Debug.LogError(Time.frameCount + " " + component.GetType().Name + " " + msg);
+    }
+
     public static string FormatFloatNumberToString(float number)
     {
         return number.ToString("N01");

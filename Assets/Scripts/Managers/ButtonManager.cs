@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class ButtonManager : Manager<CameraManager>, IEventHandler
+public class ButtonManager : Manager<ButtonManager>, IEventHandler
 {
     [Tooltip("Button audio clip")]
     [SerializeField] private AudioClip m_ButtonClickSfxClip;
@@ -50,6 +50,12 @@ public class ButtonManager : Manager<CameraManager>, IEventHandler
     private void Awake()
     {
         base.InitManager();
+        this.SubscribeEvents();
+    }
+
+    private void OnDestroy()
+    {
+        this.UnsubscribeEvents();
     }
     #endregion
 }

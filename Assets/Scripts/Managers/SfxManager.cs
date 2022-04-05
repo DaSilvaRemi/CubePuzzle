@@ -5,10 +5,10 @@ using SDD.Events;
 
 public class SfxManager : Manager<SfxManager>, IEventHandler
 {
-    [SerializeField] private AudioSource m_SfxAudioSource;
-    private List<AudioSource> m_AudioSources;
+    [SerializeField] private AudioSource[] m_SfxAudioSources;
+    private List<AudioSource> m_SaveAudioSources;
 
-    public AudioSource SfxAudioSource { get => this.m_SfxAudioSource; }
+    public AudioSource[] SfxAudioSource { get => this.m_SfxAudioSources; }
 
     #region Event Listeners Methods
     private void OnPlaySFXEvent(PlaySFXEvent e)
@@ -23,6 +23,18 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
     #endregion
 
     #region SFX Manager methods
+    private void OnAwakeSFXManager()
+    {
+        base.InitManager();
+        this.m_SaveAudioSources = new List<AudioSource>();
+        this.SubscribeEvents();
+
+        if (this.m_SfxAudioSources.Length < 2)
+        {
+            Tools.LogWarning(this, "You should be set 2 audio sources");
+        }
+    }
+
 
     /**
      * <summary>Start a SFX sound with audiosource or audioclip or both</summary> 
@@ -56,20 +68,16 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
     {
         if (audioClip)
         {
-            if (!Object.Equals(this.SfxAudioSource.clip, audioClip))
+            for (int i = 0; i < this.m_SfxAudioSources.Length; i++)
             {
-                if (!this.SfxAudioSource.isPlaying)
+                AudioSource audioSource = this.m_SfxAudioSources[i];
+                if (!Object.Equals(audioSource.clip, audioClip) && !audioSource.isPlaying)
                 {
-                    this.SfxAudioSource.clip = audioClip;
-                    this.StartSFX(this.SfxAudioSource);
+                    audioSource.clip = audioClip;
+                    this.StartSFX(audioSource);
+                    break;
                 }
-                else
-                {
-                    this.StopSFX();
-                }   
             }
-            
-            
         }
     }
 
@@ -83,7 +91,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
-                this.m_AudioSources.Add(audioSource);
+                this.m_SaveAudioSources.Add(audioSource);
             }
             else
             {
@@ -91,14 +99,6 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
             }
         }
         
-    }
-
-    /**
-     * <summary>Stop SFX of the SFXMangager audio source</summary> 
-     */
-    public void StopSFX()
-    {
-        this.StopSFX(this.SfxAudioSource);
     }
 
     /**
@@ -110,10 +110,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
         if (audioSource) { 
             audioSource.Stop();
             audioSource.clip = null;
-            this.m_AudioSources.Remove(audioSource);
-        }else if (this.SfxAudioSource && this.SfxAudioSource.isPlaying)
-        {
-            this.StopSFX();
+            this.m_SaveAudioSources.Remove(audioSource);
         }
     }
 
@@ -122,9 +119,9 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
      */
     private void StopAllSaveSFX()
     {
-        for (int i = 0; i < this.m_AudioSources.Count; i++)
+        for (int i = 0; i < this.m_SaveAudioSources.Count; i++)
         {
-            this.StopSFX(this.m_AudioSources[i]);
+            this.StopSFX(this.m_SaveAudioSources[i]);
         }
     }
 
@@ -133,7 +130,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
      */
     private void RemoveAllUselessSFX()
     {
-        this.m_AudioSources.RemoveAll((AudioSource currentAudioSource) => { 
+        this.m_SaveAudioSources.RemoveAll((AudioSource currentAudioSource) => { 
             if (!currentAudioSource.isPlaying) currentAudioSource.clip = null; 
             return !currentAudioSource.isPlaying; 
         });
@@ -158,9 +155,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
 
     private void Awake()
     {
-        base.InitManager();
-        this.m_AudioSources = new List<AudioSource>();
-        this.SubscribeEvents();
+        this.OnAwakeSFXManager();
     }
 
     private void FixedUpdate()
