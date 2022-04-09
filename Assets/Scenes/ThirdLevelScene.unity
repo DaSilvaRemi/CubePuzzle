@@ -178,13 +178,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (38)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -322,13 +330,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (30)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -392,13 +408,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (47)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -417,6 +441,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_Name
       value: CiblePrefab (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -462,6 +490,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
 --- !u!1001 &73118098
@@ -474,6 +510,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_Name
       value: CiblePrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -518,6 +558,14 @@ PrefabInstance:
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -721,6 +769,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4372672929551662, guid: c3692f208c1647c4397e79c5cbdfd869, type: 3}
   m_PrefabInstance: {fileID: 95235438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &95235440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1068688630276036, guid: c3692f208c1647c4397e79c5cbdfd869, type: 3}
+  m_PrefabInstance: {fileID: 95235438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &105620212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -776,13 +829,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (49)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -846,13 +907,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (8)
+      value: FakeEnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1056,13 +1125,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (50)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1126,13 +1203,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (32)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1196,13 +1281,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (20)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1332,13 +1425,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (73)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1402,13 +1503,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (1)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1496,7 +1605,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1542,13 +1651,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (11)
+      value: FakeEnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1678,13 +1795,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (48)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1702,7 +1827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1748,13 +1873,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (14)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1768,6 +1901,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
   m_PrefabInstance: {fileID: 673237942}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &268823417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+  m_PrefabInstance: {fileID: 122116881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &269499940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1777,7 +1915,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1823,13 +1961,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (12)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1893,13 +2039,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (9)
+      value: FakeEnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -1963,13 +2117,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (82)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2033,13 +2195,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (23)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2103,13 +2273,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (10)
+      value: FakeEnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2173,13 +2351,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (43)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2243,13 +2429,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (54)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2313,13 +2507,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (63)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2565,13 +2767,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (35)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2640,13 +2850,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (33)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2776,13 +2994,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (66)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2846,13 +3072,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (53)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2916,13 +3150,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (5)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -2986,13 +3228,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (34)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3196,13 +3446,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (74)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3266,13 +3524,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (46)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3336,13 +3602,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (86)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3406,13 +3680,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (70)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3420,6 +3702,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
   m_PrefabInstance: {fileID: 536971811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &543039354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+  m_PrefabInstance: {fileID: 291355272}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &554005192
 PrefabInstance:
@@ -3476,13 +3763,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (22)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3546,13 +3841,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (3)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3719,13 +4022,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (19)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3852,13 +4163,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (7)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -3876,7 +4195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3922,13 +4241,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (17)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -4010,6 +4337,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7784688016216218095, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7784688016216218095, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[0]
+      value: 
+      objectReference: {fileID: 95235440}
+    - target: {fileID: -7784688016216218095, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[1]
+      value: 
+      objectReference: {fileID: 658730821}
     - target: {fileID: 2394668601775731530, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
       propertyPath: m_Name
       value: Button
@@ -4064,6 +4403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
+--- !u!1 &658730821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2394668601775731530, guid: f7a6ebb69a48b3a4d890c75229dc6430, type: 3}
+  m_PrefabInstance: {fileID: 658730820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &673237942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4074,6 +4418,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_Name
       value: CiblePrefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -4118,6 +4466,14 @@ PrefabInstance:
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -4176,13 +4532,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (55)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -4246,13 +4610,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (24)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -4271,7 +4643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703671432}
   m_Layer: 0
-  m_Name: DedaleFinal
+  m_Name: DallesFin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4299,7 +4671,6 @@ Transform:
   - {fileID: 122116882}
   - {fileID: 291355273}
   - {fileID: 346202577}
-  - {fileID: 251449273}
   - {fileID: 269499941}
   - {fileID: 1043937809}
   - {fileID: 265233548}
@@ -4307,6 +4678,7 @@ Transform:
   - {fileID: 1396570220}
   - {fileID: 626992090}
   - {fileID: 1714337928}
+  - {fileID: 251449273}
   - {fileID: 570375057}
   - {fileID: 174410232}
   - {fileID: 811365812}
@@ -4377,6 +4749,7 @@ Transform:
   - {fileID: 524850367}
   - {fileID: 1766884638}
   - {fileID: 1376662745}
+  - {fileID: 914551044}
   m_Father: {fileID: 1244193240}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4805,37 +5178,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: CiblePrefab (fin)
       objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[0]
+      value: 
+      objectReference: {fileID: 1748443535}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[1]
+      value: 
+      objectReference: {fileID: 2020040455}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[2]
+      value: 
+      objectReference: {fileID: 543039354}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[3]
+      value: 
+      objectReference: {fileID: 268823417}
+    - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_GamesObjectsLinked.Array.data[4]
+      value: 
+      objectReference: {fileID: 1797373071}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.46
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0010070801
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.74
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96543044
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.26066077
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4843,11 +5244,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 30.219
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -4870,6 +5279,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_TagString
       value: Target
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -4914,6 +5327,14 @@ PrefabInstance:
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -4972,13 +5393,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (2)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -4997,6 +5426,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_Name
       value: CiblePrefab (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -5041,6 +5474,14 @@ PrefabInstance:
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -5104,13 +5545,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (57)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5174,13 +5623,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (61)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5244,13 +5701,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (21)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5314,13 +5779,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (72)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5421,13 +5894,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (27)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5487,9 +5968,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (4)
+      value: EnemyDalle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5498,6 +5987,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
   m_PrefabInstance: {fileID: 911298623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &914551043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 914551044}
+  m_Layer: 0
+  m_Name: FakeEnemyDalles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &914551044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914551043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 703671432}
+  m_RootOrder: 89
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &926957585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5619,13 +6138,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (84)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5694,13 +6221,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (41)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5797,13 +6332,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (40)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -5821,7 +6364,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5867,13 +6410,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (13)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6041,13 +6592,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (85)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6143,13 +6702,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (62)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6213,13 +6780,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (29)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6283,13 +6858,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (75)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6452,13 +7035,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (81)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6701,13 +7292,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (6)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6903,13 +7502,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (56)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -6995,6 +7602,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CiblePrefab (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7038,6 +7649,14 @@ PrefabInstance:
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -7101,13 +7720,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (60)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7171,13 +7798,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (88)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7241,13 +7876,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (28)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7311,13 +7954,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (68)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7335,7 +7986,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7381,13 +8032,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (16)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7451,13 +8110,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (67)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7587,13 +8254,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (52)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7723,13 +8398,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (44)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7813,7 +8496,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7859,13 +8542,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (15)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -7929,13 +8620,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (31)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8004,13 +8703,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (77)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8074,13 +8781,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (58)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8273,13 +8988,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (59)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8412,13 +9135,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (78)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8482,13 +9213,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8618,13 +9357,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (76)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8688,13 +9435,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (80)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8853,13 +9608,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (65)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -8923,13 +9686,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (39)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -9079,7 +9850,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 21095149646915793, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9125,13 +9896,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (18)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -9206,6 +9985,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4372672929551662, guid: c3692f208c1647c4397e79c5cbdfd869, type: 3}
   m_PrefabInstance: {fileID: 1723190054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1748443535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+  m_PrefabInstance: {fileID: 251449272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1757405089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9261,13 +10045,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (26)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -9331,13 +10123,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (87)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -9401,13 +10201,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (71)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -9481,6 +10289,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4372672929551662, guid: c3692f208c1647c4397e79c5cbdfd869, type: 3}
   m_PrefabInstance: {fileID: 1791159397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1797373071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+  m_PrefabInstance: {fileID: 346802288}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1810548455 stripped
 Transform:
@@ -9633,7 +10446,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1828984492
 Transform:
@@ -9802,13 +10615,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (36)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10023,13 +10844,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (42)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10093,13 +10922,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (37)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10229,13 +11066,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (69)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10299,13 +11144,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (51)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10324,6 +11177,10 @@ PrefabInstance:
     - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_Name
       value: CiblePrefab (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 751888076259360312, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_RootOrder
@@ -10369,8 +11226,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4262670214474830364, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468705621408117436, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
+--- !u!1 &2020040455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+  m_PrefabInstance: {fileID: 346202576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2020233360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2655757530191923654, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
@@ -10497,13 +11367,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (25)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10641,13 +11519,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (83)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10711,13 +11597,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (45)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10781,13 +11675,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (79)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
@@ -10851,13 +11753,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 951326774895297132, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_Name
-      value: DedaleFinalSlab (64)
+      value: EnemyDalle
       objectReference: {fileID: 0}
     - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962901329030455139, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d81c5d7105bbbc46a6a9619da6e8fe0, type: 3}
