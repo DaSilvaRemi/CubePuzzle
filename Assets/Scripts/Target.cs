@@ -37,7 +37,7 @@ public class Target : MonoBehaviour
     #region MonoBehaviour methods
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && collision.gameObject.CompareTag("ThrowableObject"))
+        if (collision != null)
         {
             EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
             this.ChangeGameObjectsLinkedTag();

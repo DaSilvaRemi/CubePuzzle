@@ -8,7 +8,6 @@ TagManager:
   - Enemy
   - ThrowableObject
   - Ennemy
-  - Ball
   - Button
   - Dalle
   - Target

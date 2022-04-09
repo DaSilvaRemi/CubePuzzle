@@ -12,6 +12,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
     [Tooltip("Unsigned Int")]
     [SerializeField] private GameScene m_CurrentScene = GameScene.MENUSCENE;
 
+    [SerializeField] private bool m_IsDebugMode = false;
+
     private TimerUtils m_TimerUtils;
 
     private static float m_TimePassed;
@@ -453,7 +455,9 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void Start()
     {
-        this.SetGameState(GameManager.m_GameState);
+        Tools.GameState gameState = this.m_IsDebugMode ? Tools.GameState.PLAY : GameManager.m_GameState;
+
+        this.SetGameState(gameState);
         if (GameManager.IsPlaying)
         {
             this.PlayGame();
