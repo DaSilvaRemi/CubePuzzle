@@ -26,6 +26,7 @@ public class EnemyController : CharController, IEventHandler
     private void SetIsMove(bool isMove)
     {
         this.m_IsMove = isMove;
+        OnEnable();
     }
 
     #region Events suscribtions
@@ -43,7 +44,7 @@ public class EnemyController : CharController, IEventHandler
     #region MonoBehaviour methods
     private void Awake()
     {
-        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear);
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed);
         this.SubscribeEvents();
     }
 

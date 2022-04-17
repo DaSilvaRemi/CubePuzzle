@@ -10,7 +10,7 @@ public class CharController : MonoBehaviour
     [SerializeField] private float m_TranslationSpeed;
     [Tooltip("unit m/s")]
     [SerializeField] private float m_JumpSpeed;
-    [Tooltip("unit: °/s")]
+    [Tooltip("unit: ï¿½/s")]
     [SerializeField] private float m_RotatingSpeed;
 
     [Header("SFX")]
@@ -20,6 +20,10 @@ public class CharController : MonoBehaviour
     [SerializeField] private AudioClip m_CharacterJumpClip;
 
     protected Rigidbody Rigidbody { get; set; }
+
+    protected float TranslationSpeed { get => this.m_TranslationSpeed; }
+    protected float JumpSpeed { get => this.m_JumpSpeed; }
+    protected float RotatingSpeed { get => this.m_RotatingSpeed; }
 
     #region Character physics controls methods
     protected virtual void TranslateObject(Vector3 direction)

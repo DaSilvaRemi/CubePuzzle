@@ -6,12 +6,14 @@ using SDD.Events;
 public class ObjectScoreActivable : MonoBehaviour, IEventHandler
 {
     [SerializeField] private int m_TargetScore;
+    private bool m_IsAlreadyActivated = false;
 
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent e)
     {
-        if (e.eScore >= this.m_TargetScore)
+        if (e.eScore >= this.m_TargetScore && !m_IsAlreadyActivated)
         {
             this.gameObject.SetActive(!this.gameObject.activeSelf);
+            m_IsAlreadyActivated = true;
         }
     }
 
