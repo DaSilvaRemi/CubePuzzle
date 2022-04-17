@@ -299,7 +299,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!this.m_TimerUtils) return;
 
         GameManager.m_TimePassed = timePassed;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = GameManager.m_TimePassed, eCountdown = this.m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = GameManager.m_TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
     }
 
     private void SetBestTime(float bestTime)
@@ -307,12 +307,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!this.m_TimerUtils) return;
 
         GameManager.m_BestTime = bestTime;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = GameManager.m_BestTime, eCountdown = this.m_TimerUtils.TimeLeft });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = GameManager.m_BestTime, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
     }
 
     private void SetCountdown(float countdown)
     {
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown, eScore = this.m_Score });
     }
 
     private void SetScore(int score)

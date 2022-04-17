@@ -14,11 +14,6 @@ public class Target : MonoBehaviour
     {
         foreach (GameObject gameObject in this.m_GamesObjectsLinked)
         {
-            if (gameObject.CompareTag("Enemy"))
-            {
-                gameObject.tag = "Dalle";
-            }
-
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
 
