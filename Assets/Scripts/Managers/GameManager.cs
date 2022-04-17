@@ -22,6 +22,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private int m_Score;
 
+    public int Score {
+        get => m_Score;
+    }
+
     #region GameState Properties
 
     private static GameState m_GameState;
@@ -103,7 +107,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void OnTargetHasCollidedEnterEvent(TargetHasCollidedEnterEvent e)
     {
-        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying) this.EarnScore(e.eTargetGO);
+        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying){
+            this.EarnScore(e.eTargetGO);
+            e.eCollidedGO.SetActive(false); // désactive la balle quand touche une cible
+        }
     }
     #endregion
 

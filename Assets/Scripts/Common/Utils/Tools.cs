@@ -63,7 +63,7 @@ public class Tools
     }
 
     public static IEnumerator MyTranslateCoroutine(Transform transform, Vector3 startPos, Vector3 endPos, float duration,
-       EasingFuncDelegate easingFuncDelegate, Action startAction = null, Action endAction = null)
+       EasingFuncDelegate easingFuncDelegate, float speed, Action startAction = null, Action endAction = null)
     {
         float elapsedTime = 0;
 
@@ -72,7 +72,7 @@ public class Tools
         while (elapsedTime < duration)
         {
             float k = elapsedTime / duration;
-            transform.position = Vector3.Lerp(startPos, endPos, easingFuncDelegate(k));
+            transform.position = Vector3.Lerp(startPos, endPos, easingFuncDelegate(speed * k));
             elapsedTime += Time.deltaTime;
             yield return null;
         }

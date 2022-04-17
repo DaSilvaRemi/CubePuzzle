@@ -9,7 +9,7 @@ public class Target : MonoBehaviour
     private GameObject[] m_GamesObjectsLinked;
 
     private IEnumerator m_MyActionCoroutine = null;
-
+    
     private void ChangeGameObjectsLinkedTag()
     {
         foreach (GameObject gameObject in this.m_GamesObjectsLinked)
@@ -17,7 +17,9 @@ public class Target : MonoBehaviour
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
 
-        this.m_MyActionCoroutine = Tools.MyActionCoroutine(3.0f, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
+        int scorePlayer = GameManager.Instance.Score;
+
+        this.m_MyActionCoroutine = Tools.MyActionCoroutine(scorePlayer, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
         StartCoroutine(this.m_MyActionCoroutine);
     }
 
@@ -35,6 +37,7 @@ public class Target : MonoBehaviour
         if (collision != null)
         {
             EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
+            this.gameObject.SetActive(false);
             this.ChangeGameObjectsLinkedTag();
         }
     }
