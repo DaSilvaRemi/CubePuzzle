@@ -46,6 +46,11 @@ public class CharController : MonoBehaviour
         this.Rigidbody.AddTorque(angularVelocityChange, ForceMode.VelocityChange);
     }
 
+    protected virtual void Move()
+    {
+        this.TranslateObject(Vector3.left);
+    }
+
     protected virtual void Jump()
     {
         this.Rigidbody.velocity = this.m_JumpSpeed * new Vector3(0, 1, 0);

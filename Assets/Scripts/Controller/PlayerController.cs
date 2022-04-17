@@ -23,7 +23,7 @@ public class PlayerController : CharController
     /**
      * <summary>Move the player according to the Vertical and Horizontal input</summary> 
      */
-    private void Move()
+    protected override void Move()
     {
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
