@@ -17,7 +17,7 @@ public class PlayerController : CharController
     [Tooltip("Unit : s")]
     [SerializeField] private float m_CooldownDuration;
     
-    private bool m_IsOnGround = true;
+    private bool m_IsOnGround = false;
     private float m_NextShootTime;
 
     /**
