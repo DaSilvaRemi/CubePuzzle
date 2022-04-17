@@ -40,6 +40,12 @@ public class GameStatisticsChangedEvent : SDD.Events.Event
 #endregion
 
 #region MenuManager Events
+public class ButtonActivateGOClickedEvent : SDD.Events.Event
+{
+	public GameObject eGameObject { get; set; }
+}
+
+
 public class CustomButtonClickedEvent : SDD.Events.Event
 {
 	public AudioClip eOnCustomButtonClick { get; set; }
@@ -47,6 +53,7 @@ public class CustomButtonClickedEvent : SDD.Events.Event
 
 public class ButtonClickedEvent : SDD.Events.Event
 {
+
 }
 
 public class NewGameButtonClickedEvent : SDD.Events.Event
@@ -113,6 +120,7 @@ public class TargetHasCollidedEnterEvent : SDD.Events.Event
 
 #endregion
 
+#region SFX EVENTS
 public class PlaySFXEvent : SDD.Events.Event
 {
 	public AudioSource eAudioSource { get; set; }
@@ -124,3 +132,4 @@ public class StopSFXWithEvent : SDD.Events.Event
 	public AudioSource eAudioSource { get; set; }
 	public AudioClip eAudioClip { get; set; }
 }
+#endregion

@@ -11,6 +11,8 @@ public class Button : MonoBehaviour
     private void OnButtonTriggered()
     {
         EventManager.Instance.Raise(new ButtonClickedEvent());
+        EventManager.Instance.Raise(new ButtonActivateGOClickedEvent() { eGameObject = this.m_GameObjectToActivate });
+
         foreach (GameObject item in this.m_GamesObjectsLinked)
         {
             if (item) { 
