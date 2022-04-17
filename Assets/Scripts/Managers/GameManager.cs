@@ -16,18 +16,36 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private TimerUtils m_TimerUtils;
 
+    #region Time Properties
+    /**
+     * <summary>The time passed</summary>
+     */
     private static float m_TimePassed;
 
+    /**
+     * <summary>The best time</summary>
+     */
     private static float m_BestTime;
+    #endregion
 
+    /**
+     * <summary>The score</summary>
+     */
     private int m_Score;
 
-    public int Score {
+    /**
+     * <summary>The score</summary>
+     */
+    public int Score
+    {
         get => m_Score;
     }
 
     #region GameState Properties
 
+    /**
+     * <summary>The game state</summary>
+     */
     private static GameState m_GameState;
 
     public static bool IsMenu { get => GameManager.m_GameState.Equals(GameState.MENU); }
@@ -53,61 +71,105 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     #region Event Listeners Methods
 
+    /**
+    * <summary>Handle the NewGameButtonClickedEvent</summary>
+    * <remarks>Call the new game methods <see cref="NewGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnNewGameButtonClickedEvent(NewGameButtonClickedEvent e)
     {
         this.NewGame();
     }
 
+    /**
+    * <summary>Handle the LoadGameButtonClickedEvent</summary>
+    * <remarks>Call the load game methods <see cref="LoadGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnLoadGameButtonClickedEvent(LoadGameButtonClickedEvent e)
     {
         this.LoadGame();
     }
 
+    /**
+    * <summary>Handle the MainMenuButtonClickedEvent</summary>
+    * <remarks>Call the Menu methods <see cref="Menu"/></remarks>
+    * <param name="e">The event</param> 
+    */
+    private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
+    {
+        this.Menu();
+    }
+
+    /**
+    * <summary>Handle the HelpButtonClickedEvent</summary>
+    * <remarks>Call the help methods <see cref="ExitGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnHelpButtonClickedEvent(HelpButtonClickedEvent e)
     {
-       this.Help();
+        this.Help();
     }
 
+    /**
+    * <summary>Handle the CreditButtonClickedEvent</summary>
+    * <remarks>Call the credit game methods <see cref="ExitGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnCreditButtonClickedEvent(CreditButtonClickedEvent e)
     {
-       this.CreditGame();
+        this.CreditGame();
     }
 
+    /**
+    * <summary>Handle the ExitButtonClickedEvent</summary>
+    * <remarks>Call the exit game methods <see cref="ExitGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnExitButtonClickedEvent(ExitButtonClickedEvent e)
     {
-       this.ExitGame();
+        this.ExitGame();
     }
 
+    /**
+    * <summary>Handle the LevelGameOverEvent</summary>
+    * <remarks>Call the game over methods <see cref="GameOver"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnLevelGameOverEvent(LevelGameOverEvent e)
     {
         this.GameOver();
     }
 
-    public void OnClickButton()
-    {
-        EventManager.Instance.Raise(new ButtonClickedEvent());
-    }
-
+    /**
+    * <summary>Handle the LevelFinishEvent</summary>
+    * <remarks>Call the end game methods <see cref="EndGame"/></remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
-        GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
-        this.SetGameState(GameState.ENDLVL);
-        this.ChangeLevel();
+        this.EndGame();
     }
 
-    private void OnMainMenuButtonClickedEvent(MainMenuButtonClickedEvent e)
-    {
-        this.SetGameScene(GameScene.MENUSCENE);
-    }
-
+    /**
+    * <summary>Handle the ChestHasTrigerEnterEvent</summary>
+    * <remarks>If the triggered GO is the player so we earn time</remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
     {
         if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) this.EarnTime(e.eChestGO);
     }
 
+    /**
+    * <summary>Handle the TargetHasCollidedEnterEvent</summary>
+    * <remarks>If the collided GO is the ThrowableObject so we earn time</remarks>
+    * <param name="e">The event</param> 
+    */
     private void OnTargetHasCollidedEnterEvent(TargetHasCollidedEnterEvent e)
     {
-        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying){
+        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying)
+        {
             this.EarnScore(e.eTargetGO);
             e.eCollidedGO.SetActive(false); // désactive la balle quand touche une cible
         }
@@ -154,6 +216,13 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.SetBestTime(saveGame.BestTime);
         this.SetGameScene(saveGame.Level);
         this.VictoryGame();
+        this.ChangeLevel();
+    }
+
+    private void EndGame()
+    {
+        GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
+        this.SetGameState(GameState.ENDLVL);
         this.ChangeLevel();
     }
 
@@ -249,6 +318,11 @@ public class GameManager : Manager<GameManager>, IEventHandler
         GameManager.SaveGame(GameManager.m_TimePassed, nextGameScene, GameManager.m_TimePassed, nextGameState);
         this.SetGameState(nextGameState);
         this.SetGameScene(nextGameScene);
+    }
+
+    private void Menu()
+    {
+        this.SetGameScene(GameScene.MENUSCENE);
     }
 
     private void Help()

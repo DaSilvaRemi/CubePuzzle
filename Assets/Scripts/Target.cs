@@ -5,10 +5,11 @@ using SDD.Events;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] m_GamesObjectsLinked;
+    [SerializeField] private GameObject[] m_GamesObjectsLinked;
+    [SerializeField] private float m_DurationGoActivate;
 
     private IEnumerator m_MyActionCoroutine = null;
+    private bool m_IsAlreadyCollided = false;
     
     private void ChangeGameObjectsLinkedTag()
     {
@@ -17,9 +18,7 @@ public class Target : MonoBehaviour
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
 
-        int scorePlayer = GameManager.Instance.Score;
-
-        this.m_MyActionCoroutine = Tools.MyActionCoroutine(scorePlayer, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
+        this.m_MyActionCoroutine = Tools.MyActionCoroutine(this.m_DurationGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
         StartCoroutine(this.m_MyActionCoroutine);
     }
 
@@ -36,8 +35,11 @@ public class Target : MonoBehaviour
     {
         if (collision != null)
         {
-            EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
-            this.gameObject.SetActive(false);
+            if (!this.m_IsAlreadyCollided)
+            {
+                EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
+                this.m_IsAlreadyCollided = true;
+            }
             this.ChangeGameObjectsLinkedTag();
         }
     }

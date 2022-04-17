@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PetController : CharController
 {
+    [Header("Pet Setup")]
     [Tooltip("The Game object transfrom the pet will follow")]
     [SerializeField] private Transform m_GameObjectTransformToFollow;
     private Vector3 m_DeltaPosition;

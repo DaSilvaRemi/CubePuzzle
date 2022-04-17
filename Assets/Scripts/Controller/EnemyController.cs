@@ -6,6 +6,7 @@ using SDD.Events;
 
 public class EnemyController : CharController, IEventHandler
 {
+    [Header("Enemy Setup")]
     [Tooltip("The final position of enemy")]
     [SerializeField] private Transform m_TransformEnd;
     [Tooltip("If the enemy move or not ?")]
@@ -19,15 +20,22 @@ public class EnemyController : CharController, IEventHandler
         if(e.eGameObject != null && e.eGameObject.Equals(this.gameObject))
         {
             this.SetIsMove(true);
+            this.Move();
         }
     }
     #endregion
 
+    #region EnemyController methods
+    protected override void Move()
+    {
+        if (this.m_IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+    }
+
     private void SetIsMove(bool isMove)
     {
         this.m_IsMove = isMove;
-        OnEnable();
     }
+    #endregion
 
     #region Events suscribtions
     public void SubscribeEvents()
@@ -50,7 +58,7 @@ public class EnemyController : CharController, IEventHandler
 
     private void OnEnable()
     {
-        if (this.m_IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+        this.Move();
     }
 
     private void OnDisable()
