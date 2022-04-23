@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PetController : CharController
 {
-    private float m_DistanceBetweenOwnerRange = 3f;
+    [Header("Pet properties")]
+    [SerializeField] private float m_DistanceBetweenOwnerRange = 3f;
     private Transform m_PlayerTransform;
 
     protected override void Move()
@@ -17,6 +18,7 @@ public class PetController : CharController
         }
     }
 
+    #region MonoBehaviour Methods
     protected override void Awake()
     {
         base.Awake();
@@ -28,4 +30,5 @@ public class PetController : CharController
     {
         this.Move();
     }
+    #endregion
 }
