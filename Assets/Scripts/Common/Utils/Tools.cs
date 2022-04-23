@@ -62,6 +62,18 @@ public class Tools
         return number.ToString("N01");
     }
 
+    /**
+    * <summary>Wait a time</summary> 
+    * <param name="time">The time</param>
+    * <returns>The IEnumerator</returns>
+    */
+    public static IEnumerator MyWaitCoroutine(float time, Action startAction = null, Action endAction = null)
+    {
+        startAction?.Invoke();
+        yield return new WaitForSeconds(time);
+        endAction?.Invoke();
+    }
+
     public static IEnumerator MyTranslateCoroutine(Transform transform, Vector3 startPos, Vector3 endPos, float duration,
        EasingFuncDelegate easingFuncDelegate, float speed, Action startAction = null, Action endAction = null)
     {

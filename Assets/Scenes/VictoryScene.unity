@@ -1222,6 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrentScene: 7
+  m_IsDebugMode: 0
 --- !u!4 &1371037339
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ccca13984c971429ec2cde619908a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timer: 0
+  m_timer: 200
 --- !u!1 &1459031661
 GameObject:
   m_ObjectHideFlags: 0

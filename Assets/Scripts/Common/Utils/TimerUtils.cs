@@ -92,19 +92,6 @@ public class TimerUtils : MonoBehaviour
     }
 
     /**
-     * <summary>Wait a time</summary> 
-     * <param name="time">The time</param>
-     * <returns>The IEnumerator</returns>
-     */
-    public static IEnumerator MyWaitCoroutine(float time)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(time);
-        }
-    }
-
-    /**
      * <summary>Countdown the timer</summary>
      * <returns>The IEnumerator</returns>
      */

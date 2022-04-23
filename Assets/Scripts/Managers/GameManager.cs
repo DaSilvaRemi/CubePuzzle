@@ -14,6 +14,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     [SerializeField] private bool m_IsDebugMode = false;
 
+    private IEnumerator m_GameManagerCoroutine;
     private TimerUtils m_TimerUtils;
 
     #region Time Properties
@@ -192,20 +193,20 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
-        this.SetGameScene(GameScene.VICTORYSCENE);
+        this.LoadALevel(GameScene.VICTORYSCENE);
     }
 
     private void GameOver()
     {
         this.SetGameState(GameState.GAMEOVER);
-        this.SetGameScene(GameScene.VICTORYSCENE);
+        this.LoadALevel(GameScene.VICTORYSCENE);
     }
 
     private void NewGame()
     {
         SaveData.Save(new SaveData());
         this.ResetGameVar();
-        this.SetGameScene(GameScene.FIRSTLEVELSCENE);
+        this.LoadALevel(GameScene.FIRSTLEVELSCENE);
     }
 
     private void LoadGame()
@@ -214,7 +215,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.SetGameState(saveGame.GameState);
         this.SetTimePassed(saveGame.Time);
         this.SetBestTime(saveGame.BestTime);
-        this.SetGameScene(saveGame.Level);
+        this.LoadALevel(saveGame.Level);
         this.VictoryGame();
         this.ChangeLevel();
     }
@@ -287,7 +288,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void ResetGame()
     {
         this.ResetGameVar();
-        this.SetGameScene(this.m_CurrentScene);
+        this.LoadALevel(this.m_CurrentScene);
     }
 
     /**
@@ -317,22 +318,28 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
         GameManager.SaveGame(GameManager.m_TimePassed, nextGameScene, GameManager.m_TimePassed, nextGameState);
         this.SetGameState(nextGameState);
-        this.SetGameScene(nextGameScene);
+        this.LoadALevel(nextGameScene);
+    }
+
+    private void LoadALevel(GameScene gameScene)
+    {
+        this.m_GameManagerCoroutine = Tools.MyWaitCoroutine(1, null, () => this.SetGameScene(gameScene));
+        StartCoroutine(this.m_GameManagerCoroutine);
     }
 
     private void Menu()
     {
-        this.SetGameScene(GameScene.MENUSCENE);
+        this.LoadALevel(GameScene.MENUSCENE);
     }
 
     private void Help()
     {
-        this.SetGameScene(GameScene.HELPSCENE);
+        this.LoadALevel(GameScene.HELPSCENE);
     }
 
     private void CreditGame()
     {
-        this.SetGameScene(GameScene.CREDITSCENE);
+        this.LoadALevel(GameScene.CREDITSCENE);
     }
 
     private void ExitGame()
@@ -404,7 +411,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void SetGameScene(GameScene gameScene)
     {
-        m_CurrentScene = gameScene;
+        this.m_CurrentScene = gameScene;
         switch (gameScene)
         {
             case GameScene.MENUSCENE:
@@ -548,6 +555,14 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void FixedUpdate()
     {
         this.UpdateGame(this.m_TimerUtils);
+    }
+
+    private void OnDestroy()
+    {
+        if (this.m_GameManagerCoroutine != null)
+        {
+            StopCoroutine(this.m_GameManagerCoroutine);
+        }
     }
     #endregion
 }
