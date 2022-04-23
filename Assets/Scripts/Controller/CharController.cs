@@ -119,7 +119,7 @@ public class CharController : MonoBehaviour
     #endregion
 
     #region MonoBehaviour METHODS
-    private void Awake()
+    protected virtual void Awake()
     {
         this.Rigidbody = this.GetComponent<Rigidbody>();
     }

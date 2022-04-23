@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PetController : CharController
 {
-    [Header("Pet Setup")]
-    [Tooltip("The Game object transfrom the pet will follow")]
-    [SerializeField] private Transform m_GameObjectTransformToFollow;
-    private Vector3 m_DeltaPosition;
+    private float m_DistanceBetweenOwnerRange = 3f;
+    private Transform m_PlayerTransform;
 
     protected override void Move()
     {
-        if (m_GameObjectTransformToFollow != null)
+        if (Vector3.Distance(this.m_PlayerTransform.position, base.Rigidbody.position) > this.m_DistanceBetweenOwnerRange)
         {
-            this.transform.position = this.m_GameObjectTransformToFollow.position - this.m_DeltaPosition;
+            Vector3 playerTargetPosition = new Vector3(this.m_PlayerTransform.position.x, this.m_PlayerTransform.position.y, this.m_PlayerTransform.position.z);
+            Vector3 petNewPosition = Vector3.MoveTowards(base.Rigidbody.position, playerTargetPosition, base.TranslationSpeed * Time.fixedDeltaTime);
+            base.Rigidbody.MovePosition(petNewPosition);
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        this.m_DeltaPosition = this.transform.position;
+        base.Awake();
+        this.m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 

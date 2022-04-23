@@ -50,8 +50,9 @@ public class EnemyController : CharController, IEventHandler
     #endregion
 
     #region MonoBehaviour methods
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed);
         this.SubscribeEvents();
     }
