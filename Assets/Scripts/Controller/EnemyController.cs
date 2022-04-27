@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
 public class EnemyController : CharController
 {
@@ -28,6 +29,14 @@ public class EnemyController : CharController
     private void FixedUpdate()
     {
         this.Move();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision != null && collision.gameObject.CompareTag("Player"))
+        {
+            EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
     }
     #endregion
 }
