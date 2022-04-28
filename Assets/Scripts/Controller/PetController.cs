@@ -7,6 +7,7 @@ public class PetController : CharController
     [Header("Pet properties")]
     [SerializeField] private float m_DistanceBetweenOwnerRange = 3f;
     private Transform m_PlayerTransform;
+    private Animator m_PetAnimator;
 
     protected override void Move()
     {
@@ -18,17 +19,37 @@ public class PetController : CharController
         }
     }
 
+    protected override void RotateObject()
+    {
+        this.Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, this.m_PlayerTransform.rotation, this.RotatingSpeed * Time.deltaTime));
+    }
+
+    private void ControlPetDistance()
+    {
+        if(Vector3.Distance(this.m_PlayerTransform.position, base.Rigidbody.position) > this.m_DistanceBetweenOwnerRange * 2){
+            Vector3 playerTargetPosition = new Vector3(this.m_PlayerTransform.position.x, this.m_PlayerTransform.position.y, this.m_PlayerTransform.position.z);
+            base.transform.position = playerTargetPosition;
+        }
+    }
+
     #region MonoBehaviour Methods
     protected override void Awake()
     {
         base.Awake();
-        this.m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        this.m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        this.m_PetAnimator = base.GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        this.m_PetAnimator.SetBool("Walk", true);
+    }
 
     private void FixedUpdate()
     {
+        this.ControlPetDistance();
         this.Move();
+        this.RotateObject();
     }
     #endregion
 }
