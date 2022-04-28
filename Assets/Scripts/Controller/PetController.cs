@@ -7,8 +7,10 @@ public class PetController : CharController
     [Header("Pet properties")]
     [SerializeField] private float m_DistanceBetweenOwnerRange = 3f;
     private Transform m_PlayerTransform;
+    //The pet animator
     private Animator m_PetAnimator;
 
+    #region CharController methods
     protected override void Move()
     {
         if (Vector3.Distance(this.m_PlayerTransform.position, base.Rigidbody.position) > this.m_DistanceBetweenOwnerRange)
@@ -23,7 +25,14 @@ public class PetController : CharController
     {
         this.Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, this.m_PlayerTransform.rotation, this.RotatingSpeed * Time.deltaTime));
     }
+    #endregion
 
+    #region PetController Methods
+
+    /**
+     * <summary>Control the pet distance</summary>
+     * <remarks>If the pet is twice more faraway than the player pos so we TP the pet to the player</remarks>
+     */
     private void ControlPetDistance()
     {
         if(Vector3.Distance(this.m_PlayerTransform.position, base.Rigidbody.position) > this.m_DistanceBetweenOwnerRange * 2){
@@ -31,6 +40,7 @@ public class PetController : CharController
             base.transform.position = playerTargetPosition;
         }
     }
+    #endregion
 
     #region MonoBehaviour Methods
     protected override void Awake()

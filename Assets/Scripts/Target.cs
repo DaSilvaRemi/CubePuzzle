@@ -5,13 +5,21 @@ using SDD.Events;
 
 public class Target : MonoBehaviour
 {
+    [Header("GO Linked behaviour")]
+    [Tooltip("GO Linked to the target")]
     [SerializeField] private GameObject[] m_GamesObjectsLinked;
+    [Tooltip("Durations GO will be activate")]
     [SerializeField] private float m_DurationGoActivate;
 
     private IEnumerator m_MyActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
-    
-    private void ChangeGameObjectsLinkedTag()
+
+    #region Target Methods
+    /**
+     * <summary>Changes game objects color linked to the target</summary> 
+     * <remarks>Swith to red and green</remarks>
+     */
+    private void ChangeColorOfGameObjectsLinked()
     {
         foreach (GameObject gameObject in this.m_GamesObjectsLinked)
         {
@@ -22,6 +30,9 @@ public class Target : MonoBehaviour
         StartCoroutine(this.m_MyActionCoroutine);
     }
 
+    /**
+     * <summary>>Lambda function to set the default game object linked color</summary>
+     */
     private void LambdaResetDefaultGameObjectLinkedColor()
     {
         for (int i = 0; i < this.m_GamesObjectsLinked.Length; i++)
@@ -29,6 +40,7 @@ public class Target : MonoBehaviour
             Tools.SetColor(this.m_GamesObjectsLinked[i].GetComponentInChildren<MeshRenderer>(), new Color(255, 0, 0));
         }
     }
+    #endregion
 
     #region MonoBehaviour methods
     private void OnCollisionEnter(Collision collision)
@@ -40,7 +52,7 @@ public class Target : MonoBehaviour
                 EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
                 this.m_IsAlreadyCollided = true;
             }
-            this.ChangeGameObjectsLinkedTag();
+            this.ChangeColorOfGameObjectsLinked();
         }
     }
 

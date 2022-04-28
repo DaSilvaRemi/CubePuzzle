@@ -29,6 +29,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private static float m_BestTime;
     #endregion
 
+    #region Score properties
     /**
      * <summary>The score</summary>
      */
@@ -41,6 +42,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         get => m_Score;
     }
+    #endregion
 
     #region GameState Properties
 
@@ -178,17 +180,17 @@ public class GameManager : Manager<GameManager>, IEventHandler
     #endregion
 
     #region  GameMangers Utils Methods
+    /**
+     * <summary>Play the current game</summary> 
+     */
     private void PlayGame()
     {
         this.m_TimerUtils.StartTimer();
     }
 
-    private void PauseGame()
-    {
-        this.m_TimerUtils.StopTimer();
-        this.SetGameState(GameState.PAUSE);
-    }
-
+    /**
+     * <summary>Go to the victory scene</summary> 
+     */
     private void VictoryGame()
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
@@ -196,12 +198,19 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.LoadALevel(GameScene.VICTORYSCENE);
     }
 
+    /**
+     * <summary>Switch to GAMEOVER and go to the victory scene</summary> 
+     */
     private void GameOver()
     {
         this.SetGameState(GameState.GAMEOVER);
-        this.LoadALevel(GameScene.VICTORYSCENE);
+        this.VictoryGame();
     }
 
+    /**
+     * <summary>Start a new Game</summary> 
+     * <remarks>Save the game, reset all games variables and load the first LEVEL</remarks>
+     */
     private void NewGame()
     {
         SaveData.Save(new SaveData());
@@ -209,6 +218,9 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.LoadALevel(GameScene.FIRSTLEVELSCENE);
     }
 
+    /**
+     * <summary>Load the game with a save</summary> 
+     */
     private void LoadGame()
     {
         SaveData saveGame = SaveData.Load();
@@ -220,16 +232,15 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.ChangeLevel();
     }
 
+    /**
+     *  <summary>Finish the current LVL</summary>
+     *  <remarks>Change the game state and the LVL</remarks>
+     */
     private void EndGame()
     {
         GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
         this.SetGameState(GameState.ENDLVL);
         this.ChangeLevel();
-    }
-
-    private void SaveGame()
-    {
-        GameManager.SaveGame(GameManager.m_TimePassed, this.m_CurrentScene, GameManager.m_TimePassed, GameManager.m_GameState);
     }
 
     /**
@@ -321,27 +332,44 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.LoadALevel(nextGameScene);
     }
 
+    /**
+     * <summary>Load a LVL</summary>
+     * <remarks>Start a couroutine to wait a time for event can play</remarks>
+     * <param name="gameScene">The gameScene to load</param>
+     */
     private void LoadALevel(GameScene gameScene)
     {
         this.m_GameManagerCoroutine = Tools.MyWaitCoroutine(1, null, () => this.SetGameScene(gameScene));
         StartCoroutine(this.m_GameManagerCoroutine);
     }
 
+    /**
+     * <summary>Load the Menu</summary>
+     */
     private void Menu()
     {
         this.LoadALevel(GameScene.MENUSCENE);
     }
 
+    /**
+    * <summary>Load the HelpScene</summary>
+    */
     private void Help()
     {
         this.LoadALevel(GameScene.HELPSCENE);
     }
 
+    /**
+    * <summary>Load the CreditScene</summary>
+    */
     private void CreditGame()
     {
         this.LoadALevel(GameScene.CREDITSCENE);
     }
 
+    /**
+    * <summary>Exit the game</summary>
+    */
     private void ExitGame()
     {
 #if UNITY_EDITOR
@@ -354,6 +382,11 @@ public class GameManager : Manager<GameManager>, IEventHandler
     #endregion
 
     #region Setters
+    /**
+     * <summary>Set the game state</summary> 
+     * <remarks>Send an event for each gamestate</remarks>
+     * <param name="newGameState">The new game state</param>
+     */
     private void SetGameState(GameState newGameState)
     {
         GameManager.m_GameState = newGameState;
@@ -382,6 +415,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
         }
     }
 
+    /**
+     * <summary>Set the time passed</summary>
+     * <param name="timePassed">The time passed</param>
+     */
     private void SetTimePassed(float timePassed)
     {
         if (!this.m_TimerUtils) return;
@@ -390,6 +427,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = GameManager.m_TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
     }
 
+    /**
+     * <summary>Set the best time</summary>
+     * <param name="bestTime">The best time</param>
+     */
     private void SetBestTime(float bestTime)
     {
         if (!this.m_TimerUtils) return;
@@ -398,17 +439,30 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = GameManager.m_BestTime, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
     }
 
+    /**
+     * <summary>Set the countdown</summary>
+     * <param name="countdown">The countdown</param>
+     */
     private void SetCountdown(float countdown)
     {
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown, eScore = this.m_Score });
     }
 
+    /**
+     * <summary>Set the score</summary>
+     * <param name="score">The score</param>
+     */
     private void SetScore(int score)
     {
         this.m_Score = score;
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = this.m_TimerUtils.TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
     }
 
+    /**
+     * <summary>Set the GameScene</summary>
+     * <remarks>Load immediatly the new game scene, pls use <see cref="LoadALevel(GameScene)"/> to wait before load</remarks>
+     * <param name="gameScene">The gamescene</param>
+     */
     private void SetGameScene(GameScene gameScene)
     {
         this.m_CurrentScene = gameScene;

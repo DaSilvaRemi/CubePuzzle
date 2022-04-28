@@ -12,6 +12,10 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
     [SerializeField] private TextMeshProUGUI m_ScoreValueTxt;
 
     #region Setters
+    /// <summary>
+    /// Set the time value text
+    /// </summary>
+    /// <param name="time">The time</param>
     private void SetTimeValueText(float time)
     {
         if (this.m_TimeLeftValueTxt)
@@ -20,6 +24,10 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Set score value text
+    /// </summary>
+    /// <param name="score">The score</param>
     private void SetScoreValueText(int score)
     {
         if (this.m_ScoreValueTxt)
@@ -30,6 +38,10 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
     #endregion
 
     #region Event Listeners
+    /// <summary>
+    /// On gameStatisticsChangedEvent we calls <see cref="SetTimeValueText"/> and <see cref="SetScoreValueText"/>
+    /// </summary>
+    /// <param name="gameStatisticsChangedEvent"></param>
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent gameStatisticsChangedEvent)
     {
         this.SetTimeValueText(gameStatisticsChangedEvent.eCountdown);
