@@ -15,10 +15,21 @@ public class SerializableGame
 
     public Tools.GameState gameState;
 
+    /// <summary>
+    /// SerializableGame copy constructor
+    /// </summary>
+    /// <param name="serializableGame">The serializableGame to copy</param>
     public SerializableGame(SerializableGame serializableGame): this(serializableGame.time, serializableGame.level, serializableGame.bestTime, serializableGame.gameState)
     {
     }
 
+    /// <summary>
+    /// Default constructor
+    /// </summary>
+    /// <param name="time">The time</param>
+    /// <param name="level">The level</param>
+    /// <param name="bestTime">The best time</param>
+    /// <param name="gameState">The game state</param>
     public SerializableGame(float time, Tools.GameScene level, float bestTime, Tools.GameState gameState)
     {
         this.time = time;
@@ -27,6 +38,10 @@ public class SerializableGame
         this.gameState = gameState;
     }
 
+    /// <summary>
+    /// Convert to string the current object
+    /// </summary>
+    /// <returns>The string form the object</returns>
     public override string ToString()
     {
         return $"Game Time : {this.time}, Best Time : {this.bestTime}, Level : {this.level}, GameState: {this.gameState}";

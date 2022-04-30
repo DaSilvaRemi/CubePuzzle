@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 public interface IScore
 {
+    /// <summary>
+    /// The score
+    /// </summary>
     int Score { get; }
 }

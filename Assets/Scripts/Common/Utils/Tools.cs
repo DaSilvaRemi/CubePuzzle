@@ -9,6 +9,9 @@ public delegate float EasingFuncDelegate(float t);
 
 public class Tools
 {
+    /// <summary>
+    /// The game state enum
+    /// </summary>
     public enum GameState
     {
         MENU,
@@ -19,6 +22,9 @@ public class Tools
         ENDLVL
     }
 
+    /// <summary>
+    /// the game scene enum
+    /// </summary>
     public enum GameScene
     {
         MENUSCENE = 0, 
@@ -42,21 +48,41 @@ public class Tools
         NONE 
     };
 
+    /// <summary>
+    /// Log an value
+    /// </summary>
+    /// <param name="component">The component where the message is sent</param>
+    /// <param name="msg">The message</param>
     public static void Log(Component component, string msg)
     {
         Debug.Log(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    /// <summary>
+    /// Log an warning value
+    /// </summary>
+    /// <param name="component">The component where the message is sent</param>
+    /// <param name="msg">The message</param>
     public static void LogWarning(Component component, string msg)
     {
         Debug.LogWarning(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    /// <summary>
+    /// Log an error value
+    /// </summary>
+    /// <param name="component">The component where the message is sent</param>
+    /// <param name="msg">The message</param>
     public static void LogError(Component component, string msg)
     {
         Debug.LogError(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    /// <summary>
+    /// Format a float number to string
+    /// </summary>
+    /// <param name="number">the snumber</param>
+    /// <returns>The number formated</returns>
     public static string FormatFloatNumberToString(float number)
     {
         return number.ToString("N01");
@@ -74,6 +100,18 @@ public class Tools
         endAction?.Invoke();
     }
 
+    /// <summary>
+    /// An couroutine translate an object
+    /// </summary>
+    /// <param name="transform">The transform of the object to translate</param>
+    /// <param name="startPos">The start position</param>
+    /// <param name="endPos">The end position</param>
+    /// <param name="duration">The current duration</param>
+    /// <param name="easingFuncDelegate">The function delegate</param>
+    /// <param name="speed">The speed</param>
+    /// <param name="startAction">The first action to do</param>
+    /// <param name="endAction">The end action</param>
+    /// <returns></returns>
     public static IEnumerator MyTranslateCoroutine(Transform transform, Vector3 startPos, Vector3 endPos, float duration,
        EasingFuncDelegate easingFuncDelegate, float speed, Action startAction = null, Action endAction = null)
     {
@@ -94,7 +132,15 @@ public class Tools
         endAction?.Invoke();
     }
 
-    public static IEnumerator MyActionCoroutine(float duration, Action startAction = null, Action duringAction = null, Action endAction = null)
+    /// <summary>
+    /// A coroutine to do some action in limited time
+    /// </summary>
+    /// <param name="duration">The duration</param>
+    /// <param name="startAction">The first action to do</param>
+    /// <param name="duringAction">The action will do current time we run</param>
+    /// <param name="endAction">The action will do after the time was done</param>
+    /// <returns></returns>
+    public static IEnumerator MyActionTimedCoroutine(float duration, Action startAction = null, Action duringAction = null, Action endAction = null)
     {
         float elapsedTime = 0;
 
@@ -110,6 +156,10 @@ public class Tools
         endAction?.Invoke();
     }
 
+    /// <summary>
+    /// Set an random color
+    /// </summary>
+    /// <param name="gameObject">The gameobject</param>
     public static void SetRandomColor(GameObject gameObject)
     {
         MeshRenderer[] mr = gameObject.GetComponentsInChildren<MeshRenderer>();
@@ -123,6 +173,11 @@ public class Tools
         }
     }
 
+    /// <summary>
+    /// Set a color to the mesh
+    /// </summary>
+    /// <param name="meshRenderer">The mesh renderer</param>
+    /// <param name="color">The color</param>
     public static void SetColor(MeshRenderer meshRenderer, Color color)
     {
         if (meshRenderer != null && color != null)

@@ -20,9 +20,26 @@ public class PlayerController : CharController
     private bool m_IsOnGround = false;
     private float m_NextShootTime;
 
-    /**
-     * <summary>Move the player according to the Vertical and Horizontal input</summary> 
-     */
+    #region PlayerController methods
+    /// <summary>
+    /// Shoot the defined throwable object
+    /// </summary>
+    private void Shoot()
+    {
+        base.Shoot(this.m_ThrowableGOPrefab, this.m_ThrowableGOSpawnTransform.position, this.m_ThrowableGOSpawnTransform.forward, this.m_ThrowableGOInitSpeed, this.m_ThrowableGOLifeDuration);
+    }
+
+    /// <summary>
+    /// Set if the player is on ground
+    /// </summary>
+    /// <param name="isOnGround"></param>
+    private void SetIsOnGround(bool isOnGround)
+    {
+        this.m_IsOnGround = isOnGround;
+    }
+    #endregion
+
+    #region CharController methods
     protected override void Move()
     {
         float verticalInput = Input.GetAxis("Vertical");
@@ -30,7 +47,7 @@ public class PlayerController : CharController
 
         if (this.m_IsOnGround)
         {
-            if(verticalInput == 0 || horizontalInput == 0) base.PlayWalkSound();
+            if (verticalInput == 0 || horizontalInput == 0) base.PlayWalkSound();
 
             base.TranslateObject(verticalInput, transform.forward);
             base.RotateObject(horizontalInput);
@@ -45,16 +62,7 @@ public class PlayerController : CharController
             base.Jump();
         }
     }
-
-    private void Shoot()
-    {
-        base.Shoot(this.m_ThrowableGOPrefab, this.m_ThrowableGOSpawnTransform.position, this.m_ThrowableGOSpawnTransform.forward, this.m_ThrowableGOInitSpeed, this.m_ThrowableGOLifeDuration);
-    }
-
-    private void SetIsOnGround(bool isOnGround)
-    {
-        this.m_IsOnGround = isOnGround;
-    }
+    #endregion
 
     #region MonoBehaviour METHODS
 

@@ -91,11 +91,6 @@ public class ScoreHasBeenGainedEvent : SDD.Events.Event
 #endregion
 
 #region Level events
-public class LevelHasBeenInitializedEvent:SDD.Events.Event
-{
-	public Transform ePlayerSpawnPoint;
-}
-
 public class LevelFinishEvent : SDD.Events.Event
 {
 }

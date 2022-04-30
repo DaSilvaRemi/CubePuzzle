@@ -14,6 +14,7 @@ public class TimerUtils : MonoBehaviour
     private float m_timeLeft;
     private IEnumerator m_MyCountdownCoroutineRef;
 
+    #region TimerUtils properties
     /**
      * <summary>The time left to the counter</summary> 
      */
@@ -49,7 +50,9 @@ public class TimerUtils : MonoBehaviour
      * <remarks>The timer is finish only if the TimeLeft <= 0 </remarks>
      */
     public bool IsFinish { get => this.TimeLeft <= 0; }
+    #endregion
 
+    #region TimerUtils methods
     /**
      * <summary>Start the timer</summary>
      */
@@ -59,6 +62,9 @@ public class TimerUtils : MonoBehaviour
         this.ContinueTimer();
     }
 
+    /// <summary>
+    /// Continue a stopped timer <see cref="StopTimer"/> and <see cref="MyCountdownCoroutine"/>
+    /// </summary>
     public void ContinueTimer()
     {
         this.StopTimer();
@@ -86,6 +92,10 @@ public class TimerUtils : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Late the current timer
+    /// </summary>
+    /// <param name="addTime">Add time to current timer</param>
     public void LateTime(float addTime)
     {
         this.TimeLeft += addTime;
@@ -103,7 +113,9 @@ public class TimerUtils : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 
+    #region MonoBehaviour methods
     private void Start()
     {
         this.StartTimer();
@@ -113,4 +125,5 @@ public class TimerUtils : MonoBehaviour
     {
         this.StopTimer();
     }
+    #endregion
 }

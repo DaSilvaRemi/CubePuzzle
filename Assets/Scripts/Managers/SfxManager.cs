@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
+/// <summary>
+/// Manage all the SFX behaviour
+/// </summary>
+///
 public class SfxManager : Manager<SfxManager>, IEventHandler
 {
     [SerializeField] private AudioSource[] m_SfxAudioSources;
     private List<AudioSource> m_SaveAudioSources;
 
-    public AudioSource[] SfxAudioSource { get => this.m_SfxAudioSources; }
-
     #region Event Listeners Methods
+    /// <summary>
+    /// OnPlaySFXEvent we called <see cref="StartSFX"/> to start the SFX
+    /// </summary>
+    /// <param name="e">the event</param>
     private void OnPlaySFXEvent(PlaySFXEvent e)
     {
         this.StartSFX(e.eAudioSource, e.eAudioClip);
     }
 
+    /// <summary>
+    ///  OnStopSFXEvent we called <see cref="StopSFX"/> to stop the SFX
+    /// </summary>
+    /// <param name="e"></param>
     private void OnStopSFXEvent(StopSFXWithEvent e)
     {
         this.StopSFX(e.eAudioSource);
@@ -23,6 +33,9 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
     #endregion
 
     #region SFX Manager methods
+    /// <summary>
+    /// OnAwakeSFXManager we init the manager, create an list of audio sources, suscribe to events
+    /// </summary>
     private void OnAwakeSFXManager()
     {
         base.InitManager();

@@ -26,7 +26,7 @@ public class Target : MonoBehaviour
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
 
-        this.m_MyActionCoroutine = Tools.MyActionCoroutine(this.m_DurationGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
+        this.m_MyActionCoroutine = Tools.MyActionTimedCoroutine(this.m_DurationGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
         StartCoroutine(this.m_MyActionCoroutine);
     }
 
