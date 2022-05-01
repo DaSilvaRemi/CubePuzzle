@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 1175139687600070077}
   - component: {fileID: 460902110919774500}
   - component: {fileID: 4812807179839916848}
+  - component: {fileID: 1051436130263132584}
   m_Layer: 0
   m_Name: Carpet_Red (1)
   m_TagString: Untagged
@@ -485,6 +486,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &1051436130263132584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160614377628195790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3163678395645840446
 GameObject:
   m_ObjectHideFlags: 0

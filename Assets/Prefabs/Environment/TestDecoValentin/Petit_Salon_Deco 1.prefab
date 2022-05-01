@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1627463189368005275}
   - component: {fileID: 435915985178112921}
   - component: {fileID: 5841629907498621680}
+  - component: {fileID: 3319789682640385530}
   m_Layer: 0
   m_Name: Carpet_Red (3)
   m_TagString: Untagged
@@ -96,6 +97,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &3319789682640385530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220059549999775820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1210851987033296553
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +315,7 @@ GameObject:
   - component: {fileID: 3866418404643644255}
   - component: {fileID: 7852039933908698836}
   - component: {fileID: 4118788355886671758}
+  - component: {fileID: 7106613896406371491}
   m_Layer: 0
   m_Name: Carpet_Red (5)
   m_TagString: Untagged
@@ -386,6 +400,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &7106613896406371491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767052437628774144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3160614377628195790
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +424,7 @@ GameObject:
   - component: {fileID: 1175139687600070077}
   - component: {fileID: 460902110919774500}
   - component: {fileID: 4812807179839916848}
+  - component: {fileID: 7811472232912092228}
   m_Layer: 0
   m_Name: Carpet_Red (1)
   m_TagString: Untagged
@@ -482,6 +509,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &7811472232912092228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160614377628195790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3163678395645840446
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +629,7 @@ GameObject:
   - component: {fileID: 6412291217304787423}
   - component: {fileID: 5355232195290505775}
   - component: {fileID: 4759203766855466723}
+  - component: {fileID: 3521074348299948041}
   m_Layer: 0
   m_Name: Carpet_Red (4)
   m_TagString: Untagged
@@ -674,6 +714,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &3521074348299948041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548502290509126456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4965997780826186277
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +738,7 @@ GameObject:
   - component: {fileID: 3989557115782400267}
   - component: {fileID: 4356694991672931011}
   - component: {fileID: 4931333675848915854}
+  - component: {fileID: 5431153596082393436}
   m_Layer: 0
   m_Name: Carpet_Red
   m_TagString: Untagged
@@ -770,6 +823,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &5431153596082393436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965997780826186277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5787694373039553417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1136,7 @@ GameObject:
   - component: {fileID: 5884697750080774719}
   - component: {fileID: 6601343300865986406}
   - component: {fileID: 4359727290561645162}
+  - component: {fileID: 7982804970691001127}
   m_Layer: 0
   m_Name: Carpet_Red (2)
   m_TagString: Untagged
@@ -1155,6 +1221,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3218aaed8ef5b6b42b5b1fe3ae5b6342, type: 3}
+--- !u!114 &7982804970691001127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486195005988130950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b24a490b11b324ca428acedd5e7fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7539693175773332016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,7 +1548,7 @@ Transform:
   m_GameObject: {fileID: 7785668473185983276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8614338311189726856}
   - {fileID: 4828910714759397893}
