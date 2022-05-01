@@ -16,11 +16,20 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     [SerializeField] private float m_SpawnCooldownDuration = 0.2f;
     [Tooltip("Spawn Limit")]
     [SerializeField] private float m_SpawnLimit = 30;
+    [Tooltip("Is Spawning continously")]
+    [SerializeField] private bool m_IsTimedSpawning;
 
     private List<GameObject> m_GameObjectsSpawned;
     private float m_NextSpawnTime;
+    private IEnumerator m_TimedSpawnCoroutine;
 
-    #region SpawnManagers Methods
+    #region SpawnManager properties
+    public bool IsTimedSpawnLimit { get => this.m_IsTimedSpawning; }
+
+    public bool HasReachedSpawnLimit { get => this.m_GameObjectsSpawned.Count >= this.m_SpawnLimit; }
+    #endregion
+
+    #region SpawnerManager Spawn Methods
     private void Spawn()
     {
         int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_GameObjectsToSpawn.Length);
@@ -46,14 +55,17 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
 
     private void Spawn(GameObject gameObjectToSpawn)
     {
-        int spawnPositionIndex = UnityEngine.Random.Range(0, this.m_SpawnsPosition.Length);
-        gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[spawnPositionIndex].position, this.m_SpawnsPosition[spawnPositionIndex].rotation);
-        this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
+        if(!this.HasReachedSpawnLimit)
+        {
+            int spawnPositionIndex = UnityEngine.Random.Range(0, this.m_SpawnsPosition.Length);
+            gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[spawnPositionIndex].position, this.m_SpawnsPosition[spawnPositionIndex].rotation);
+            this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
+        }
     }
 
     private void SpawnEachNextCooldown()
     {
-        if (this.m_GameObjectsSpawned.Count < this.m_SpawnLimit && Time.time > m_NextSpawnTime)
+        if (this.m_IsTimedSpawning && Time.time > m_NextSpawnTime)
         {
             this.m_NextSpawnTime = this.m_SpawnCooldownDuration + Time.time;
             this.Spawn();
@@ -62,7 +74,36 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
 
     private void SpawnEachTime(float time)
     {
-        Tools.MyWaitCoroutine(time, null, () => this.Spawn());
+        this.StopSpawnEachTime();
+        this.m_TimedSpawnCoroutine = Tools.MyWaitCoroutine(time, null, () => this.Spawn());
+        base.StartCoroutine(this.m_TimedSpawnCoroutine);
+    }
+    #endregion
+
+    #region SpawnerManager Utils methods
+    private void StartSpawnCooldown()
+    {
+        this.m_IsTimedSpawning = true;
+    }
+
+    private void StopSpawnEachTime()
+    {
+        if (this.m_TimedSpawnCoroutine != null)
+        {
+            base.StopCoroutine(this.m_TimedSpawnCoroutine);
+            this.m_TimedSpawnCoroutine = null;
+        }
+    }
+
+    private void StopSpawnCooldown()
+    {
+        this.m_IsTimedSpawning = false;
+    }
+
+    private void StopTimedSpawns()
+    {
+        this.StopSpawnEachTime();
+        this.StopSpawnCooldown();
     }
 
     private void DestroyAnGameObjectSpawned(GameObject gameObjectToDestroy)
@@ -75,6 +116,18 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     {
         this.m_GameObjectsSpawned.ForEach((gameObjectSpawned) => GameObject.Destroy(gameObjectSpawned));
         this.m_GameObjectsSpawned.Clear();
+    }
+    #endregion
+
+    #region SpawnManagers Own Update Methods
+    private void UpdateCooldownSpawn()
+    {
+        if (this.HasReachedSpawnLimit)
+        {
+            this.StopSpawnCooldown();
+        }
+
+        this.SpawnEachNextCooldown();
     }
     #endregion
 
@@ -103,6 +156,21 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     {
         this.Spawn(e.eGameObjectsToSpawn);
     }
+
+    private void OnSpawnGameObjectsEvent(StartCooldownSpawnEvent e)
+    {
+        this.StartSpawnCooldown();
+    }
+
+    private void OnStopEachTimeSpawnEvent(StopEachTimeSpawnEvent e)
+    {
+        this.StopSpawnEachTime();
+    }
+
+    private void OnStopTimedSpawnEvent(StopTimedSpawnEvent e)
+    {
+        this.StopTimedSpawns();
+    }
     #endregion
 
     #region Events Subscription
@@ -113,6 +181,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         EventManager.Instance.AddListener<SpawnNbGOEvent>(OnSpawnNbGOEventt);
         EventManager.Instance.AddListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.AddListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
+        EventManager.Instance.AddListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);
+        EventManager.Instance.AddListener<StopEachTimeSpawnEvent>(OnStopEachTimeSpawnEvent);
+        EventManager.Instance.AddListener<StopTimedSpawnEvent>(OnStopTimedSpawnEvent);
     }
 
     public void UnsubscribeEvents()
@@ -122,6 +193,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         EventManager.Instance.RemoveListener<SpawnNbGOEvent>(OnSpawnNbGOEventt);
         EventManager.Instance.RemoveListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.RemoveListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
+        EventManager.Instance.RemoveListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);
+        EventManager.Instance.RemoveListener<StopEachTimeSpawnEvent>(OnStopEachTimeSpawnEvent);
+        EventManager.Instance.RemoveListener<StopTimedSpawnEvent>(OnStopTimedSpawnEvent);
     }
     #endregion
 
@@ -149,7 +223,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
 
     private void FixedUpdate()
     {
-        this.SpawnEachNextCooldown();
+        this.UpdateCooldownSpawn();
     }
 
     private void OnDestroy()

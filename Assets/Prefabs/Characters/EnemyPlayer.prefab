@@ -480,11 +480,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4476969445833896436}
-  - component: {fileID: 4476969445833896439}
   - component: {fileID: 4476969445833896442}
   - component: {fileID: 4476969445833896437}
+  - component: {fileID: -5607629720726031324}
   m_Layer: 0
-  m_Name: Player
+  m_Name: EnemyPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,29 +509,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4476969445833896439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4476969445833896443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47dde51e08866d4c9e0f41431c9eb34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TranslationSpeed: 5
-  m_JumpSpeed: 10
-  m_RotatingSpeed: 2
-  m_CharacterWalkClip: {fileID: 0}
-  m_CharacterShootClip: {fileID: 0}
-  m_CharacterJumpClip: {fileID: 0}
-  m_ThrowableGOPrefab: {fileID: 1311290861401530, guid: b2938f741dd5ce046afcc626e0f5d5c1, type: 3}
-  m_ThrowableGOInitSpeed: 20
-  m_ThrowableGOSpawnTransform: {fileID: 9142988388161770739}
-  m_ThrowableGOLifeDuration: 3
-  m_CooldownDuration: 1
 --- !u!136 &4476969445833896442
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -562,6 +539,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-5607629720726031324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476969445833896443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776d4369db945c64399ed831b4355d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TranslationSpeed: 4
+  m_JumpSpeed: 0
+  m_RotatingSpeed: 0
+  m_CharacterWalkClip: {fileID: 0}
+  m_CharacterShootClip: {fileID: 0}
+  m_CharacterJumpClip: {fileID: 0}
 --- !u!1 &4476969446205417564
 GameObject:
   m_ObjectHideFlags: 0

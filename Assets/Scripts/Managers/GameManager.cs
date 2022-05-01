@@ -195,7 +195,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
-        this.LoadALevel(GameScene.VICTORYSCENE);
+        this.LoadALevel(GameScene.VICTORYSCENE, false);
     }
 
     /**
@@ -339,8 +339,25 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void LoadALevel(GameScene gameScene)
     {
-        this.m_GameManagerCoroutine = Tools.MyWaitCoroutine(1, null, () => this.SetGameScene(gameScene));
-        StartCoroutine(this.m_GameManagerCoroutine);
+        this.LoadALevel(gameScene, true);
+    }
+
+    /// <summary>
+    /// Load a LVL
+    /// </summary>
+    /// <param name="gameScene">The gameScene to load</param>
+    /// <param name="waitToLoad">If we wait before loading</param>
+    private void LoadALevel(GameScene gameScene, bool waitToLoad)
+    {
+        if (waitToLoad)
+        {
+            this.m_GameManagerCoroutine = Tools.MyWaitCoroutine(1, null, () => this.SetGameScene(gameScene));
+            StartCoroutine(this.m_GameManagerCoroutine);
+        }
+        else
+        {
+            this.SetGameScene(gameScene);
+        }
     }
 
     /**

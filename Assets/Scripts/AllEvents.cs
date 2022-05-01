@@ -131,6 +131,18 @@ public class StopSFXWithEvent : SDD.Events.Event
 
 #region SpawnerManger Events
 
+public class StartCooldownSpawnEvent : SDD.Events.Event
+{
+}
+
+public class StopEachTimeSpawnEvent : SDD.Events.Event
+{
+}
+
+public class StopTimedSpawnEvent : SDD.Events.Event
+{
+}
+
 public class SpawnEachTimeEvent : SDD.Events.Event
 {
 	public float eSpawnTime { get; set; }

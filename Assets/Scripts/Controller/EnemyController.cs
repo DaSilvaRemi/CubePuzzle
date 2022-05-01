@@ -3,39 +3,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class EnemyController : CharController
+/// <summary>
+/// Control an enemy
+/// </summary>
+public class EnemyController : FollowCharacterController
 {
-    private Transform m_PlayerTransform;
+    [SerializeField] private int m_EnemyInitLifeMax = 3;
+    protected int EnemyLife { get; set; }
 
-    #region Character physics controls methods
-
-    protected override void Move()
+    protected bool IsAlive
     {
-        Vector3 playerTargetPosition = new Vector3(this.m_PlayerTransform.position.x, this.m_PlayerTransform.position.y, this.m_PlayerTransform.position.z);
-        Vector3 petNewPosition = Vector3.MoveTowards(base.Rigidbody.position, playerTargetPosition, base.TranslationSpeed * Time.fixedDeltaTime);
-        base.Rigidbody.MovePosition(petNewPosition);
+        get
+        {
+            return this.EnemyLife > 0;
+        }
     }
 
+    #region EnemyController methods
+
+    protected bool CheckIsAlive()
+    {
+        if (!this.IsAlive)
+        {
+            EventManager.Instance.Raise(new SpawnedGameObjectToDestroyEvent() { eGameObjectToDestroy = this.gameObject });
+        }
+
+        return this.IsAlive;
+    }
+
+    protected virtual void TakeDamage(GameObject gameObject)
+    {
+        if (gameObject == null || !this.CheckIsAlive())
+        {
+            return;
+        }
+
+        int totalDamagesTake = 0;
+        IDamage[] damages = gameObject.GetComponentsInChildren<IDamage>();
+
+        foreach (IDamage damage in damages)
+        {
+            totalDamagesTake += damage.DamagePoint;
+        }
+        this.EnemyLife -= totalDamagesTake;
+        this.ChangeColorOnDamage();
+    }
+
+    protected virtual void ChangeColorOnDamage()
+    {
+        if (this.EnemyLife == this.m_EnemyInitLifeMax)
+        {
+            return;
+        }
+
+        if (this.EnemyLife <= this.m_EnemyInitLifeMax * 0.20)
+        {
+            Tools.SetColor(this.GetComponentInChildren<MeshRenderer>(), Color.yellow);
+            Tools.SetColor(this.GetComponentInChildren<SkinnedMeshRenderer>(), Color.yellow);
+        }
+        else if (this.EnemyLife <= this.m_EnemyInitLifeMax * 0.50)
+        {
+            Tools.SetColor(this.GetComponentInChildren<MeshRenderer>(), new Color(255, 165, 0));
+            Tools.SetColor(this.GetComponentInChildren<SkinnedMeshRenderer>(), new Color(255, 165, 0));
+        }
+        else {
+            Tools.SetColor(this.GetComponentInChildren<MeshRenderer>(), Color.red);
+            Tools.SetColor(this.GetComponentInChildren<SkinnedMeshRenderer>(), Color.red);
+        }
+    }
     #endregion
 
     #region MonoBehaviour Methods
-    protected override void Awake()
+    protected override void OnAwake()
     {
-        base.Awake();
-        this.m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        base.OnAwake();
+        this.EnemyLife = this.m_EnemyInitLifeMax; 
     }
 
-
-    private void FixedUpdate()
+    protected override void Awake()
     {
-        this.Move();
+        this.OnAwake();
+    }
+
+    protected override void FixedUpdate()
+    {
+        this.CheckIsAlive();
+        if (this.IsAlive)
+        {
+            base.Move();
+            base.RotateObject();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && collision.gameObject.CompareTag("Player"))
+        if (collision == null)
+        {
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
+
+        if (collision.gameObject.CompareTag("ThrowableObject"))
+        {
+            this.TakeDamage(collision.gameObject);
         }
     }
     #endregion

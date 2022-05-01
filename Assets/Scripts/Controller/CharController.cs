@@ -19,11 +19,13 @@ public class CharController : MonoBehaviour
     [SerializeField] private AudioClip m_CharacterShootClip;
     [SerializeField] private AudioClip m_CharacterJumpClip;
 
+    #region CharController properties
     protected Rigidbody Rigidbody { get; set; }
 
     protected float TranslationSpeed { get => this.m_TranslationSpeed; }
     protected float JumpSpeed { get => this.m_JumpSpeed; }
     protected float RotatingSpeed { get => this.m_RotatingSpeed; }
+    #endregion
 
     #region Character physics controls methods
     /// <summary>

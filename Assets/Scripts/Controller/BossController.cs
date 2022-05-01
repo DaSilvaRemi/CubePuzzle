@@ -1,28 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
-public class BossController : CharController
+public class BossController : EnemyController
 {
-    [SerializeField] private float m_DistanceBetweenTargetRange = 3f;
-    private Transform m_TargetTransform;
-
+    #region CharController methods
     protected override void Move()
     {
-        if (Vector3.Distance(this.m_TargetTransform.position, base.Rigidbody.position) < this.m_DistanceBetweenTargetRange)
-        {
-           
-        }
-
-        Vector3 playerTargetPosition = new Vector3(this.m_TargetTransform.position.x, this.m_TargetTransform.position.y, this.m_TargetTransform.position.z);
+        this.ControlFollowCharacterDistance();
+        Vector3 playerTargetPosition = new Vector3(base.TargetToFollowTransform.position.x, base.TargetToFollowTransform.position.y, base.TargetToFollowTransform.position.z);
         Vector3 petNewPosition = Vector3.MoveTowards(base.Rigidbody.position, playerTargetPosition, base.TranslationSpeed * Time.fixedDeltaTime);
         base.Rigidbody.MovePosition(petNewPosition);
     }
+    #endregion
+
+    #region FollowCharacter Methods
+    protected override void ControlFollowCharacterDistance()
+    {
+        if (Vector3.Distance(base.TargetToFollowTransform.position, base.Rigidbody.position) > base.DistanceBetweenTargetRange * 2)
+        {
+            EventManager.Instance.Raise(new SpawnEachTimeEvent() { eSpawnTime = 1f });
+        }
+        else
+        {
+            EventManager.Instance.Raise(new StopEachTimeSpawnEvent());
+        }
+    }
+    #endregion
 
     #region MonoBehaviour Methods
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        
+        base.CheckIsAlive();
+        this.Move();
+        base.RotateObject();
     }
     #endregion
 }

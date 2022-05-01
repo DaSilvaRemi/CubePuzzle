@@ -185,4 +185,17 @@ public class Tools
             meshRenderer.material.color = color;
         }
     }
+
+    /// <summary>
+    /// Set a color to the mesh
+    /// </summary>
+    /// <param name="meshRenderer">The mesh renderer</param>
+    /// <param name="color">The color</param>
+    public static void SetColor(SkinnedMeshRenderer skinnedMeshRenderer, Color color)
+    {
+        if (skinnedMeshRenderer != null && color != null)
+        {
+            skinnedMeshRenderer.material.color = color;
+        }
+    }
 }
