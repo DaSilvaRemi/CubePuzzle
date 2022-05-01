@@ -168,3 +168,11 @@ public class SpawnGameObjectsEvent : SDD.Events.Event
 	public List<GameObject> eGameObjectsToSpawn { get; set; }
 }
 #endregion
+
+#region InvertObjectMiniGames Events
+public class SelectGameObjectToInvertEvent : SDD.Events.Event
+{
+	public GameObject eGameObjectToInvert { get; set; }
+}
+
+#endregion
