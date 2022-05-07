@@ -74,6 +74,11 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     #region Event Listeners Methods
 
+    private void OnChooseALevelEvent(ChooseALevelEvent e)
+    {
+        this.ChooseALevel(e.eGameScene);
+    }
+
     /**
     * <summary>Handle the NewGameButtonClickedEvent</summary>
     * <remarks>Call the new game methods <see cref="NewGame"/></remarks>
@@ -213,9 +218,14 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void NewGame()
     {
-        SaveData.Save(new SaveData());
+        this.ChooseALevel(GameScene.FIRSTLEVELSCENE);
+    }
+
+    private void ChooseALevel(GameScene levelChoosen)
+    {
+        SaveData.Save(new SaveData(0f, levelChoosen));
         this.ResetGameVar();
-        this.LoadALevel(GameScene.FIRSTLEVELSCENE);
+        this.LoadALevel(levelChoosen);
     }
 
     /**
@@ -223,7 +233,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void LoadGame()
     {
-        SaveData saveGame = SaveData.Load();
+        SaveData saveGame = SaveData.LoadPlayerRefs();
         this.SetGameState(saveGame.GameState);
         this.SetTimePassed(saveGame.Time);
         this.SetBestTime(saveGame.BestTime);
@@ -519,6 +529,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.AddListener<ChooseALevelEvent>(OnChooseALevelEvent);
         EventManager.Instance.AddListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
         EventManager.Instance.AddListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);

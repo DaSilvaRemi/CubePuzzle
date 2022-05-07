@@ -5,6 +5,7 @@ using SDD.Events;
 
 public class MenuManager : MonoBehaviour
 {
+    #region MenuManager methods on Menu Scene
     /// <summary>
     /// When new game button clicked we called <see cref="OnClickButton"/> and send <see cref="NewGameButtonClickedEvent"/>
     /// </summary>
@@ -51,6 +52,44 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
+    /// When choose level button 1 clicked we called <see cref="OnClickButton"/> and send <see cref="ChooseALevelEvent"/>
+    /// </summary>
+    public void HandleChooseLVL1Button()
+    {
+        this.OnClickButton();
+        EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.FIRSTLEVELSCENE});
+    }
+
+    /// <summary>
+    /// When choose level button 2 clicked we called <see cref="OnClickButton"/> and send <see cref="ChooseALevelEvent"/>
+    /// </summary>
+    public void HandleChooseLVL2Button()
+    {
+        this.OnClickButton();
+        EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.SECONDLVLSCENE });
+    }
+
+    /// <summary>
+    /// When choose level button 3 clicked we called <see cref="OnClickButton"/> and send <see cref="ChooseALevelEvent"/>
+    /// </summary>
+    public void HandleChooseLVL3Button()
+    {
+        this.OnClickButton();
+        EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.THIRDLEVELSCENE });
+    }
+
+    /// <summary>
+    /// When choose level button 4 clicked we called <see cref="OnClickButton"/> and send <see cref="ChooseALevelEvent"/>
+    /// </summary>
+    public void HandleChooseLVL4Button()
+    {
+        this.OnClickButton();
+        EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.FOURTHLEVELSCENE });
+    }
+    #endregion
+
+    #region MenuManager globals methods
+    /// <summary>
     /// When back to menu button clicked we called <see cref="OnClickButton"/> and send <see cref="MainMenuButtonClickedEvent"/>
     /// </summary>
     public void HandleBackToMenuButton()
@@ -66,4 +105,5 @@ public class MenuManager : MonoBehaviour
     {
         EventManager.Instance.Raise(new ButtonClickedEvent());
     }
+    #endregion
 }

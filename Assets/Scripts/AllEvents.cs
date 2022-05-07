@@ -59,6 +59,12 @@ public class ButtonClickedEvent : SDD.Events.Event
 public class NewGameButtonClickedEvent : SDD.Events.Event
 {
 }
+
+public class ChooseALevelEvent : SDD.Events.Event
+{
+	public Tools.GameScene eGameScene { get; set; }
+}
+
 public class LoadGameButtonClickedEvent : SDD.Events.Event
 {
 }
