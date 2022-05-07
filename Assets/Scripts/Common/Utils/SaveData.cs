@@ -58,100 +58,49 @@ public class SaveData: IGameState
     public static void Save(SaveData save)
     {
 
-        SaveData data = null;
-        try
+        SaveData data = LoadPlayerRefs();
+        if (data.BestTime == 0 || save.BestTime <= data.BestTime)
         {
-            data = Load();
+            data.BestTime = save.BestTime;
         }
-        catch (FileNotFoundException)
-        {
-            data = new SaveData();
-        }
-        finally
-        {
-            if (data.BestTime == 0 || save.BestTime <= data.BestTime)
-            {
-                data.BestTime = save.BestTime;
-            }
 
-            data.Level = save.Level;
-            data.Time = save.Time;
-            data.GameState = save.GameState;
+        data.Level = save.Level;
+        data.Time = save.Time;
+        data.GameState = save.GameState;
 
-            SaveData.SaveFile(data);
-        }
+        SaveData.SaveOnPlayerRef(data);
     }
 
     /**
-     * <summary>Save data on JSON file</summary> 
+     * <summary>Save data on Players refs</summary> 
      * 
      * <param name="saveGame">The save game</param>
      */
-    public static void SaveFile(SaveData saveGame)
+    public static void SaveOnPlayerRef(SaveData saveGame)
     {
-        SaveData.SaveFile("/savefile.json", JsonUtility.ToJson(saveGame.m_SerializableGame));
-    }
-
-    /**
-     * <summary>Save data on JSON file</summary>
-     * <param name="fileName"></param>
-     * <param name="jsonData"></param>
-     */
-    public static void SaveFile(string fileName, string jsonData)
-    {
-        SaveData.SaveFile(Application.persistentDataPath, fileName, jsonData);
-    }
-
-    /**
-     * <summary>Save data on JSON file</summary>
-     * <param name="path"></param>
-     * <param name="fileName"></param>
-     * <param name="jsonData"></param>
-     */
-    public static void SaveFile(string path, string fileName, string jsonData)
-    {
+        PlayerPrefs.SetInt("level", (int) saveGame.Level);
+        PlayerPrefs.SetFloat("time", saveGame.Time);
+        PlayerPrefs.SetFloat("bestTime", saveGame.BestTime);
+        PlayerPrefs.SetInt("gameState", (int) saveGame.GameState);
         Debug.Log("Save");
-        Debug.Log(jsonData);
-        File.WriteAllText(path + fileName, jsonData);
+        PlayerPrefs.Save();
+        Debug.Log(JsonUtility.ToJson(saveGame.m_SerializableGame));
     }
 
     /**
      * <summary>Load the save</summary>
      */
-    public static SaveData Load()
+    public static SaveData LoadPlayerRefs()
     {
-        return SaveData.Load(Application.persistentDataPath + "/savefile.json");
-    }
-
-    /**
-     * <summary>Load the save game</summary>
-     */
-    public static SaveData Load(string path)
-    {
-        SaveData loadedSave = new SaveData();
-
-        try
-        {
-            loadedSave.m_SerializableGame = JsonUtility.FromJson<SerializableGame>(LoadFile(path));
-        }
-        catch (FileNotFoundException ex)
-        {
-            Debug.Log(ex.Message);
-        }
-
+        Tools.GameScene loadedGameScene = (Tools.GameScene) PlayerPrefs.GetInt("level");
+        Tools.GameState loadedGameState = (Tools.GameState) PlayerPrefs.GetInt("gameState");
+        float loadedGameTime = PlayerPrefs.GetFloat("time");
+        float loadedGameBestTime = PlayerPrefs.GetFloat("bestTime");
+        
+        SaveData loadedSave = new SaveData(new SerializableGame(loadedGameTime, loadedGameScene, loadedGameBestTime, loadedGameState));
         Debug.Log("Load");
-        Debug.Log(loadedSave.m_SerializableGame.ToString());
+        Debug.Log(JsonUtility.ToJson(loadedSave.m_SerializableGame));
 
         return loadedSave;
-    }
-
-    /**
-     * <summary>Load a file</summary>
-     */
-    public static string LoadFile(string path)
-    {
-        if (!File.Exists(path)) throw new FileNotFoundException("File does not exist: " + path);
-
-        return File.ReadAllText(path);
     }
 }
