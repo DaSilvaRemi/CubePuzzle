@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GamesObjectsLinked: []
+  m_DurationGoActivate: 0
+  m_TargetCollisionSfxClip: {fileID: 8300000, guid: 29022d26190bece49a489818e19c4460, type: 3}
 --- !u!114 &3248861161385641307
 MonoBehaviour:
   m_ObjectHideFlags: 0

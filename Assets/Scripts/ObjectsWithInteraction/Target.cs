@@ -11,6 +11,10 @@ public class Target : MonoBehaviour
     [Tooltip("Durations GO will be activate")]
     [SerializeField] private float m_DurationGoActivate;
 
+    [Header("Target behaviour")]
+    [Tooltip("Target audio clip")]
+    [SerializeField] private AudioClip m_TargetCollisionSfxClip;
+
     private IEnumerator m_MyActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
 
@@ -52,6 +56,7 @@ public class Target : MonoBehaviour
                 EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
                 this.m_IsAlreadyCollided = true;
             }
+            EventManager.Instance.Raise(new PlaySFXEvent() { eAudioClip = this.m_TargetCollisionSfxClip });
             this.ChangeColorOfGameObjectsLinked();
         }
     }
