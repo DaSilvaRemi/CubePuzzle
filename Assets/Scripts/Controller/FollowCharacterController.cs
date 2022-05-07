@@ -78,12 +78,10 @@ public class FollowCharacterController : CharController
         if (Vector3.Distance(this.TargetToFollowTransform.position, base.Rigidbody.position) > this.DistanceBetweenTargetRange * 2)
         {
             Vector3 playerTargetPosition = new Vector3(this.TargetToFollowTransform.position.x, this.TargetToFollowTransform.position.y, this.TargetToFollowTransform.position.z);
-            base.transform.position = playerTargetPosition;
+            base.transform.position = playerTargetPosition - new Vector3(0, 0, this.DistanceBetweenTargetRange);
         }
     }
-    #endregion
 
-    #region FollowCharacterController methods
     /// <summary>
     /// On awake we called parent awake, and init variables
     /// </summary>
@@ -117,7 +115,7 @@ public class FollowCharacterController : CharController
     protected virtual void FixedUpdate()
     {
         this.ControlFollowCharacterDistance();
-        this.Move();
+        this.SecureMove();
         this.RotateObject();
     }
     #endregion
