@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using SDD.Events;
 
-public class VictoryHUDManager : Manager<VictoryHUDManager>
+public class VictoryHUDManager : PanelHUDManager
 {
-    [Header("Victory / GameOver txt")]
+    [Header("Victory / GameOver panels")]
     [Tooltip("Game Object")]
     [SerializeField] private GameObject m_WinPanel;
     [Tooltip("Game Object")]
@@ -17,17 +17,6 @@ public class VictoryHUDManager : Manager<VictoryHUDManager>
     [SerializeField] private TextMeshProUGUI m_TimeValueText;
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_BestTimeValueText;
-
-    private readonly List<GameObject> m_Panels = new List<GameObject>();
-
-    /// <summary>
-    /// Open a panel in the list
-    /// </summary>
-    /// <param name="panel">The panel to open</param>
-    private void OpenPanel(GameObject panel)
-    {
-        this.m_Panels.ForEach(item => { if (item) { item.SetActive(item.Equals(panel)); } });
-    }
 
     /// <summary>
     /// OnGameWinEvent we open the WinPanel
@@ -48,10 +37,10 @@ public class VictoryHUDManager : Manager<VictoryHUDManager>
     }
 
     #region MonoBehaviour Methods
-    private void Awake()
+    protected override void Awake()
     {
-        base.InitManager();
-        this.m_Panels.AddRange(new GameObject[] { this.m_WinPanel, this.m_GameOverPanel });
+        base.Awake();
+        base.Panels.AddRange(new GameObject[] { this.m_WinPanel, this.m_GameOverPanel });
     }
 
     private void OnEnable()

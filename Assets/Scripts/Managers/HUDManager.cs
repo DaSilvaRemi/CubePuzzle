@@ -4,8 +4,12 @@ using TMPro;
 using SDD.Events;
 using UnityEngine;
 
-public class HUDManager : Manager<HUDManager>, IEventHandler
+public class HUDManager : PanelHUDManager, IEventHandler
 {
+    [Header("Pause panel")]
+    [Tooltip("Game Object")]
+    [SerializeField] private GameObject m_PausePanel;
+
     [Header("HUD TEXT")]
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_TimeLeftValueTxt;
@@ -37,6 +41,15 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
     }
     #endregion
 
+    #region HUDManager handlers
+    public void HandleContinueButton()
+    {
+        base.HideAllPanels();
+        EventManager.Instance.Raise(new ContinueGameEvent());
+        EventManager.Instance.Raise(new ButtonClickedEvent());
+    }
+    #endregion
+
     #region Event Listeners
     /// <summary>
     /// On gameStatisticsChangedEvent we calls <see cref="SetTimeValueText"/> and <see cref="SetScoreValueText"/>
@@ -47,24 +60,39 @@ public class HUDManager : Manager<HUDManager>, IEventHandler
         this.SetTimeValueText(gameStatisticsChangedEvent.eCountdown);
         this.SetScoreValueText(gameStatisticsChangedEvent.eScore);
     }
+
+    private void OnGamePlayEvent(GamePlayEvent e)
+    {
+        base.HideAllPanels();
+    }
+
+    private void OnGamePauseEvent(GamePauseEvent e)
+    {
+        base.OpenPanel(this.m_PausePanel);
+    }
     #endregion
 
     #region Events Suscribption
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+        EventManager.Instance.AddListener<GamePlayEvent>(OnGamePlayEvent);
+        EventManager.Instance.AddListener<GamePauseEvent>(OnGamePauseEvent);
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+        EventManager.Instance.RemoveListener<GamePlayEvent>(OnGamePlayEvent);
+        EventManager.Instance.RemoveListener<GamePauseEvent>(OnGamePauseEvent);
     }
     #endregion
 
     #region MonoBehaviour methods
-    private void Awake()
+    protected override void Awake()
     {
-        base.InitManager();
+        base.Awake();
+        base.Panels.AddRange(new GameObject[] { this.m_PausePanel });
     }
 
     private void OnEnable()

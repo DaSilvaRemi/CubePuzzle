@@ -57,6 +57,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     public static bool IsWinning { get => GameManager.m_GameState.Equals(GameState.WIN); }
     public static bool IsGameOver { get => GameManager.m_GameState.Equals(GameState.GAMEOVER); }
     public static bool IsEndLVL { get => GameManager.m_GameState.Equals(GameState.ENDLVL); }
+    public static bool IsOnPlaying { get => GameManager.IsPlaying || GameManager.IsPausing; }
 
     #endregion
 
@@ -182,15 +183,32 @@ public class GameManager : Manager<GameManager>, IEventHandler
             e.eCollidedGO.SetActive(false); // désactive la balle quand touche une cible
         }
     }
+
+    private void OnContinueGameEvent(ContinueGameEvent e)
+    {
+        this.PlayGame();
+    }
     #endregion
 
     #region  GameMangers Utils Methods
     /**
      * <summary>Play the current game</summary> 
      */
-    private void PlayGame()
+    private void InitGame()
     {
         this.m_TimerUtils.StartTimer();
+    }
+
+    private void PlayGame()
+    {
+        Time.timeScale = 1;
+        SetGameState(Tools.GameState.PLAY);
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        SetGameState(Tools.GameState.PAUSE);
     }
 
     /**
@@ -375,7 +393,9 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void Menu()
     {
-        this.LoadALevel(GameScene.MENUSCENE);
+        this.PlayGame();
+        this.LoadALevel(GameScene.MENUSCENE, false);
+        this.SetGameState(Tools.GameState.MENU);
     }
 
     /**
@@ -539,11 +559,13 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
         EventManager.Instance.AddListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.AddListener<ContinueGameEvent>(OnContinueGameEvent);
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<NewGameButtonClickedEvent>(OnNewGameButtonClickedEvent);
+        EventManager.Instance.RemoveListener<ChooseALevelEvent>(OnChooseALevelEvent);
         EventManager.Instance.RemoveListener<LoadGameButtonClickedEvent>(OnLoadGameButtonClickedEvent);
         EventManager.Instance.RemoveListener<HelpButtonClickedEvent>(OnHelpButtonClickedEvent);
         EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(OnCreditButtonClickedEvent);
@@ -553,6 +575,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
         EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
         EventManager.Instance.RemoveListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.RemoveListener<ChooseALevelEvent>(OnChooseALevelEvent);
     }
     #endregion
 
@@ -569,6 +592,15 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (GameManager.IsPlaying && Input.GetButton("ResetGame"))
         {
             this.ResetGame();
+        }else if (GameManager.IsOnPlaying && Input.GetButton("PauseGame"))
+        {
+            if (GameManager.IsPlaying)
+            {
+                this.PauseGame();
+            }else
+            {
+                this.PlayGame();
+            }
         }
 
         this.UpdateGameState(timerUtils);
@@ -630,7 +662,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.SetGameState(gameState);
         if (GameManager.IsPlaying)
         {
-            this.PlayGame();
+            this.InitGame();
         }
     }
 

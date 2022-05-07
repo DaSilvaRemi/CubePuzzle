@@ -182,3 +182,9 @@ public class SelectGameObjectToInvertEvent : SDD.Events.Event
 }
 
 #endregion
+
+#region HUD Events
+public class ContinueGameEvent : SDD.Events.Event
+{
+}
+#endregion
