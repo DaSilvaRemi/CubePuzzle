@@ -18,6 +18,7 @@ public class Target : MonoBehaviour
     private IEnumerator m_MyActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
 
+
     #region Target Methods
     /**
      * <summary>Changes game objects color linked to the target</summary> 

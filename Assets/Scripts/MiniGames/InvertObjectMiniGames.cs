@@ -12,12 +12,15 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     [SerializeField] private Transform[] m_SpawnsPosition;
     [Tooltip("GO will be spawn")]
     [SerializeField] private GameObject[] m_GameObjetsToSpawn;
+    [Tooltip("Cooldown duration to invert")]
+    [SerializeField] private float m_CooldownDuration;
 
     private List<GameObject> m_GameObjetsSpawned;
     private List<GameObject> m_GameObjetsSelectedToInvert;
     private List<int> m_IndexSpawnPosition;
     private List<int> m_IndexGoodArrangementObjects;
     private bool m_MiniGameIsFinished;
+    private float m_NextInvertedTime;
 
     #region Events Listeners
     private void OnSelectGameObjectToInvertEvent(SelectGameObjectToInvertEvent e)
@@ -29,9 +32,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     #region Events Handlers
     private void SelectGameObjectToInvert(GameObject gameObject)
     {
-        if (gameObject != null && !this.m_GameObjetsSelectedToInvert.Contains(gameObject))
+        if (gameObject != null && !this.m_GameObjetsSelectedToInvert.Contains(gameObject) && Time.time > this.m_NextInvertedTime)
         {
             this.m_GameObjetsSelectedToInvert.Add(gameObject);
+            this.m_NextInvertedTime = Time.time + this.m_CooldownDuration;
         }
         this.VerifyGameObjetsSelectedToInvert();
     }
@@ -43,6 +47,8 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     /// </summary>
     private void SpawnRandomlyObjectInSpawnPosition()
     {
+        List<GameObject> copyGameObjetsToSpawn = new List<GameObject>(this.m_GameObjetsToSpawn);
+
         for (int i = 0; i < this.m_SpawnsPosition.Length; i++)
         {
             int indexSpawnPosition;
@@ -55,14 +61,15 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
 
             do
             {
-                indexGameObjectToSpawn = UnityEngine.Random.Range(0, this.m_GameObjetsToSpawn.Length);
-            } while (this.m_GameObjetsSpawned.Contains(this.m_GameObjetsToSpawn[indexGameObjectToSpawn])) ;
+                indexGameObjectToSpawn = UnityEngine.Random.Range(0, copyGameObjetsToSpawn.Count);
+            } while (this.m_GameObjetsSpawned.Contains(copyGameObjetsToSpawn[indexGameObjectToSpawn])) ;
 
-            GameObject gameObjectToSpawn = Instantiate(this.m_GameObjetsSpawned[indexGameObjectToSpawn]);
+            GameObject gameObjectToSpawn = Instantiate(copyGameObjetsToSpawn[indexGameObjectToSpawn]);
             gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[indexSpawnPosition].position, this.m_SpawnsPosition[indexSpawnPosition].rotation);
 
             this.m_GameObjetsSpawned.Add(gameObjectToSpawn);
-            this.m_IndexSpawnPosition.Add(i);
+            this.m_IndexSpawnPosition.Add(indexSpawnPosition);
+            copyGameObjetsToSpawn.RemoveAt(indexGameObjectToSpawn);
         }
     }
 
@@ -76,10 +83,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
             int randomIndexValue;
             do
             {
-                randomIndexValue = UnityEngine.Random.Range(0, this.m_GameObjetsSpawned.Count);
-            } while (this.m_IndexGoodArrangementObjects.Contains(randomIndexValue));
+                randomIndexValue = UnityEngine.Random.Range(0, this.m_IndexSpawnPosition.Count);
+            } while (this.m_IndexGoodArrangementObjects.Contains(this.m_IndexSpawnPosition[randomIndexValue]));
             
-            this.m_IndexGoodArrangementObjects.Add(randomIndexValue);
+            this.m_IndexGoodArrangementObjects.Add(this.m_IndexSpawnPosition[randomIndexValue]);
         }
     }
 
@@ -90,8 +97,8 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     /// <param name="gameObject2">The second game object to invert</param>
     protected void InvertTwoGameObjects(GameObject gameObject1, GameObject gameObject2)
     {
-        this.InvertTwoGameObjectPosition(gameObject1, gameObject2);
         this.InvertTwoGameObjectsIndex(this.m_GameObjetsSpawned.IndexOf(gameObject1), this.m_GameObjetsSpawned.IndexOf(gameObject2));
+        this.InvertTwoGameObjectPosition(gameObject1, gameObject2);
     }
 
     /// <summary>
@@ -115,9 +122,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     {
         int indexGameObject1 = this.m_GameObjetsSpawned.IndexOf(gameObject1);
         int indexGameObject2 = this.m_GameObjetsSpawned.IndexOf(gameObject2);
-        GameObject tmpGameObject = gameObject1;
+        Vector3 copyPositionGameObject = new Vector3(gameObject1.transform.position.x, gameObject1.transform.position.y, gameObject1.transform.position.z);
+        Quaternion copyRotationGameObject = new Quaternion(gameObject1.transform.rotation.x, gameObject1.transform.rotation.y, gameObject1.transform.rotation.z, gameObject1.transform.rotation.w);
         gameObject1.transform.SetPositionAndRotation(gameObject2.transform.position, gameObject2.transform.rotation);
-        gameObject2.transform.SetPositionAndRotation(tmpGameObject.transform.position, tmpGameObject.transform.rotation);
+        gameObject2.transform.SetPositionAndRotation(copyPositionGameObject, copyRotationGameObject);
         this.m_GameObjetsSpawned[indexGameObject1] = gameObject2;
         this.m_GameObjetsSpawned[indexGameObject2] = gameObject1;
     }
@@ -157,7 +165,11 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     {
         if (!this.m_MiniGameIsFinished && this.GameObjectsHasWellPlaced())
         {
-            this.m_GameObjectToDesactivate.SetActive(false);
+            if (this.m_GameObjectToDesactivate)
+            {
+                this.m_GameObjectToDesactivate.SetActive(false);
+            }
+            
             this.m_MiniGameIsFinished = true;
         }
     }
@@ -199,6 +211,7 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
 
     private void Start()
     {
+        this.m_NextInvertedTime = Time.time;
         this.SpawnRandomlyObjectInSpawnPosition();
         this.GenerateCombinaison();
     }

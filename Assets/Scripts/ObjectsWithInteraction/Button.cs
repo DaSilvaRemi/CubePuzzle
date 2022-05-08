@@ -3,28 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class Button : MonoBehaviour
+public class Button : ObjectActivateOthers
 {
-    [Header("GO linkeds to the button")]
-    [Tooltip("GO to activate when button clicked")]
-    [SerializeField] GameObject m_GameObjectToActivate;
-    [Tooltip("GO linked to the button")]
-    [SerializeField] GameObject[] m_GamesObjectsLinked;
-
     /// <summary>
     /// On Button triggered we acitvate the defined game object if it was present in the list and we send <see cref="ButtonClickedEvent"/> and <see cref="ButtonActivateGOClickedEvent"/>
     /// </summary>
     private void OnButtonTriggered()
     {
         EventManager.Instance.Raise(new ButtonClickedEvent());
-        EventManager.Instance.Raise(new ButtonActivateGOClickedEvent() { eGameObject = this.m_GameObjectToActivate });
+        EventManager.Instance.Raise(new ButtonActivateGOClickedEvent() { eGameObject = base.GameObjectToActivate });
 
-        foreach (GameObject item in this.m_GamesObjectsLinked)
-        {
-            if (item) { 
-                item.SetActive(item.Equals(this.m_GameObjectToActivate)); 
-            }
-        }
+        base.OnObjectTriggered();
     }
 
     /// <summary>

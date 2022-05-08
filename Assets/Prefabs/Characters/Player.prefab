@@ -527,7 +527,7 @@ MonoBehaviour:
   m_CharacterWalkClip: {fileID: 0}
   m_CharacterShootClip: {fileID: 0}
   m_CharacterJumpClip: {fileID: 0}
-  m_ThrowableGOPrefab: {fileID: 1311290861401530, guid: b2938f741dd5ce046afcc626e0f5d5c1, type: 3}
+  m_ThrowableGOPrefab: {fileID: 1311290861401530, guid: 94dc9f0af9b0b0f4fa274587dffb117d, type: 3}
   m_ThrowableGOInitSpeed: 20
   m_ThrowableGOSpawnTransform: {fileID: 9142988388161770739}
   m_ThrowableGOLifeDuration: 3
