@@ -13,6 +13,9 @@ public class ObjectActivateOthers : MonoBehaviour
     protected GameObject GameObjectToActivate { get { return this.m_GameObjectToActivate; } }
     protected GameObject[] GamesObjectsLinked { get { return this.m_GamesObjectsLinked; } }
 
+    /// <summary>
+    /// OnObjectTriggered we activate the <see cref="m_GameObjectToActivate"/> if it was in <see cref="m_GamesObjectsLinked"/>
+    /// </summary>
     protected virtual void OnObjectTriggered()
     {
         foreach (GameObject item in this.m_GamesObjectsLinked)
