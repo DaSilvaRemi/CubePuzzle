@@ -192,19 +192,25 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     #region  GameMangers Utils Methods
     /**
-     * <summary>Play the current game</summary> 
+     * <summary>Init the game</summary> 
      */
     private void InitGame()
     {
         this.m_TimerUtils.StartTimer();
     }
 
+    /// <summary>
+    /// Play the game
+    /// </summary>
     private void PlayGame()
     {
         Time.timeScale = 1;
         SetGameState(Tools.GameState.PLAY);
     }
 
+    /// <summary>
+    /// Pause the game
+    /// </summary>
     private void PauseGame()
     {
         Time.timeScale = 0;
@@ -239,6 +245,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
         this.ChooseALevel(GameScene.FIRSTLEVELSCENE);
     }
 
+    /// <summary>
+    /// Choose a level
+    /// </summary>
+    /// <param name="levelChoosen">The level choosen</param>
     private void ChooseALevel(GameScene levelChoosen)
     {
         SaveData.Save(new SaveData(0f, levelChoosen));
