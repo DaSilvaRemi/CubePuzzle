@@ -52,7 +52,7 @@ public class Target : MonoBehaviour
     {
         if (collision != null)
         {
-            if (!this.m_IsAlreadyCollided)
+            if (!this.m_IsAlreadyCollided && collision.gameObject.CompareTag("ThrowableObject"))
             {
                 EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
                 this.m_IsAlreadyCollided = true;
