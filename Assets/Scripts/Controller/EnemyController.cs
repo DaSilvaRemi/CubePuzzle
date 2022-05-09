@@ -21,6 +21,11 @@ public class EnemyController : FollowCharacterController
 
     #region EnemyController methods
 
+    /// <summary>
+    /// Check if the enemy is alive
+    /// </summary>
+    /// <remarks>If the enemy is dead we throw <see cref="SpawnedGameObjectToDestroyEvent"/></remarks>
+    /// <returns>If the enemy is alive</returns>
     protected bool CheckIsAlive()
     {
         if (!this.IsAlive)
@@ -31,6 +36,10 @@ public class EnemyController : FollowCharacterController
         return this.IsAlive;
     }
 
+    /// <summary>
+    /// Take damage to the enemy
+    /// </summary>
+    /// <param name="gameObject">The game object will make damage</param>
     protected virtual void TakeDamage(GameObject gameObject)
     {
         if (gameObject == null || !this.CheckIsAlive())
@@ -49,6 +58,9 @@ public class EnemyController : FollowCharacterController
         this.ChangeColorOnDamage();
     }
 
+    /// <summary>
+    /// Change color on damage
+    /// </summary>
     protected virtual void ChangeColorOnDamage()
     {
         if (this.EnemyLife == this.m_EnemyInitLifeMax)

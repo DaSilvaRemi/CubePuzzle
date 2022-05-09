@@ -7,6 +7,9 @@ public class PanelHUDManager : Manager<PanelHUDManager>
     protected List<GameObject> Panels { get; private set; }
 
     #region PanelHUDManager methods
+    /// <summary>
+    /// Hilde all panels
+    /// </summary>
     protected void HideAllPanels()
     {
         this.OpenPanel(null);

@@ -131,18 +131,28 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         this.m_IsTimedSpawning = false;
     }
 
+    /// <summary>
+    /// StopTimedSpawns with <see cref="StopSpawnEachTime"/> and <seealso cref="StopSpawnCooldown"/>
+    /// </summary>
     private void StopTimedSpawns()
     {
         this.StopSpawnEachTime();
         this.StopSpawnCooldown();
     }
 
+    /// <summary>
+    /// Destroy An Game Object Spawned after it is destroy
+    /// </summary>
+    /// <param name="gameObjectToDestroy">The GameObject</param>
     private void DestroyAnGameObjectSpawned(GameObject gameObjectToDestroy)
     {
         this.m_GameObjectsSpawned.Remove(gameObjectToDestroy);
         GameObject.Destroy(gameObjectToDestroy);
     }
 
+    /// <summary>
+    /// Destroy all spawned game objects
+    /// </summary>
     private void DestroyAllSpawnedGameObjects()
     {
         this.m_GameObjectsSpawned.ForEach((gameObjectSpawned) => GameObject.Destroy(gameObjectSpawned));
@@ -151,6 +161,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     #endregion
 
     #region SpawnManagers Own Update Methods
+    /// <summary>
+    /// Update Cooldown Spawn <see cref="StopSpawnCooldown"/> and <seealso cref="SpawnEachNextCooldown"/>
+    /// </summary>
     private void UpdateCooldownSpawn()
     {
         if (this.HasReachedSpawnLimit)
@@ -163,41 +176,73 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     #endregion
 
     #region Events Listeners
+    /// <summary>
+    /// OnSpawnEachTimeEvent <see cref="SpawnEachTimeEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnSpawnEachTimeEvent(SpawnEachTimeEvent e)
     {
         this.SpawnEachTime(e.eSpawnTime);
     }
 
+    /// <summary>
+    /// OnSpawnedGameObjectDestroyedEvent <see cref="SpawnedGameObjectToDestroyEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnSpawnedGameObjectDestroyedEvent(SpawnedGameObjectToDestroyEvent e)
     {
         this.DestroyAnGameObjectSpawned(e.eGameObjectToDestroy);
     }
 
-    private void OnSpawnNbGOEventt(SpawnNbGOEvent e)
+    /// <summary>
+    /// OnSpawnNbGOEvent <see cref="SpawnNbGOEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
+    private void OnSpawnNbGOEvent(SpawnNbGOEvent e)
     {
         this.Spawn(e.eNbGOToSpawn);
     }
 
+    /// <summary>
+    /// OnSpawnGameObjectEvent <see cref="SpawnGameObjectEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnSpawnGameObjectEvent(SpawnGameObjectEvent e)
     {
         this.Spawn(e.eGameObjectToSpawn);
     }
 
+    /// <summary>
+    /// OnSpawnGameObjectsEvent <see cref="SpawnGameObjectsEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnSpawnGameObjectsEvent(SpawnGameObjectsEvent e)
     {
         this.Spawn(e.eGameObjectsToSpawn);
     }
 
+    /// <summary>
+    /// OnSpawnGameObjectsEvent <see cref="StartCooldownSpawnEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnSpawnGameObjectsEvent(StartCooldownSpawnEvent e)
     {
         this.StartSpawnCooldown();
     }
 
+    /// <summary>
+    /// OnStopEachTimeSpawnEvent <see cref="StopEachTimeSpawnEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnStopEachTimeSpawnEvent(StopEachTimeSpawnEvent e)
     {
         this.StopSpawnEachTime();
     }
 
+    /// <summary>
+    /// OnStopTimedSpawnEvent <see cref="StopTimedSpawnEvent"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnStopTimedSpawnEvent(StopTimedSpawnEvent e)
     {
         this.StopTimedSpawns();
@@ -209,7 +254,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     {
         EventManager.Instance.AddListener<SpawnEachTimeEvent>(OnSpawnEachTimeEvent);
         EventManager.Instance.AddListener<SpawnedGameObjectToDestroyEvent>(OnSpawnedGameObjectDestroyedEvent);
-        EventManager.Instance.AddListener<SpawnNbGOEvent>(OnSpawnNbGOEventt);
+        EventManager.Instance.AddListener<SpawnNbGOEvent>(OnSpawnNbGOEvent);
         EventManager.Instance.AddListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.AddListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.AddListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);
@@ -221,7 +266,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     {
         EventManager.Instance.RemoveListener<SpawnEachTimeEvent>(OnSpawnEachTimeEvent);
         EventManager.Instance.RemoveListener<SpawnedGameObjectToDestroyEvent>(OnSpawnedGameObjectDestroyedEvent);
-        EventManager.Instance.RemoveListener<SpawnNbGOEvent>(OnSpawnNbGOEventt);
+        EventManager.Instance.RemoveListener<SpawnNbGOEvent>(OnSpawnNbGOEvent);
         EventManager.Instance.RemoveListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.RemoveListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.RemoveListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);

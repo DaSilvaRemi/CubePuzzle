@@ -61,11 +61,19 @@ public class HUDManager : PanelHUDManager, IEventHandler
         this.SetScoreValueText(gameStatisticsChangedEvent.eScore);
     }
 
+    /// <summary>
+    /// OnGamePlayEvent we call <see cref="HideAllPanels"/>
+    /// </summary>
+    /// <param name="e"></param>
     private void OnGamePlayEvent(GamePlayEvent e)
     {
         base.HideAllPanels();
     }
 
+    /// <summary>
+    /// OnGamePauseEvent we call <see cref="GamePauseEvent"/>
+    /// </summary>
+    /// <param name="e"></param>
     private void OnGamePauseEvent(GamePauseEvent e)
     {
         base.OpenPanel(this.m_PausePanel);
