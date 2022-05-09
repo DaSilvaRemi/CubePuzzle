@@ -23,6 +23,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     private float m_NextInvertedTime;
 
     #region Events Listeners
+    /// <summary>
+    /// OnSelectGameObjectToInvertEvent we selected the object and put in the list
+    /// </summary>
+    /// <param name="e">The SelectGameObjectToInvertEvent</param>
     private void OnSelectGameObjectToInvertEvent(SelectGameObjectToInvertEvent e)
     {
         this.SelectGameObjectToInvert(e.eGameObjectToInvert);
@@ -30,6 +34,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     #endregion
 
     #region Events Handlers
+    /// <summary>
+    /// SelectGameObjectToInvert with other
+    /// </summary>
+    /// <param name="gameObject">The gamoe object to invert</param>
     private void SelectGameObjectToInvert(GameObject gameObject)
     {
         if (gameObject != null && !this.m_GameObjetsSelectedToInvert.Contains(gameObject) && Time.time > this.m_NextInvertedTime)
@@ -152,6 +160,9 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     #endregion
 
     #region InvertObjectMiniGames Controls Methods
+    /// <summary>
+    /// Verify the number of selected object to invert, and if it's equal of 2 so we invert the objects
+    /// </summary>
     private void VerifyGameObjetsSelectedToInvert()
     {
         if (this.m_GameObjetsSelectedToInvert.Count == 2)
@@ -161,6 +172,9 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Verify if GameObjets Selected To Invert has well placed
+    /// </summary>
     private void VerifyGameObjectsHasWellPlaced()
     {
         if (!this.m_MiniGameIsFinished && this.GameObjectsHasWellPlaced())
@@ -174,6 +188,10 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
         }
     }
 
+    /// <summary>
+    /// GameObjectsHasWellPlaced
+    /// </summary>
+    /// <returns>If the GameObjects Has Well Placed</returns>
     public bool GameObjectsHasWellPlaced()
     {
         for (int i = 0; i < this.m_IndexSpawnPosition.Count; i++)

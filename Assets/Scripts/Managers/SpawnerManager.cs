@@ -30,6 +30,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     #endregion
 
     #region SpawnerManager Spawn Methods
+    /// <summary>
+    /// Spawn an object in spawns
+    /// </summary>
     private void Spawn()
     {
         int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_GameObjectsToSpawn.Length);
@@ -37,6 +40,10 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         this.Spawn(gameObject);
     }
 
+    /// <summary>
+    /// Spawn a number of objectds
+    /// </summary>
+    /// <param name="numberGoToSpawn">Number Go to spawn</param>
     private void Spawn(int numberGoToSpawn)
     {
         for (int i = 0; i < numberGoToSpawn; i++)
@@ -45,6 +52,10 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Spawn a list of game objects
+    /// </summary>
+    /// <param name="gameObjectsToSpawn">List to spawn</param>
     private void Spawn(List<GameObject> gameObjectsToSpawn)
     {
         for (int i = 0; i < gameObjectsToSpawn.Count; i++)
@@ -53,6 +64,10 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Spawn a game object
+    /// </summary>
+    /// <param name="gameObjectToSpawn">Game objects to spawn</param>
     private void Spawn(GameObject gameObjectToSpawn)
     {
         if(!this.HasReachedSpawnLimit)
@@ -63,6 +78,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Spawn a GameOject at each next cooldown
+    /// </summary>
     private void SpawnEachNextCooldown()
     {
         if (this.m_IsTimedSpawning && Time.time > m_NextSpawnTime)
@@ -72,6 +90,10 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Spawn each time a game object
+    /// </summary>
+    /// <param name="time">The time to spawn other game object</param>
     private void SpawnEachTime(float time)
     {
         this.StopSpawnEachTime();
@@ -81,11 +103,17 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     #endregion
 
     #region SpawnerManager Utils methods
+    /// <summary>
+    /// Start the cooldown spawn 
+    /// </summary>
     private void StartSpawnCooldown()
     {
         this.m_IsTimedSpawning = true;
     }
 
+    /// <summary>
+    /// Stop timed spawn <see cref="SpawnEachTime(float)"/>
+    /// </summary>
     private void StopSpawnEachTime()
     {
         if (this.m_TimedSpawnCoroutine != null)
@@ -95,6 +123,9 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Stop cooldown spawn
+    /// </summary>
     private void StopSpawnCooldown()
     {
         this.m_IsTimedSpawning = false;
