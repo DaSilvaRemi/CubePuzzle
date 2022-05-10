@@ -45,7 +45,7 @@ public class LinearGOController : CharController, IEventHandler
 
     public void UnsubscribeEvents()
     {
-        EventManager.Instance.AddListener<ButtonActivateGOClickedEvent>(OnButtonActivateGOClickedEvent);
+        EventManager.Instance.RemoveListener<ButtonActivateGOClickedEvent>(OnButtonActivateGOClickedEvent);
     }
     #endregion
 
