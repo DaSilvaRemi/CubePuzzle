@@ -403,7 +403,7 @@ MonoBehaviour:
   m_CharacterShootClip: {fileID: 0}
   m_CharacterJumpClip: {fileID: 0}
   m_DistanceBetweenTargetRange: 0
-  m_EnemyInitLifeMax: 10
+  m_EnemyInitLifeMax: 15
 --- !u!1 &1325880688823160
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +958,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f7a78331744312b48b4a620948d382f6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
