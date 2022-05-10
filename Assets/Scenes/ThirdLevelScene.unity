@@ -5747,7 +5747,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853513672}
-  m_Text: "Attention au sol des enfer, \ntouchez les cibles pour d\xE9couvrir le
+  m_Text: "Attention au sol des enfers, \ntouchez les cibles pour d\xE9couvrir le
     passage des dieux"
   m_OffsetZ: 0
   m_CharacterSize: 0.5
@@ -6537,7 +6537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d6e0283d0381e43b644cd78f0b9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TranslationSpeed: 4
+  m_TranslationSpeed: 7
   m_JumpSpeed: 0
   m_RotatingSpeed: 0
   m_CharacterWalkClip: {fileID: 0}
