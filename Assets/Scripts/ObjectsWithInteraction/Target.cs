@@ -3,21 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class Target : MonoBehaviour
+public class Target : ObjectWillEarnThings
 {
-    [Header("GO Linked behaviour")]
+    [Header("Target GO Linked behaviour")]
     [Tooltip("GO Linked to the target")]
     [SerializeField] private GameObject[] m_GamesObjectsLinked;
     [Tooltip("Durations GO will be activate")]
     [SerializeField] private float m_DurationGoActivate;
 
-    [Header("Target behaviour")]
-    [Tooltip("Target audio clip")]
-    [SerializeField] private AudioClip m_TargetCollisionSfxClip;
-
     private IEnumerator m_MyActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
 
+    #region ObjectWillEarnThings Methods
+    protected override void OnInteractionWithTheObjectEarnScore(GameObject gameObject)
+    {
+        if (!this.m_IsAlreadyCollided)
+        {
+            this.m_IsAlreadyCollided = true;
+            base.OnInteractionWithTheObjectEarnScore(gameObject);
+        }
+        else
+        {
+            base.OnInteractionWithTheObject();
+        }
+        
+        this.ChangeColorOfGameObjectsLinked();
+    }
+    #endregion
 
     #region Target Methods
     /**
@@ -50,15 +62,9 @@ public class Target : MonoBehaviour
     #region MonoBehaviour methods
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null)
+        if (collision != null && collision.gameObject != null)
         {
-            if (!this.m_IsAlreadyCollided && collision.gameObject.CompareTag("ThrowableObject"))
-            {
-                EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
-                this.m_IsAlreadyCollided = true;
-            }
-            EventManager.Instance.Raise(new PlaySFXEvent() { eAudioClip = this.m_TargetCollisionSfxClip });
-            this.ChangeColorOfGameObjectsLinked();
+            this.OnInteractionWithTheObjectEarnScore(collision.gameObject);
         }
     }
 

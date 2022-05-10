@@ -7,33 +7,45 @@ using SDD.Events;
 public class LinearGOController : CharController, IEventHandler
 {
     [Header("Enemy Setup")]
-    [Tooltip("The final position of enemy")]
+    [Tooltip("The final position of object")]
     [SerializeField] private Transform m_TransformEnd;
-    [Tooltip("If the enemy move or not ?")]
+    [Tooltip("If the object move or not ?")]
     [SerializeField] private bool m_IsMove;
+    [Tooltip("If the object move in cycle ?")]
+    [SerializeField] private bool m_IsCycle;
 
+    private Transform m_StartTransform; 
     private IEnumerator m_MyTranslateCoroutine = null;
+    private IEnumerator m_MyTranslateForwardCoroutine = null;
+    private IEnumerator m_MyTranslateBackwardCoroutine = null;
+
+    protected bool IsMove { get => m_IsMove; set => this.m_IsMove = value; }
 
     #region Events handlers
     private void OnButtonActivateGOClickedEvent(ButtonActivateGOClickedEvent e)
     {
         if(e.eGameObject != null && e.eGameObject.Equals(this.gameObject))
         {
-            this.SetIsMove(true);
+            this.IsMove = true;
             this.Move();
         }
     }
     #endregion
 
-    #region EnemyController methods
+    #region CharController methods
     protected override void Move()
     {
-        if (this.m_IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+        if (this.IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
     }
+    #endregion
 
-    private void SetIsMove(bool isMove)
+    #region LinearGOController Methods
+    private void UpdateLinearGOController()
     {
-        this.m_IsMove = isMove;
+        if (!this.m_IsCycle)
+        {
+            return;
+        }
     }
     #endregion
 
@@ -57,12 +69,17 @@ public class LinearGOController : CharController, IEventHandler
         this.SubscribeEvents();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         this.Move();
     }
 
-    private void OnDisable()
+    private void FixedUpdate()
+    {
+        
+    }
+
+    protected virtual void OnDisable()
     {
         if (this.m_MyTranslateCoroutine != null) StopCoroutine(this.m_MyTranslateCoroutine);
     }

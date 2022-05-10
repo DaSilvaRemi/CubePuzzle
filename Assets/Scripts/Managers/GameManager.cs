@@ -161,26 +161,26 @@ public class GameManager : Manager<GameManager>, IEventHandler
     }
 
     /**
-    * <summary>Handle the ChestHasTrigerEnterEvent</summary>
+    * <summary>Handle the ObjectWillGainTimeEvent</summary>
     * <remarks>If the triggered GO is the player so we earn time</remarks>
     * <param name="e">The event</param> 
     */
-    private void OnChestHasTrigerEnterEvent(ChestHasTrigerEnterEvent e)
+    private void OnObjectWillGainTimeEvent(ObjectWillGainTimeEvent e)
     {
-        if (e.eTriggeredGO.CompareTag("Player") && GameManager.IsPlaying) this.EarnTime(e.eChestGO);
+        if (e.eOtherGO.CompareTag("Player") && GameManager.IsPlaying) this.EarnTime(e.eThisGameObject);
     }
 
     /**
-    * <summary>Handle the TargetHasCollidedEnterEvent</summary>
+    * <summary>Handle the ObjectWillGainScoreEvent</summary>
     * <remarks>If the collided GO is the ThrowableObject so we earn time</remarks>
     * <param name="e">The event</param> 
     */
-    private void OnTargetHasCollidedEnterEvent(TargetHasCollidedEnterEvent e)
+    private void OnObjectWillGainScoreEvent(ObjectWillGainScoreEvent e)
     {
-        if (e.eCollidedGO.CompareTag("ThrowableObject") && GameManager.IsPlaying)
+        if (e.eOtherGO.CompareTag("ThrowableObject") && GameManager.IsPlaying)
         {
-            this.EarnScore(e.eTargetGO);
-            e.eCollidedGO.SetActive(false); // désactive la balle quand touche une cible
+            this.EarnScore(e.eThisGameObject);
+            e.eOtherGO.SetActive(false); // Desativate the ThrowableObject when hit ObjectWillGainScore
         }
     }
 
@@ -567,8 +567,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
         EventManager.Instance.AddListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.AddListener<LevelFinishEvent>(OnLevelFinishEvent);
-        EventManager.Instance.AddListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
-        EventManager.Instance.AddListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.AddListener<ObjectWillGainTimeEvent>(OnObjectWillGainTimeEvent);
+        EventManager.Instance.AddListener<ObjectWillGainScoreEvent>(OnObjectWillGainScoreEvent);
         EventManager.Instance.AddListener<ContinueGameEvent>(OnContinueGameEvent);
     }
 
@@ -583,8 +583,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(OnMainMenuButtonClickedEvent);
         EventManager.Instance.RemoveListener<LevelGameOverEvent>(OnLevelGameOverEvent);
         EventManager.Instance.RemoveListener<LevelFinishEvent>(OnLevelFinishEvent);
-        EventManager.Instance.RemoveListener<ChestHasTrigerEnterEvent>(OnChestHasTrigerEnterEvent);
-        EventManager.Instance.RemoveListener<TargetHasCollidedEnterEvent>(OnTargetHasCollidedEnterEvent);
+        EventManager.Instance.RemoveListener<ObjectWillGainTimeEvent>(OnObjectWillGainTimeEvent);
+        EventManager.Instance.RemoveListener<ObjectWillGainScoreEvent>(OnObjectWillGainScoreEvent);
         EventManager.Instance.RemoveListener<ChooseALevelEvent>(OnChooseALevelEvent);
     }
     #endregion
@@ -602,7 +602,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (GameManager.IsPlaying && Input.GetButton("ResetGame"))
         {
             this.ResetGame();
-        }else if (GameManager.IsOnPlaying && Input.GetButton("PauseGame"))
+        }else if (Input.GetButton("PauseGame"))
         {
             if (GameManager.IsPlaying)
             {
