@@ -15,7 +15,7 @@ public class PlayerController : CharController
     [Tooltip("Unit : s")]
     [SerializeField] private float m_ThrowableGOLifeDuration;
     [Tooltip("Unit : s")]
-    [SerializeField] private float m_CooldownDuration;
+    [SerializeField] private float m_CooldownShootDuration;
     
     private bool m_IsOnGround = false;
     private float m_NextShootTime;
@@ -107,7 +107,7 @@ public class PlayerController : CharController
         if ((GameManager.Instance && GameManager.Instance.IsShootableScene) && (Input.GetButton("Fire1") && Time.time > this.m_NextShootTime))
         {
             this.Shoot();
-            this.m_NextShootTime = Time.time + this.m_CooldownDuration;
+            this.m_NextShootTime = Time.time + this.m_CooldownShootDuration;
         }
     }
     #endregion
