@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43975633, g: 0.4881823, b: 0.56839883, a: 1}
+  m_IndirectSpecularColor: {r: 0.4397559, g: 0.48818165, b: 0.56839746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8486,7 +8486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012015927304, guid: 5c02591794acece409986647ed6329a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.5
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 4000012015927304, guid: 5c02591794acece409986647ed6329a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12315,10 +12315,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4476969445028390123, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4476969445833896436, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -12363,45 +12359,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896437, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896437, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_RotatingSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_CooldownDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_TranslationSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_CharacterWalkClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e111678e38e97b44ebfe756df01abb28, type: 3}
-    - target: {fileID: 4476969445833896439, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_ThrowableGOInitSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896442, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: ffcb73020f7ba97498e7b012ba36f5f4, type: 2}
     - target: {fileID: 4476969445833896443, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476969445833896443, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63be49933ab708f4aa6ffba488172f64, type: 3}

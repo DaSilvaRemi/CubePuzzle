@@ -530,14 +530,14 @@ MonoBehaviour:
   m_TranslationSpeed: 5
   m_JumpSpeed: 10
   m_RotatingSpeed: 2
-  m_CharacterWalkClip: {fileID: 0}
+  m_CharacterWalkClip: {fileID: 8300000, guid: e111678e38e97b44ebfe756df01abb28, type: 3}
   m_CharacterShootClip: {fileID: 0}
   m_CharacterJumpClip: {fileID: 0}
   m_ThrowableGOPrefab: {fileID: 1311290861401530, guid: 94dc9f0af9b0b0f4fa274587dffb117d, type: 3}
   m_ThrowableGOInitSpeed: 20
   m_ThrowableGOSpawnTransform: {fileID: 9142988388161770739}
   m_ThrowableGOLifeDuration: 3
-  m_CooldownDuration: 1
+  m_CooldownShootDuration: 1
 --- !u!136 &4476969445833896442
 CapsuleCollider:
   m_ObjectHideFlags: 0
