@@ -12,7 +12,7 @@ public class CollectableController : CharController
 
     private float m_NextJumpTime;
 
-    #region
+    #region CharController methods
     protected override void Move()
     {
         if (!this.m_IsAnimated)
@@ -22,7 +22,7 @@ public class CollectableController : CharController
 
         if (this.m_IsRotating)
         {
-            base.RotateObject();
+            this.RotateObject();
         }
 
         if (this.m_IsFloating && Time.time > this.m_NextJumpTime)
@@ -30,6 +30,12 @@ public class CollectableController : CharController
             this.m_NextJumpTime += m_CooldownJumpDuration;
             base.Jump();
         }
+    }
+
+    protected override void RotateObject()
+    {
+        Vector3 targetAngularVelocity = base.RotatingSpeed * Vector3.up;
+        base.RotateObject(targetAngularVelocity);
     }
     #endregion
 

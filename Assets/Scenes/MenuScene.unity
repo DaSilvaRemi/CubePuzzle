@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1663,7 +1663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LVL 3
+  m_text: LVL 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
   m_sharedMaterial: {fileID: 5617260801478633189, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LVL 4
+  m_text: LVL 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
   m_sharedMaterial: {fileID: 5617260801478633189, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LVL 1
+  m_text: TUTORIEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
   m_sharedMaterial: {fileID: 5617260801478633189, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
@@ -3189,7 +3189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LVL 2
+  m_text: LVL 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
   m_sharedMaterial: {fileID: 5617260801478633189, guid: 9382f474755c1dc439e343483e8443ba, type: 2}
