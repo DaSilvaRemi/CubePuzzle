@@ -16,8 +16,6 @@ public class LinearGOController : CharController, IEventHandler
 
     private Transform m_StartTransform; 
     private IEnumerator m_MyTranslateCoroutine = null;
-    private IEnumerator m_MyTranslateForwardCoroutine = null;
-    private IEnumerator m_MyTranslateBackwardCoroutine = null;
 
     protected bool IsMove { get => m_IsMove; set => this.m_IsMove = value; }
 
@@ -35,16 +33,28 @@ public class LinearGOController : CharController, IEventHandler
     #region CharController methods
     protected override void Move()
     {
-        if (this.IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+        if (this.m_MyTranslateCoroutine != null && this.IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
     }
     #endregion
 
     #region LinearGOController Methods
     private void UpdateLinearGOController()
     {
-        if (!this.m_IsCycle)
+        if (!this.m_IsCycle || this.m_MyTranslateCoroutine != null)
         {
             return;
+        }
+
+        Vector3 endPosition = this.transform.position.Equals(this.m_TransformEnd.position) ? this.m_StartTransform.position : this.m_TransformEnd.position;
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, endPosition, 200, EasingFunctions.Linear, TranslationSpeed, null, this.StopTranslate);
+        this.Move();
+    }
+
+    private void StopTranslate()
+    {
+        if (this.m_MyTranslateCoroutine != null) {
+            StopCoroutine(this.m_MyTranslateCoroutine);
+            this.m_MyTranslateCoroutine = null;
         }
     }
     #endregion
@@ -65,7 +75,7 @@ public class LinearGOController : CharController, IEventHandler
     protected override void Awake()
     {
         base.Awake();
-        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed);
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed, null, this.StopTranslate);
         this.SubscribeEvents();
     }
 
@@ -76,12 +86,12 @@ public class LinearGOController : CharController, IEventHandler
 
     private void FixedUpdate()
     {
-        
+        this.UpdateLinearGOController(); 
     }
 
     protected virtual void OnDisable()
     {
-        if (this.m_MyTranslateCoroutine != null) StopCoroutine(this.m_MyTranslateCoroutine);
+        this.StopTranslate();
     }
 
     private void OnDestroy()
