@@ -73,6 +73,15 @@ public class CharController : MonoBehaviour
     protected virtual void RotateObject(float horizontalInput)
     {
         Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * this.transform.up;
+        this.RotateObject(targetAngularVelocity);
+    }
+
+    /// <summary>
+    /// Rotate the current object depending on the targetAngularVelocity
+    /// </summary>
+    /// <param name="targetAngularVelocity">The targetAngularVelocity</param>
+    protected virtual void RotateObject(Vector3 targetAngularVelocity)
+    {
         Vector3 angularVelocityChange = targetAngularVelocity - this.Rigidbody.angularVelocity;
         this.Rigidbody.AddTorque(angularVelocityChange, ForceMode.VelocityChange);
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollectableController : CharController
 {
+    [Header("CollectableController properties")]
     [SerializeField] private bool m_IsAnimated = false;
     [SerializeField] private bool m_IsRotating = false;
     [SerializeField] private bool m_IsFloating = false;
@@ -11,7 +12,7 @@ public class CollectableController : CharController
 
     private float m_NextJumpTime;
 
-    #region
+    #region CharController methods
     protected override void Move()
     {
         if (!this.m_IsAnimated)
@@ -21,14 +22,20 @@ public class CollectableController : CharController
 
         if (this.m_IsRotating)
         {
-            base.RotateObject();
+            this.RotateObject();
         }
 
-        if (this.m_IsFloating && this.m_NextJumpTime > Time.time)
+        if (this.m_IsFloating && Time.time > this.m_NextJumpTime)
         {
             this.m_NextJumpTime += m_CooldownJumpDuration;
             base.Jump();
         }
+    }
+
+    protected override void RotateObject()
+    {
+        Vector3 targetAngularVelocity = base.RotatingSpeed * Vector3.up;
+        base.RotateObject(targetAngularVelocity);
     }
     #endregion
 
