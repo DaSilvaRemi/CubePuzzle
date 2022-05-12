@@ -10,7 +10,7 @@ public class BossController : EnemyController
     {
         this.ControlFollowCharacterDistance();
         Vector3 playerTargetPosition = new Vector3(base.TargetToFollowTransform.position.x, base.TargetToFollowTransform.position.y, base.TargetToFollowTransform.position.z);
-        Vector3 petNewPosition = Vector3.MoveTowards(base.Rigidbody.position, playerTargetPosition, base.TranslationSpeed * Time.fixedDeltaTime);
+        Vector3 petNewPosition = Vector3.MoveTowards(base.Rigidbody.position, playerTargetPosition, base.MultipliedTranslationSpeed * Time.fixedDeltaTime);
         base.Rigidbody.MovePosition(petNewPosition);
     }
     #endregion
@@ -21,10 +21,12 @@ public class BossController : EnemyController
         if (Vector3.Distance(base.TargetToFollowTransform.position, base.Rigidbody.position) > base.DistanceBetweenTargetRange * 2)
         {
             EventManager.Instance.Raise(new SpawnEachTimeEvent() { eSpawnTime = 1f });
+            base.SpeedMultiplier *= 2.0f;
         }
         else
         {
             EventManager.Instance.Raise(new StopEachTimeSpawnEvent());
+            base.SpeedMultiplier = 1.0f;
         }
     }
     #endregion

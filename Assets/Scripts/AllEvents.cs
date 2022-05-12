@@ -45,12 +45,6 @@ public class ButtonActivateGOClickedEvent : SDD.Events.Event
 	public GameObject eGameObject { get; set; }
 }
 
-
-public class CustomButtonClickedEvent : SDD.Events.Event
-{
-	public AudioClip eOnCustomButtonClick { get; set; }
-}
-
 public class ButtonClickedEvent : SDD.Events.Event
 {
 

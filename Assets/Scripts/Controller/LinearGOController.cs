@@ -14,10 +14,14 @@ public class LinearGOController : CharController, IEventHandler
     [Tooltip("If the object move in cycle ?")]
     [SerializeField] private bool m_IsCycle;
 
-    private Transform m_StartTransform; 
+    private Vector3 m_StartPosition; 
     private IEnumerator m_MyTranslateCoroutine = null;
 
-    protected bool IsMove { get => m_IsMove; set => this.m_IsMove = value; }
+    #region LinearGOController properties
+    private bool IsMove { get => this.m_IsMove; set => this.m_IsMove = value; }
+
+    private bool IsFinishTranslate { get => base.transform.position.Equals(this.m_TransformEnd.position) || base.transform.position.Equals(this.m_StartPosition); }
+    #endregion
 
     #region Events handlers
     private void OnButtonActivateGOClickedEvent(ButtonActivateGOClickedEvent e)
@@ -40,13 +44,14 @@ public class LinearGOController : CharController, IEventHandler
     #region LinearGOController Methods
     private void UpdateLinearGOController()
     {
-        if (!this.m_IsCycle || this.m_MyTranslateCoroutine != null)
+        if (!this.m_IsCycle || !this.IsFinishTranslate)
         {
             return;
         }
 
-        Vector3 endPosition = this.transform.position.Equals(this.m_TransformEnd.position) ? this.m_StartTransform.position : this.m_TransformEnd.position;
-        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, endPosition, 200, EasingFunctions.Linear, TranslationSpeed, null, this.StopTranslate);
+        this.StopTranslate();
+        Vector3 endPosition = this.transform.position.Equals(this.m_TransformEnd.position) ? this.m_StartPosition : this.m_TransformEnd.position;
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, endPosition, 200, EasingFunctions.Linear, TranslationSpeed);
         this.Move();
     }
 
@@ -75,13 +80,9 @@ public class LinearGOController : CharController, IEventHandler
     protected override void Awake()
     {
         base.Awake();
-        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed, null, this.StopTranslate);
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed);
+        this.m_StartPosition = new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z);
         this.SubscribeEvents();
-    }
-
-    protected virtual void OnEnable()
-    {
-        this.Move();
     }
 
     private void FixedUpdate()
