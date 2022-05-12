@@ -177,10 +177,16 @@ public class GameManager : Manager<GameManager>, IEventHandler
     */
     private void OnObjectWillGainScoreEvent(ObjectWillGainScoreEvent e)
     {
-        if (e.eOtherGO.CompareTag("ThrowableObject") && GameManager.IsPlaying)
+        bool isThrowableObject = e.eOtherGO.CompareTag("ThrowableObject");
+        bool isPlayer = e.eOtherGO.CompareTag("Player");
+        if ((isThrowableObject || isPlayer) && GameManager.IsPlaying)
         {
             this.EarnScore(e.eThisGameObject);
-            e.eOtherGO.SetActive(false); // Desativate the ThrowableObject when hit ObjectWillGainScore
+
+            if (isThrowableObject)
+            {
+                e.eOtherGO.SetActive(false); // Desativate the ThrowableObject when hit ObjectWillGainScore
+            } 
         }
     }
 

@@ -57,7 +57,7 @@ public class Target : ObjectWillEarnThings
     #region MonoBehaviour methods
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && collision.gameObject != null)
+        if (collision != null && collision.gameObject != null && collision.gameObject.CompareTag("ThrowableObject"))
         {
             this.OnInteractionWithTheObjectEarnScore(collision.gameObject);
         }
