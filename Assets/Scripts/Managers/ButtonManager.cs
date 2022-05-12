@@ -32,15 +32,6 @@ public class ButtonManager : Manager<ButtonManager>, IEventHandler
 
     #region Events Handler
     /**
-     * <summary>Handle the CustomButtonClickedEvent</summary>
-     * <param name="e">The event</param> 
-     */
-    public void OnCustomButtonClickedEven(CustomButtonClickedEvent e)
-    {
-        this.HandleCustomDefaultClickButton(e.eOnCustomButtonClick);
-    }
-
-    /**
      * <summary>Handle the ButtonClickedEvent</summary>
      * <param name="e">The event</param> 
      */
@@ -54,13 +45,11 @@ public class ButtonManager : Manager<ButtonManager>, IEventHandler
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<ButtonClickedEvent>(OnButtonClickedEvent);
-        EventManager.Instance.AddListener<CustomButtonClickedEvent>(OnCustomButtonClickedEven);
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<ButtonClickedEvent>(OnButtonClickedEvent);
-        EventManager.Instance.RemoveListener<CustomButtonClickedEvent>(OnCustomButtonClickedEven);
     }
     #endregion
 

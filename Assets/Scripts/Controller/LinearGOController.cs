@@ -7,33 +7,60 @@ using SDD.Events;
 public class LinearGOController : CharController, IEventHandler
 {
     [Header("Enemy Setup")]
-    [Tooltip("The final position of enemy")]
+    [Tooltip("The final position of object")]
     [SerializeField] private Transform m_TransformEnd;
-    [Tooltip("If the enemy move or not ?")]
+    [Tooltip("If the object move or not ?")]
     [SerializeField] private bool m_IsMove;
+    [Tooltip("If the object move in cycle ?")]
+    [SerializeField] private bool m_IsCycle;
 
+    private Vector3 m_StartPosition; 
     private IEnumerator m_MyTranslateCoroutine = null;
+
+    #region LinearGOController properties
+    private bool IsMove { get => this.m_IsMove; set => this.m_IsMove = value; }
+
+    private bool IsFinishTranslate { get => base.transform.position.Equals(this.m_TransformEnd.position) || base.transform.position.Equals(this.m_StartPosition); }
+    #endregion
 
     #region Events handlers
     private void OnButtonActivateGOClickedEvent(ButtonActivateGOClickedEvent e)
     {
         if(e.eGameObject != null && e.eGameObject.Equals(this.gameObject))
         {
-            this.SetIsMove(true);
+            this.IsMove = true;
             this.Move();
         }
     }
     #endregion
 
-    #region EnemyController methods
+    #region CharController methods
     protected override void Move()
     {
-        if (this.m_IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+        if (this.m_MyTranslateCoroutine != null && this.IsMove) StartCoroutine(this.m_MyTranslateCoroutine);
+    }
+    #endregion
+
+    #region LinearGOController Methods
+    private void UpdateLinearGOController()
+    {
+        if (!this.m_IsCycle || !this.IsFinishTranslate)
+        {
+            return;
+        }
+
+        this.StopTranslate();
+        Vector3 endPosition = this.transform.position.Equals(this.m_TransformEnd.position) ? this.m_StartPosition : this.m_TransformEnd.position;
+        this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, endPosition, 200, EasingFunctions.Linear, TranslationSpeed);
+        this.Move();
     }
 
-    private void SetIsMove(bool isMove)
+    private void StopTranslate()
     {
-        this.m_IsMove = isMove;
+        if (this.m_MyTranslateCoroutine != null) {
+            StopCoroutine(this.m_MyTranslateCoroutine);
+            this.m_MyTranslateCoroutine = null;
+        }
     }
     #endregion
 
@@ -54,17 +81,18 @@ public class LinearGOController : CharController, IEventHandler
     {
         base.Awake();
         this.m_MyTranslateCoroutine = Tools.MyTranslateCoroutine(base.transform, base.transform.position, this.m_TransformEnd.position, 200, EasingFunctions.Linear, TranslationSpeed);
+        this.m_StartPosition = new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z);
         this.SubscribeEvents();
     }
 
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        this.Move();
+        this.UpdateLinearGOController(); 
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        if (this.m_MyTranslateCoroutine != null) StopCoroutine(this.m_MyTranslateCoroutine);
+        this.StopTranslate();
     }
 
     private void OnDestroy()

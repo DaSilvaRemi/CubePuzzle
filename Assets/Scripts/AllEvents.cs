@@ -45,12 +45,6 @@ public class ButtonActivateGOClickedEvent : SDD.Events.Event
 	public GameObject eGameObject { get; set; }
 }
 
-
-public class CustomButtonClickedEvent : SDD.Events.Event
-{
-	public AudioClip eOnCustomButtonClick { get; set; }
-}
-
 public class ButtonClickedEvent : SDD.Events.Event
 {
 
@@ -107,16 +101,16 @@ public class LevelGameOverEvent : SDD.Events.Event
 #endregion
 
 #region Trigger/Collider events
-public class ChestHasTrigerEnterEvent : SDD.Events.Event
+public class ObjectWillGainScoreEvent : SDD.Events.Event
 {
-	public GameObject eChestGO;
-	public GameObject eTriggeredGO;
+	public GameObject eThisGameObject;
+	public GameObject eOtherGO;
 }
 
-public class TargetHasCollidedEnterEvent : SDD.Events.Event
+public class ObjectWillGainTimeEvent : SDD.Events.Event
 {
-	public GameObject eTargetGO;
-	public GameObject eCollidedGO;
+	public GameObject eThisGameObject;
+	public GameObject eOtherGO;
 }
 
 #endregion

@@ -41,6 +41,20 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
+    /// Spawn a game object
+    /// </summary>
+    /// <param name="gameObjectToSpawn">Game objects to spawn</param>
+    private void Spawn(GameObject gameObjectToSpawn)
+    {
+        if (!this.HasReachedSpawnLimit)
+        {
+            int spawnPositionIndex = UnityEngine.Random.Range(0, this.m_SpawnsPosition.Length);
+            gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[spawnPositionIndex].position, this.m_SpawnsPosition[spawnPositionIndex].rotation);
+            this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
+        }
+    }
+
+    /// <summary>
     /// Spawn a number of objectds
     /// </summary>
     /// <param name="numberGoToSpawn">Number Go to spawn</param>
@@ -61,20 +75,6 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
         for (int i = 0; i < gameObjectsToSpawn.Count; i++)
         {
             this.Spawn(gameObjectsToSpawn[i]);
-        }
-    }
-
-    /// <summary>
-    /// Spawn a game object
-    /// </summary>
-    /// <param name="gameObjectToSpawn">Game objects to spawn</param>
-    private void Spawn(GameObject gameObjectToSpawn)
-    {
-        if(!this.HasReachedSpawnLimit)
-        {
-            int spawnPositionIndex = UnityEngine.Random.Range(0, this.m_SpawnsPosition.Length);
-            gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[spawnPositionIndex].position, this.m_SpawnsPosition[spawnPositionIndex].rotation);
-            this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
         }
     }
 

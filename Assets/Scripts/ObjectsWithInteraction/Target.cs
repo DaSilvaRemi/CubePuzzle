@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class Target : MonoBehaviour
+public class Target : ObjectWillEarnThings
 {
-    [Header("GO Linked behaviour")]
-    [Tooltip("GO Linked to the target")]
-    [SerializeField] private GameObject[] m_GamesObjectsLinked;
-    [Tooltip("Durations GO will be activate")]
-    [SerializeField] private float m_DurationGoActivate;
+    [Header("Target GO Linked behaviour")]
+    [Tooltip("GO Linked to the target to color change")]
+    [SerializeField] private GameObject[] m_GOLinkedToColorChange;
+    [Tooltip("Time GO will be activate")]
+    [SerializeField] private float m_TimeGoActivate;
 
-    [Header("Target behaviour")]
-    [Tooltip("Target audio clip")]
-    [SerializeField] private AudioClip m_TargetCollisionSfxClip;
-
-    private IEnumerator m_MyActionCoroutine = null;
+    private IEnumerator m_MyColorChangedActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
 
+    #region ObjectWillEarnThings Methods
+    protected override void OnInteractionWithTheObjectEarnScore(GameObject gameObject)
+    {
+        if (!this.m_IsAlreadyCollided)
+        {
+            this.m_IsAlreadyCollided = true;
+            base.OnInteractionWithTheObjectEarnScore(gameObject);
+            this.ChangeColorOfGameObjectsLinked();
+        }
+    }
+    #endregion
 
     #region Target Methods
     /**
@@ -26,13 +33,13 @@ public class Target : MonoBehaviour
      */
     private void ChangeColorOfGameObjectsLinked()
     {
-        foreach (GameObject gameObject in this.m_GamesObjectsLinked)
+        foreach (GameObject gameObject in this.m_GOLinkedToColorChange)
         {
             Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
         }
 
-        this.m_MyActionCoroutine = Tools.MyActionTimedCoroutine(this.m_DurationGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
-        StartCoroutine(this.m_MyActionCoroutine);
+        this.m_MyColorChangedActionCoroutine = Tools.MyActionTimedCoroutine(this.m_TimeGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
+        StartCoroutine(this.m_MyColorChangedActionCoroutine);
     }
 
     /**
@@ -40,9 +47,9 @@ public class Target : MonoBehaviour
      */
     private void LambdaResetDefaultGameObjectLinkedColor()
     {
-        for (int i = 0; i < this.m_GamesObjectsLinked.Length; i++)
+        for (int i = 0; i < this.m_GOLinkedToColorChange.Length; i++)
         {
-            Tools.SetColor(this.m_GamesObjectsLinked[i].GetComponentInChildren<MeshRenderer>(), new Color(255, 0, 0));
+            Tools.SetColor(this.m_GOLinkedToColorChange[i].GetComponentInChildren<MeshRenderer>(), new Color(255, 0, 0));
         }
     }
     #endregion
@@ -50,21 +57,15 @@ public class Target : MonoBehaviour
     #region MonoBehaviour methods
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null)
+        if (collision != null && collision.gameObject != null && collision.gameObject.CompareTag("ThrowableObject"))
         {
-            if (!this.m_IsAlreadyCollided && collision.gameObject.CompareTag("ThrowableObject"))
-            {
-                EventManager.Instance.Raise(new TargetHasCollidedEnterEvent { eTargetGO = this.gameObject, eCollidedGO = collision.gameObject });
-                this.m_IsAlreadyCollided = true;
-            }
-            EventManager.Instance.Raise(new PlaySFXEvent() { eAudioClip = this.m_TargetCollisionSfxClip });
-            this.ChangeColorOfGameObjectsLinked();
+            this.OnInteractionWithTheObjectEarnScore(collision.gameObject);
         }
     }
 
     private void OnDestroy()
     {
-        if (this.m_MyActionCoroutine != null) StopCoroutine(this.m_MyActionCoroutine);
+        if (this.m_MyColorChangedActionCoroutine != null) StopCoroutine(this.m_MyColorChangedActionCoroutine);
     }
     #endregion
 }

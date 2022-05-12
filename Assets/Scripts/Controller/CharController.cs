@@ -19,12 +19,21 @@ public class CharController : MonoBehaviour
     [SerializeField] private AudioClip m_CharacterShootClip;
     [SerializeField] private AudioClip m_CharacterJumpClip;
 
+    private float m_SpeedMultiplier = 1.0f;
+
     #region CharController properties
     protected Rigidbody Rigidbody { get; set; }
 
     protected float TranslationSpeed { get => this.m_TranslationSpeed; }
     protected float JumpSpeed { get => this.m_JumpSpeed; }
     protected float RotatingSpeed { get => this.m_RotatingSpeed; }
+
+    protected float MultipliedTranslationSpeed { get => this.TranslationSpeed * this.SpeedMultiplier; }
+    protected float MultipliedJumpSpeed { get => this.JumpSpeed * this.SpeedMultiplier; }
+    protected float MultipliedRotatingSpeed { get => this.RotatingSpeed * this.SpeedMultiplier; }
+
+    protected float SpeedMultiplier { get => this.m_SpeedMultiplier; set => this.m_SpeedMultiplier = value; }
+
     #endregion
 
     #region Character physics controls methods
@@ -64,6 +73,15 @@ public class CharController : MonoBehaviour
     protected virtual void RotateObject(float horizontalInput)
     {
         Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * this.transform.up;
+        this.RotateObject(targetAngularVelocity);
+    }
+
+    /// <summary>
+    /// Rotate the current object depending on the targetAngularVelocity
+    /// </summary>
+    /// <param name="targetAngularVelocity">The targetAngularVelocity</param>
+    protected virtual void RotateObject(Vector3 targetAngularVelocity)
+    {
         Vector3 angularVelocityChange = targetAngularVelocity - this.Rigidbody.angularVelocity;
         this.Rigidbody.AddTorque(angularVelocityChange, ForceMode.VelocityChange);
     }
