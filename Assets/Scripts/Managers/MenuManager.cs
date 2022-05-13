@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using SDD.Events;
+using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    #region MenuManager methods on Menu Scene
+    #region MenuManager Handlers
     /// <summary>
     /// When new game button clicked we called <see cref="OnClickButton"/> and send <see cref="NewGameButtonClickedEvent"/>
     /// </summary>
     public void HandleCreateNewGameButton()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new NewGameButtonClickedEvent());
     }
 
@@ -20,7 +17,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleLoadGameButton()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new LoadGameButtonClickedEvent());
     }
 
@@ -29,7 +25,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleHelpButton()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new HelpButtonClickedEvent());
     }
 
@@ -38,7 +33,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleCreditButton()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new CreditButtonClickedEvent());
     }
 
@@ -47,7 +41,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleExitButton()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new ExitButtonClickedEvent());
     }
 
@@ -56,7 +49,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleChooseLVL1Button()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.FIRSTLEVELSCENE});
     }
 
@@ -65,7 +57,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleChooseLVL2Button()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.SECONDLVLSCENE });
     }
 
@@ -74,7 +65,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleChooseLVL3Button()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.THIRDLEVELSCENE });
     }
 
@@ -83,27 +73,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void HandleChooseLVL4Button()
     {
-        this.OnClickButton();
         EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.FOURTHLEVELSCENE });
-    }
-    #endregion
-
-    #region MenuManager globals methods
-    /// <summary>
-    /// When back to menu button clicked we called <see cref="OnClickButton"/> and send <see cref="MainMenuButtonClickedEvent"/>
-    /// </summary>
-    public void HandleBackToMenuButton()
-    {
-        this.OnClickButton();
-        EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
-    }
-
-    /// <summary>
-    /// When a button was clicking we send <see cref="ButtonClickedEvent"/>
-    /// </summary>
-    public void OnClickButton()
-    {
-        EventManager.Instance.Raise(new ButtonClickedEvent());
     }
     #endregion
 }

@@ -149,11 +149,14 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     /// <returns>An IEnumerator to execute</returns>
     private IEnumerator SpawnEachTimeLinearRoutine(float time)
     {
-        foreach (Transform spawnerTransform in this.m_SpawnerTransforms)
+        for (int i = 0; i < this.m_SpawnerTransforms.Length; i++)
         {
+            Transform spawnerTransform = this.m_SpawnerTransforms[i];
+            float timeMultiplier = i == 0 ? 0f : 1f;
+
             if (!this.HasReachedSpawnLimit)
             {
-                IEnumerator myWaitCouroutine = Tools.MyWaitCoroutine(time, null, () => this.Spawn(this.GetRandomObjectToSpawn(), spawnerTransform));
+                IEnumerator myWaitCouroutine = Tools.MyWaitCoroutine(time * timeMultiplier, null, () => this.Spawn(this.GetRandomObjectToSpawn(), spawnerTransform));
                 yield return this.SpawnRoutine(myWaitCouroutine);
             }
         }

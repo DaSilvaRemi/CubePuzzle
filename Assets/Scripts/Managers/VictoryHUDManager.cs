@@ -18,6 +18,13 @@ public class VictoryHUDManager : PanelHUDManager
     [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_BestTimeValueText;
 
+    [Header("Score and Best Score values txt")]
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_ScoreValueText;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_BestScoreValueText;
+
+    #region VictoryHUDManager listeners
     /// <summary>
     /// OnGameWinEvent we open the WinPanel
     /// </summary>
@@ -35,12 +42,42 @@ public class VictoryHUDManager : PanelHUDManager
     {
         this.OpenPanel(this.m_GameOverPanel);
     }
+    #endregion
+
+    private void SetTimeValueText(float time)
+    {
+        this.m_TimeValueText.text = time.ToString();
+    }
+
+    private void SetBestTimeValueText(float bestTime)
+    {
+        this.m_BestTimeValueText.text = bestTime.ToString();
+    }
+
+    private void SetScoreValueText(int score)
+    {
+        this.m_ScoreValueText.text = score.ToString();
+    }
+
+    private void SetBestScoreText(int bestScore)
+    {
+        this.m_BestScoreValueText.text = bestScore.ToString();
+    }
 
     #region MonoBehaviour Methods
     protected override void Awake()
     {
         base.Awake();
         base.Panels.AddRange(new GameObject[] { this.m_WinPanel, this.m_GameOverPanel });
+    }
+
+    private void Start()
+    {
+        SaveData save = SaveData.LoadPlayerRefs();
+        this.SetTimeValueText(save.Time);
+        this.SetBestTimeValueText(save.BestTime);
+        this.SetScoreValueText(save.Score);
+        this.SetBestScoreText(save.BestScore);
     }
 
     private void OnEnable()

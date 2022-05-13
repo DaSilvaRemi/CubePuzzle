@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
-public class CameraManager : Manager<CameraManager>
+public class CameraManager : Manager<CameraManager>, IEventHandler
 {
     [Header("Cameras")]
     [Tooltip("Camera")]
@@ -10,18 +11,17 @@ public class CameraManager : Manager<CameraManager>
     [Tooltip("Unit : s")]
     [SerializeField] private float m_CooldownDuration;
 
-    private int m_IndexCameraSelected = 1;
+    private int m_IndexCameraSelected = 0;
     private float m_NextCameraChangedTime;
 
-    #region Handler
-    /**
-     * <summary>Handle the camera change UI button</summary> 
-     */
-    public void HandleCameraChangeUIButton()
+    #region CameraManager listeners
+    private void OnCameraChangeUIButtonEvent(CameraChangeUIButtonEvent e)
     {
         this.ChangeCamera();
     }
+    #endregion
 
+    #region CameraManager Handler
     /**
      * <summary>Handle the camera change key</summary> 
      */
@@ -35,6 +35,7 @@ public class CameraManager : Manager<CameraManager>
     }
     #endregion
 
+    #region CameraManager Methods
     /**
      * <summary>Change the camera</summary>
      */
@@ -44,27 +45,57 @@ public class CameraManager : Manager<CameraManager>
 
         if (nextCameraWillBeSelected >= this.m_Cameras.Length) nextCameraWillBeSelected = 0;
 
-        this.m_Cameras[this.m_IndexCameraSelected].enabled = false;
-        this.m_Cameras[nextCameraWillBeSelected].enabled = true;
-
+        this.ChooseCamera(this.m_Cameras[nextCameraWillBeSelected]);
         this.m_IndexCameraSelected = nextCameraWillBeSelected;
     }
+
+    private void ChooseCamera(Camera selectedCamera)
+    {
+        foreach (Camera camera in this.m_Cameras)
+        {
+            if (!camera.Equals(selectedCamera))
+            {
+                camera.enabled = false;
+            }
+        }
+        selectedCamera.enabled = true;
+    }
+    #endregion
+
+    #region Events Subscriptions
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<CameraChangeUIButtonEvent>(OnCameraChangeUIButtonEvent);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<CameraChangeUIButtonEvent>(OnCameraChangeUIButtonEvent);
+    }
+    #endregion
 
     #region MonoBehaviour methods
 
     private void Awake()
     {
         base.InitManager();
+        this.SubscribeEvents();
     }
 
     private void Start()
     {
         this.m_NextCameraChangedTime = Time.time;
+        this.ChooseCamera(this.m_Cameras[0]);
     }
 
     private void FixedUpdate()
     {
         this.HandleCameraChangeKey();
+    }
+
+    private void OnDestroy()
+    {
+        this.UnsubscribeEvents();
     }
     #endregion
 }

@@ -6,13 +6,12 @@ using SDD.Events;
 public class Button : ObjectActivateOthers
 {
     /// <summary>
-    /// On Button triggered we acitvate the defined game object if it was present in the list and we send <see cref="ButtonClickedEvent"/> and <see cref="ButtonActivateGOClickedEvent"/>
+    /// On Button triggered we activate the defined game object if it was present in the list and we send <see cref="ButtonClickedEvent"/> and <see cref="ButtonActivateGOClickedEvent"/>
     /// </summary>
     private void OnButtonTriggered()
     {
         EventManager.Instance.Raise(new ButtonClickedEvent());
         EventManager.Instance.Raise(new ButtonActivateGOClickedEvent() { eGameObject = base.GameObjectToActivate });
-
         base.OnObjectTriggered();
     }
 

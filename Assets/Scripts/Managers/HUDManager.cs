@@ -42,11 +42,20 @@ public class HUDManager : PanelHUDManager, IEventHandler
     #endregion
 
     #region HUDManager handlers
+
+
     public void HandleContinueButton()
     {
         base.HideAllPanels();
         EventManager.Instance.Raise(new ContinueGameEvent());
-        EventManager.Instance.Raise(new ButtonClickedEvent());
+    }
+
+    /**
+ * <summary>Handle the camera change UI button</summary> 
+ */
+    public void HandleCameraChangeUIButton()
+    {
+        EventManager.Instance.Raise(new CameraChangeUIButtonEvent());
     }
     #endregion
 
