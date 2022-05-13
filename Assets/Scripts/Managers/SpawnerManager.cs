@@ -9,7 +9,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     [Tooltip("List Game objects to spawn")]
     [SerializeField] private GameObject[] m_GameObjectsToSpawn;
     [Tooltip("Spawns position")]
-    [SerializeField] private Transform[] m_SpawnsPosition;
+    [SerializeField] private Transform[] m_SpawnerTransforms;
 
     [Header("Spawner Manager limit properties")]
     [Tooltip("Cooldown duration")]
@@ -17,7 +17,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     [Tooltip("Spawn Limit")]
     [SerializeField] private float m_SpawnLimit = 30;
     [Tooltip("Is Spawning continously")]
-    [SerializeField] private bool m_IsTimedSpawning;
+    [SerializeField] private bool m_IsTimedSpawning = false;
 
     private List<GameObject> m_GameObjectsSpawned;
     private float m_NextSpawnTime;
@@ -31,13 +31,31 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
 
     #region SpawnerManager Spawn Methods
     /// <summary>
+    /// Get a random object to spawn by spawner
+    /// </summary>
+    /// <returns>The GameObject to spawn</returns>
+    private GameObject GetRandomObjectToSpawn()
+    {
+        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_GameObjectsToSpawn.Length);
+        return Instantiate(this.m_GameObjectsToSpawn[gameObjectsIndex]);
+    }
+
+    /// <summary>
+    /// Get the transform to spawn an object
+    /// </summary>
+    /// <returns>The transform to spawn</returns>
+    private Transform GetRandomSpawnerTransform()
+    {
+        int spawnerTransformIndex = UnityEngine.Random.Range(0, this.m_SpawnerTransforms.Length);
+        return this.m_SpawnerTransforms[spawnerTransformIndex];
+    }
+
+    /// <summary>
     /// Spawn an object in spawns
     /// </summary>
     private void Spawn()
     {
-        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_GameObjectsToSpawn.Length);
-        GameObject gameObject = Instantiate(this.m_GameObjectsToSpawn[gameObjectsIndex]);
-        this.Spawn(gameObject);
+        this.Spawn(this.GetRandomObjectToSpawn());
     }
 
     /// <summary>
@@ -46,12 +64,24 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     /// <param name="gameObjectToSpawn">Game objects to spawn</param>
     private void Spawn(GameObject gameObjectToSpawn)
     {
-        if (!this.HasReachedSpawnLimit)
+        this.Spawn(gameObjectToSpawn, GetRandomSpawnerTransform());
+    }
+
+    /// <summary>
+    /// Spawn an game object with a the transform spawn
+    /// </summary>
+    /// <param name="gameObjectToSpawn">The gamoe object to spawn</param>
+    /// <param name="spawnerTransform">The Spawn Transform</param>
+    private void Spawn(GameObject gameObjectToSpawn, Transform spawnerTransform)
+    {
+        if (this.HasReachedSpawnLimit)
         {
-            int spawnPositionIndex = UnityEngine.Random.Range(0, this.m_SpawnsPosition.Length);
-            gameObjectToSpawn.transform.SetPositionAndRotation(this.m_SpawnsPosition[spawnPositionIndex].position, this.m_SpawnsPosition[spawnPositionIndex].rotation);
-            this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
+            Destroy(gameObjectToSpawn);
+            return;
         }
+
+        gameObjectToSpawn.transform.SetPositionAndRotation(spawnerTransform.position, spawnerTransform.rotation);
+        this.m_GameObjectsSpawned.Add(gameObjectToSpawn);
     }
 
     /// <summary>
@@ -96,9 +126,48 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     /// <param name="time">The time to spawn other game object</param>
     private void SpawnEachTime(float time)
     {
-        this.StopSpawnEachTime();
         this.m_TimedSpawnCoroutine = Tools.MyWaitCoroutine(time, null, () => this.Spawn());
-        base.StartCoroutine(this.m_TimedSpawnCoroutine);
+        StartCoroutine(this.SpawnRoutine(this.m_TimedSpawnCoroutine));
+    }
+
+    /// <summary>
+    /// Spawn Routine to wait a courtine for execute 
+    /// </summary>
+    /// <remarks>You nned to call it with <see cref="MonoBehaviour.StartCoroutine(IEnumerator)"/></remarks>
+    /// <param name="myWaitCouroutine">The coroutine to wait</param>
+    /// <returns>An IEnumerator to execute</returns>
+    private IEnumerator SpawnRoutine(IEnumerator myWaitCouroutine)
+    {
+        yield return myWaitCouroutine;
+    }
+
+    /// <summary>
+    /// Spawn Each Time in Linear mode and Routine mode 
+    /// </summary>
+    /// <remarks>You nned to call it with <see cref="MonoBehaviour.StartCoroutine(IEnumerator)"/></remarks>
+    /// <param name="time">The time</param>
+    /// <returns>An IEnumerator to execute</returns>
+    private IEnumerator SpawnEachTimeLinearRoutine(float time)
+    {
+        foreach (Transform spawnerTransform in this.m_SpawnerTransforms)
+        {
+            if (!this.HasReachedSpawnLimit)
+            {
+                IEnumerator myWaitCouroutine = Tools.MyWaitCoroutine(time, null, () => this.Spawn(this.GetRandomObjectToSpawn(), spawnerTransform));
+                yield return this.SpawnRoutine(myWaitCouroutine);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Spawn each time in the ascending order of the <see cref="m_SpawnerTransforms"/> list
+    /// </summary>
+    /// <remarks>Execute <see cref="SpawnEachTimeLinearRoutine"/></remarks>
+    /// <param name="time">The time between each spawn</param>
+    private void SpawnEachTimeLinear(float time)
+    {
+        this.m_TimedSpawnCoroutine = SpawnEachTimeLinearRoutine(time);
+        StartCoroutine(this.m_TimedSpawnCoroutine);
     }
     #endregion
 
@@ -177,7 +246,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
 
     #region Events Listeners
     /// <summary>
-    /// OnSpawnEachTimeEvent <see cref="SpawnEachTimeEvent"/>
+    /// OnSpawnEachTimeEvent <see cref="SpawnEachTime(float)"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnEachTimeEvent(SpawnEachTimeEvent e)
@@ -186,7 +255,16 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnSpawnedGameObjectDestroyedEvent <see cref="SpawnedGameObjectToDestroyEvent"/>
+    ///  OnSpawnEachTimeLinearEvent <see cref="SpawnEachTimeLinear(float)"/>
+    /// </summary>
+    /// <param name="e">The event</param>
+    private void OnSpawnEachTimeLinearEvent(SpawnEachTimeLinearEvent e)
+    {
+        this.SpawnEachTimeLinear(e.eSpawnTime);
+    }
+
+    /// <summary>
+    /// OnSpawnedGameObjectDestroyedEvent <see cref="DestroyAnGameObjectSpawned(GameObject)"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnedGameObjectDestroyedEvent(SpawnedGameObjectToDestroyEvent e)
@@ -195,7 +273,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnSpawnNbGOEvent <see cref="SpawnNbGOEvent"/>
+    /// OnSpawnNbGOEvent <see cref="Spawn(int)"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnNbGOEvent(SpawnNbGOEvent e)
@@ -204,7 +282,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnSpawnGameObjectEvent <see cref="SpawnGameObjectEvent"/>
+    /// OnSpawnGameObjectEvent <see cref="Spawn(GameObject)"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnGameObjectEvent(SpawnGameObjectEvent e)
@@ -213,7 +291,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnSpawnGameObjectsEvent <see cref="SpawnGameObjectsEvent"/>
+    /// OnSpawnGameObjectsEvent <see cref="Spawn(GameObject)"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnGameObjectsEvent(SpawnGameObjectsEvent e)
@@ -222,7 +300,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnSpawnGameObjectsEvent <see cref="StartCooldownSpawnEvent"/>
+    /// OnSpawnGameObjectsEvent <see cref="StartSpawnCooldown"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnSpawnGameObjectsEvent(StartCooldownSpawnEvent e)
@@ -231,7 +309,7 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnStopEachTimeSpawnEvent <see cref="StopEachTimeSpawnEvent"/>
+    /// OnStopEachTimeSpawnEvent <see cref="StopSpawnEachTime"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnStopEachTimeSpawnEvent(StopEachTimeSpawnEvent e)
@@ -240,7 +318,16 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     }
 
     /// <summary>
-    /// OnStopTimedSpawnEvent <see cref="StopTimedSpawnEvent"/>
+    ///  OnStopEachTimeLinearSpawnEvent <see cref="StopSpawnEachTime"/>
+    /// </summary>
+    /// <param name="e">The event</param>
+    private void OnStopEachTimeLinearSpawnEvent(StopEachTimeLinearSpawnEvent e)
+    {
+        this.StopSpawnEachTime();
+    }
+
+    /// <summary>
+    /// OnStopTimedSpawnEvent <see cref="StopTimedSpawns"/>
     /// </summary>
     /// <param name="e">The event</param>
     private void OnStopTimedSpawnEvent(StopTimedSpawnEvent e)
@@ -253,24 +340,28 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<SpawnEachTimeEvent>(OnSpawnEachTimeEvent);
+        EventManager.Instance.AddListener<SpawnEachTimeLinearEvent>(OnSpawnEachTimeLinearEvent);
         EventManager.Instance.AddListener<SpawnedGameObjectToDestroyEvent>(OnSpawnedGameObjectDestroyedEvent);
         EventManager.Instance.AddListener<SpawnNbGOEvent>(OnSpawnNbGOEvent);
         EventManager.Instance.AddListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.AddListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.AddListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.AddListener<StopEachTimeSpawnEvent>(OnStopEachTimeSpawnEvent);
+        EventManager.Instance.AddListener<StopEachTimeLinearSpawnEvent>(OnStopEachTimeLinearSpawnEvent);
         EventManager.Instance.AddListener<StopTimedSpawnEvent>(OnStopTimedSpawnEvent);
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<SpawnEachTimeEvent>(OnSpawnEachTimeEvent);
+        EventManager.Instance.RemoveListener<SpawnEachTimeLinearEvent>(OnSpawnEachTimeLinearEvent);
         EventManager.Instance.RemoveListener<SpawnedGameObjectToDestroyEvent>(OnSpawnedGameObjectDestroyedEvent);
         EventManager.Instance.RemoveListener<SpawnNbGOEvent>(OnSpawnNbGOEvent);
         EventManager.Instance.RemoveListener<SpawnGameObjectEvent>(OnSpawnGameObjectEvent);
         EventManager.Instance.RemoveListener<SpawnGameObjectsEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.RemoveListener<StartCooldownSpawnEvent>(OnSpawnGameObjectsEvent);
         EventManager.Instance.RemoveListener<StopEachTimeSpawnEvent>(OnStopEachTimeSpawnEvent);
+        EventManager.Instance.RemoveListener<StopEachTimeLinearSpawnEvent>(OnStopEachTimeLinearSpawnEvent);
         EventManager.Instance.RemoveListener<StopTimedSpawnEvent>(OnStopTimedSpawnEvent);
     }
     #endregion

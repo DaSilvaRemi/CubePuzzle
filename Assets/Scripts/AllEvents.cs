@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
@@ -139,6 +140,10 @@ public class StopEachTimeSpawnEvent : SDD.Events.Event
 {
 }
 
+public class StopEachTimeLinearSpawnEvent : SDD.Events.Event
+{
+}
+
 public class StopTimedSpawnEvent : SDD.Events.Event
 {
 }
@@ -147,6 +152,12 @@ public class SpawnEachTimeEvent : SDD.Events.Event
 {
 	public float eSpawnTime { get; set; }
 }
+
+public class SpawnEachTimeLinearEvent : SDD.Events.Event
+{
+	public float eSpawnTime { get; set; }
+}
+
 
 public class SpawnedGameObjectToDestroyEvent : SDD.Events.Event
 {
