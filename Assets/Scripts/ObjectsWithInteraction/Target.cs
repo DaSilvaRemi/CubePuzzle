@@ -11,6 +11,12 @@ public class Target : ObjectWillEarnThings
     [Tooltip("Time GO will be activate")]
     [SerializeField] private float m_TimeGoActivate;
 
+    [Header("Target GO color change")]
+    [Tooltip("Before Color (RGB)")]
+    [SerializeField] private Color m_GOLinkedColorBeforeCollision = Color.red;
+    [Tooltip("After Color (RGB)")]
+    [SerializeField] private Color m_GOLinkedColorAfterCollision = Color.green;
+
     private IEnumerator m_MyColorChangedActionCoroutine = null;
     private bool m_IsAlreadyCollided = false;
 
@@ -33,11 +39,7 @@ public class Target : ObjectWillEarnThings
      */
     private void ChangeColorOfGameObjectsLinked()
     {
-        foreach (GameObject gameObject in this.m_GOLinkedToColorChange)
-        {
-            Tools.SetColor(gameObject.GetComponentInChildren<MeshRenderer>(), new Color(0, 255, 0));
-        }
-
+        this.SetColorToAllGOLinked(this.m_GOLinkedColorAfterCollision);
         this.m_MyColorChangedActionCoroutine = Tools.MyActionTimedCoroutine(this.m_TimeGoActivate, null, null, this.LambdaResetDefaultGameObjectLinkedColor);
         StartCoroutine(this.m_MyColorChangedActionCoroutine);
     }
@@ -47,9 +49,18 @@ public class Target : ObjectWillEarnThings
      */
     private void LambdaResetDefaultGameObjectLinkedColor()
     {
+        this.SetColorToAllGOLinked(this.m_GOLinkedColorBeforeCollision);
+    }
+
+    /// <summary>
+    /// Set a color to all linked game object
+    /// </summary>
+    /// <param name="newColor">The new color</param>
+    private void SetColorToAllGOLinked(Color newColor)
+    {
         for (int i = 0; i < this.m_GOLinkedToColorChange.Length; i++)
         {
-            Tools.SetColor(this.m_GOLinkedToColorChange[i].GetComponentInChildren<MeshRenderer>(), new Color(255, 0, 0));
+            Tools.SetColor(this.m_GOLinkedToColorChange[i].GetComponentInChildren<MeshRenderer>(), newColor);
         }
     }
     #endregion

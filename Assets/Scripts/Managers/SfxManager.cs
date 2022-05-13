@@ -26,7 +26,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
     ///  OnStopSFXEvent we called <see cref="StopSFX"/> to stop the SFX
     /// </summary>
     /// <param name="e"></param>
-    private void OnStopSFXEvent(StopSFXWithEvent e)
+    private void OnStopSFXEvent(StopSFXEvent e)
     {
         this.StopSFX(e.eAudioSource);
     }
@@ -79,7 +79,7 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
      */
     public void StartSFX(AudioClip audioClip)
     {
-        if (audioClip)
+        if (audioClip && !this.IsAlreadyPlayingByAudioSource(audioClip))
         {
             for (int i = 0; i < this.m_SfxAudioSources.Length; i++)
             {
@@ -92,6 +92,19 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
                 }
             }
         }
+    }
+
+    public bool IsAlreadyPlayingByAudioSource(AudioClip audioClip)
+    {
+        for (int i = 0; i < this.m_SfxAudioSources.Length; i++)
+        {
+            AudioSource audioSource = this.m_SfxAudioSources[i];
+            if (Object.Equals(audioSource.clip, audioClip) && audioSource.isPlaying)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -154,13 +167,13 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<PlaySFXEvent>(OnPlaySFXEvent);
-        EventManager.Instance.AddListener<StopSFXWithEvent>(OnStopSFXEvent);
+        EventManager.Instance.AddListener<StopSFXEvent>(OnStopSFXEvent);
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<PlaySFXEvent>(OnPlaySFXEvent);
-        EventManager.Instance.RemoveListener<StopSFXWithEvent>(OnStopSFXEvent);
+        EventManager.Instance.RemoveListener<StopSFXEvent>(OnStopSFXEvent);
     }
     #endregion
 

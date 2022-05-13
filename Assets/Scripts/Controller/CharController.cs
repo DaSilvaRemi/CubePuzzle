@@ -129,11 +129,11 @@ public class CharController : MonoBehaviour
     }
 
     /// <summary>
-    /// Stop Wall sound <see cref="StopSFXWithEvent"/>
+    /// Stop Wall sound <see cref="StopSFXEvent"/>
     /// </summary>
     protected void StopWalkSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterWalkClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterWalkClip });
     }
 
     /// <summary>
@@ -151,7 +151,7 @@ public class CharController : MonoBehaviour
     /// </summary>
     protected void StopShootSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterShootClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterShootClip });
     }
 
     /// <summary>
@@ -169,7 +169,7 @@ public class CharController : MonoBehaviour
     /// </summary>
     protected void StopJumpSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterJumpClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterJumpClip });
     }
 
     /// <summary>
