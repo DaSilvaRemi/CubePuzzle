@@ -9927,7 +9927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrentScene: 3
-  m_IsDebugMode: 0
+  m_IsDebugMode: 1
 --- !u!114 &1562501756
 MonoBehaviour:
   m_ObjectHideFlags: 0
