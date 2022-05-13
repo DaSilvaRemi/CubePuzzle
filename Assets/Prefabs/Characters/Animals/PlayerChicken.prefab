@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 1094215080950775765}
   m_Layer: 0
   m_Name: PlayerChicken
-  m_TagString: Untagged
+  m_TagString: PlayerAnimal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 3962935786382813542}
   - component: {fileID: 7940860705345253197}
   m_Layer: 0
-  m_Name: ChickenAuioSource
+  m_Name: ChickenAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
