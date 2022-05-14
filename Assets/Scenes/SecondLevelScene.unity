@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -640,6 +640,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8169520561329429757, guid: 2569a62b0421feb4fbb320665445719f, type: 3}
   m_PrefabInstance: {fileID: 69978622}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &70594612 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9017225607077680575, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &72925681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,6 +910,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91009948}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &94242926 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4476969446205417566, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &114599349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,8 +1199,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SfxAudioSources:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 310486854}
+  - {fileID: 1894403264}
+  - {fileID: 70594612}
+  - {fileID: 2092745423}
+  - {fileID: 1715378889}
 --- !u!1 &150017688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791ed974e04775a44b964b788e955844, type: 3}
+--- !u!82 &310486854 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2833096040369202258, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &346985225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2425,8 +2443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Cameras:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 94242926}
+  - {fileID: 2142136178}
   m_CooldownDuration: 0.5
 --- !u!1 &375331005
 GameObject:
@@ -11220,6 +11238,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8169520561329429757, guid: 2569a62b0421feb4fbb320665445719f, type: 3}
   m_PrefabInstance: {fileID: 1714479452}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1715378889 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6091433990122571503, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1734957319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12930,6 +12953,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 942762337184432749, guid: b9c7a183a7a2e004cb24435cb080a708, type: 3}
   m_PrefabInstance: {fileID: 1454234338}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1894403264 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6914859139044550088, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1899313723
 GameObject:
   m_ObjectHideFlags: 0
@@ -14489,6 +14517,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 942762337184432749, guid: b9c7a183a7a2e004cb24435cb080a708, type: 3}
   m_PrefabInstance: {fileID: 2091835824}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &2092745423 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6365061785743074210, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2098909664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14897,6 +14930,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141743310}
   m_Mesh: {fileID: -3999017684951792292, guid: 2089aca32526dab45ba2213e474462f9, type: 3}
+--- !u!20 &2142136178 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4476969445010634044, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+  m_PrefabInstance: {fileID: 1909106831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4090485927964122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6700010184237296150, guid: 711d73915f196df489cae554a99f3e55, type: 3}
