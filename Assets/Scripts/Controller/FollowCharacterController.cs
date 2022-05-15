@@ -39,6 +39,9 @@ public class FollowCharacterController : CharController
         base.Rigidbody.MovePosition(followCharacterNewPosition);
     }
 
+    /// <summary>
+    /// Move only if the Distance Between Target is higher than the DistanceBetweenTargetRange
+    /// </summary>
     protected virtual void SecureMove()
     {
         if (Vector3.Distance(this.TargetToFollowTransform.position, base.Rigidbody.position) > this.DistanceBetweenTargetRange)

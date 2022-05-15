@@ -15,6 +15,10 @@ public class CameraManager : Manager<CameraManager>, IEventHandler
     private float m_NextCameraChangedTime;
 
     #region CameraManager listeners
+    /// <summary>
+    /// OnCameraChangeUIButtonEvent we called <see cref="ChangeCamera"/>
+    /// </summary>
+    /// <param name="e">The event</param>
     private void OnCameraChangeUIButtonEvent(CameraChangeUIButtonEvent e)
     {
         this.ChangeCamera();
@@ -49,6 +53,10 @@ public class CameraManager : Manager<CameraManager>, IEventHandler
         this.m_IndexCameraSelected = nextCameraWillBeSelected;
     }
 
+    /// <summary>
+    /// Choose an camera by desactivating others
+    /// </summary>
+    /// <param name="selectedCamera">The camera will be choosen</param>
     private void ChooseCamera(Camera selectedCamera)
     {
         foreach (Camera camera in this.m_Cameras)

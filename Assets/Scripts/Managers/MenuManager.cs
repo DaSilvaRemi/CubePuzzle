@@ -75,5 +75,20 @@ public class MenuManager : MonoBehaviour
     {
         EventManager.Instance.Raise(new ChooseALevelEvent() { eGameScene = Tools.GameScene.FOURTHLEVELSCENE });
     }
+
+    /// <summary>
+    /// HandleReplayGameButton call <see cref="HandleCreateNewGameButton"/> when <see cref="GameManager.IsWinning"/> is true or else call <see cref="HandleLoadGameButton"/>
+    /// </summary>
+    public void HandleReplayGameButton()
+    {
+        if (GameManager.IsWinning)
+        {
+            this.HandleCreateNewGameButton();
+        }
+        else
+        {
+            this.HandleLoadGameButton();
+        }
+    }
     #endregion
 }

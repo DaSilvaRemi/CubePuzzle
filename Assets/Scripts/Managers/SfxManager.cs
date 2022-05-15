@@ -94,6 +94,11 @@ public class SfxManager : Manager<SfxManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// Verify if the audioClip IsAlreadyPlayingByAudioSource
+    /// </summary>
+    /// <param name="audioClip">The audio ckip</param>
+    /// <returns>if the audioClip IsAlreadyPlayingByAudioSource</returns>
     public bool IsAlreadyPlayingByAudioSource(AudioClip audioClip)
     {
         for (int i = 0; i < this.m_SfxAudioSources.Length; i++)

@@ -5,6 +5,10 @@ using SDD.Events;
 
 public class MovableObjects : MonoBehaviour
 {
+    /// <summary>
+    /// OnTriggerEnter we raise <see cref="SelectGameObjectToInvertEvent"/> and <see cref="ButtonClickedEvent"/>
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other == null || (other != null && !other.gameObject.CompareTag("Player"))) return;

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Define when trigger is thrown the <see cref="SpawnEachTimeLinearEvent"/> it's raised
+/// </summary>
 public class EachTimeLinearSpawnTrigger : SpawnerTrigger
 {
     [Header("EachTimeLinearEvent properties")]
