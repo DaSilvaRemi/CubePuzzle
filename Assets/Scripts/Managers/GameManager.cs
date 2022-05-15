@@ -50,19 +50,23 @@ public class GameManager : Manager<GameManager>, IEventHandler
     #endregion
 
     #region GameScene Properties
-    public bool IsMenuScene { get => m_CurrentScene.Equals(GameScene.MENUSCENE); }
-    public bool IsFirstLevelScene { get => m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
-    public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
-    public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
-    public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
-    public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
-    public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
-    public bool IsLastLevel { get => IsFourthLevelScene; }
-    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
+    public bool IsMenuScene { get => this.m_CurrentScene.Equals(GameScene.MENUSCENE); }
+    public bool IsFirstLevelScene { get => this.m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
+    public bool IsSecondLevelScene { get => this.m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
+    public bool IsThirdLevelScene { get => this.m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
+    public bool IsFourthLevelScene { get => this.m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
+    public bool IsHelpScene { get => this.m_CurrentScene.Equals(GameScene.HELPSCENE); }
+    public bool IsCreditScene { get => this.m_CurrentScene.Equals(GameScene.CREDITSCENE); }
+    public bool IsLastLevel { get => this.IsFourthLevelScene; }
+    public bool IsShootableScene { get => this.IsThirdLevelScene || this.IsFourthLevelScene; }
     #endregion
 
     #region Event Listeners Methods
 
+    /// <summary>
+    /// OnChooseALevelEvent we <see cref="ChooseALevel"/> with <see cref="ChooseALevelEvent.eGameScene"/> properties
+    /// </summary>
+    /// <param name="e"></param>
     private void OnChooseALevelEvent(ChooseALevelEvent e)
     {
         this.ChooseALevel(e.eGameScene);

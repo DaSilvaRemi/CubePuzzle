@@ -42,8 +42,9 @@ public class HUDManager : PanelHUDManager, IEventHandler
     #endregion
 
     #region HUDManager handlers
-
-
+    /// <summary>
+    /// HandleContinueButton in pause and called <see cref="HideAllPanels"/> and throw <seealso cref="ContinueGameEvent"/>
+    /// </summary>
     public void HandleContinueButton()
     {
         base.HideAllPanels();
@@ -51,7 +52,7 @@ public class HUDManager : PanelHUDManager, IEventHandler
     }
 
     /**
- * <summary>Handle the camera change UI button</summary> 
+ * <summary>Handle the camera change UI button <see cref="CameraChangeUIButtonEvent"/></summary> 
  */
     public void HandleCameraChangeUIButton()
     {

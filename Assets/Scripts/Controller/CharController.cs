@@ -20,10 +20,22 @@ public class CharController : MonoBehaviour
     [SerializeField] private AudioClip m_CharacterJumpClip;
 
     #region CharController properties
+    /// <summary>
+    /// The rigidbody
+    /// </summary>
     protected Rigidbody Rigidbody { get; set; }
 
+    /// <summary>
+    /// The translation speed
+    /// </summary>
     protected float TranslationSpeed { get => this.m_TranslationSpeed; }
+    /// <summary>
+    /// The jump speed
+    /// </summary>
     protected float JumpSpeed { get => this.m_JumpSpeed; }
+    /// <summary>
+    /// The rotating speed
+    /// </summary>
     protected float RotatingSpeed { get => this.m_RotatingSpeed; }
     #endregion
 

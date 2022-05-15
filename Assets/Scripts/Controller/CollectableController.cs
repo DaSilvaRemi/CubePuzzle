@@ -5,7 +5,6 @@ using UnityEngine;
 public class CollectableController : CharController
 {
     [Header("CollectableController properties")]
-    [SerializeField] private bool m_IsAnimated = false;
     [SerializeField] private bool m_IsRotating = false;
     [SerializeField] private bool m_IsFloating = false;
     [SerializeField] private float m_CooldownJumpDuration = 0.2f;
@@ -13,13 +12,11 @@ public class CollectableController : CharController
     private float m_NextJumpTime;
 
     #region CharController methods
+    /// <summary>
+    /// Move the collectable by jumping and rotating
+    /// </summary>
     protected override void Move()
     {
-        if (!this.m_IsAnimated)
-        {
-            return;
-        }
-
         if (this.m_IsRotating)
         {
             this.RotateObject();
