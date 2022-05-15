@@ -20,10 +20,22 @@ public class CharController : MonoBehaviour
     [SerializeField] private AudioClip m_CharacterJumpClip;
 
     #region CharController properties
+    /// <summary>
+    /// The rigidbody
+    /// </summary>
     protected Rigidbody Rigidbody { get; set; }
 
+    /// <summary>
+    /// The translation speed
+    /// </summary>
     protected float TranslationSpeed { get => this.m_TranslationSpeed; }
+    /// <summary>
+    /// The jump speed
+    /// </summary>
     protected float JumpSpeed { get => this.m_JumpSpeed; }
+    /// <summary>
+    /// The rotating speed
+    /// </summary>
     protected float RotatingSpeed { get => this.m_RotatingSpeed; }
     #endregion
 
@@ -129,11 +141,11 @@ public class CharController : MonoBehaviour
     }
 
     /// <summary>
-    /// Stop Wall sound <see cref="StopSFXWithEvent"/>
+    /// Stop Wall sound <see cref="StopSFXEvent"/>
     /// </summary>
     protected void StopWalkSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterWalkClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterWalkClip });
     }
 
     /// <summary>
@@ -151,7 +163,7 @@ public class CharController : MonoBehaviour
     /// </summary>
     protected void StopShootSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterShootClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterShootClip });
     }
 
     /// <summary>
@@ -169,7 +181,7 @@ public class CharController : MonoBehaviour
     /// </summary>
     protected void StopJumpSound()
     {
-        EventManager.Instance.Raise(new StopSFXWithEvent() { eAudioClip = this.m_CharacterJumpClip });
+        EventManager.Instance.Raise(new StopSFXEvent() { eAudioClip = this.m_CharacterJumpClip });
     }
 
     /// <summary>

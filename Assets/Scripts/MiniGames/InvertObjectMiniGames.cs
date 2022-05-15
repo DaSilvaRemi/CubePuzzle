@@ -14,6 +14,8 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
     [SerializeField] private GameObject[] m_GameObjetsToSpawn;
     [Tooltip("Cooldown duration to invert")]
     [SerializeField] private float m_CooldownDuration;
+    [Tooltip("Finsih SFX Sound")]
+    [SerializeField]  private AudioClip m_FinishedMiniGamesSFXAudioCLip;
 
     private List<GameObject> m_GameObjetsSpawned;
     private List<GameObject> m_GameObjetsSelectedToInvert;
@@ -182,6 +184,7 @@ public class InvertObjectMiniGames : MonoBehaviour, IEventHandler
             if (this.m_GameObjectToDesactivate)
             {
                 this.m_GameObjectToDesactivate.SetActive(false);
+                EventManager.Instance.Raise(new PlaySFXEvent() { eAudioClip = this.m_FinishedMiniGamesSFXAudioCLip });
             }
             
             this.m_MiniGameIsFinished = true;

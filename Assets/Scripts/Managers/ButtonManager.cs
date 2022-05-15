@@ -6,7 +6,7 @@ using SDD.Events;
 /**
  * <summary>Manager the SFX of all buttons after a click</summary> 
  */
-public class ButtonManager : Manager<ButtonManager>, IEventHandler
+public class ButtonManager : MonoBehaviour, IEventHandler
 {
     [Tooltip("Button audio clip")]
     [SerializeField] private AudioClip m_ButtonClickSfxClip;
@@ -56,7 +56,6 @@ public class ButtonManager : Manager<ButtonManager>, IEventHandler
     #region MonoBehaviour METHODS
     private void Awake()
     {
-        base.InitManager();
         this.SubscribeEvents();
     }
 

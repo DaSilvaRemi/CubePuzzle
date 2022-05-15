@@ -16,33 +16,21 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private IEnumerator m_GameManagerCoroutine;
     private TimerUtils m_TimerUtils;
-
-    #region Time Properties
-    /**
-     * <summary>The time passed</summary>
-     */
+    
+    /// <summary>
+    /// Time Passed
+    /// </summary>
     private static float m_TimePassed;
 
-    /**
-     * <summary>The best time</summary>
-     */
-    private static float m_BestTime;
-    #endregion
+    /// <summary>
+    /// Game Score
+    /// </summary>
+    private static int m_Score;
 
-    #region Score properties
-    /**
-     * <summary>The score</summary>
-     */
-    private int m_Score;
-
-    /**
-     * <summary>The score</summary>
-     */
-    public int Score
-    {
-        get => m_Score;
-    }
-    #endregion
+    /// <summary>
+    /// Current Score on the game
+    /// </summary>
+    private int m_CurrentScore;
 
     #region GameState Properties
 
@@ -62,19 +50,23 @@ public class GameManager : Manager<GameManager>, IEventHandler
     #endregion
 
     #region GameScene Properties
-    public bool IsMenuScene { get => m_CurrentScene.Equals(GameScene.MENUSCENE); }
-    public bool IsFirstLevelScene { get => m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
-    public bool IsSecondLevelScene { get => m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
-    public bool IsThirdLevelScene { get => m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
-    public bool IsFourthLevelScene { get => m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
-    public bool IsHelpScene { get => m_CurrentScene.Equals(GameScene.HELPSCENE); }
-    public bool IsCreditScene { get => m_CurrentScene.Equals(GameScene.CREDITSCENE); }
-    public bool IsLastLevel { get => IsFourthLevelScene; }
-    public bool IsShootableScene { get => IsThirdLevelScene || IsFourthLevelScene; }
+    public bool IsMenuScene { get => this.m_CurrentScene.Equals(GameScene.MENUSCENE); }
+    public bool IsFirstLevelScene { get => this.m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
+    public bool IsSecondLevelScene { get => this.m_CurrentScene.Equals(GameScene.SECONDLVLSCENE); }
+    public bool IsThirdLevelScene { get => this.m_CurrentScene.Equals(GameScene.THIRDLEVELSCENE); }
+    public bool IsFourthLevelScene { get => this.m_CurrentScene.Equals(GameScene.FOURTHLEVELSCENE); }
+    public bool IsHelpScene { get => this.m_CurrentScene.Equals(GameScene.HELPSCENE); }
+    public bool IsCreditScene { get => this.m_CurrentScene.Equals(GameScene.CREDITSCENE); }
+    public bool IsLastLevel { get => this.IsFourthLevelScene; }
+    public bool IsShootableScene { get => this.IsThirdLevelScene || this.IsFourthLevelScene; }
     #endregion
 
     #region Event Listeners Methods
 
+    /// <summary>
+    /// OnChooseALevelEvent we <see cref="ChooseALevel"/> with <see cref="ChooseALevelEvent.eGameScene"/> properties
+    /// </summary>
+    /// <param name="e"></param>
     private void OnChooseALevelEvent(ChooseALevelEvent e)
     {
         this.ChooseALevel(e.eGameScene);
@@ -152,12 +144,12 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     /**
     * <summary>Handle the LevelFinishEvent</summary>
-    * <remarks>Call the end game methods <see cref="EndGame"/></remarks>
+    * <remarks>Call the end game methods <see cref="EndLevel"/></remarks>
     * <param name="e">The event</param> 
     */
     private void OnLevelFinishEvent(LevelFinishEvent e)
     {
-        this.EndGame();
+        this.EndLevel();
     }
 
     /**
@@ -257,7 +249,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     /// <param name="levelChoosen">The level choosen</param>
     private void ChooseALevel(GameScene levelChoosen)
     {
-        SaveData.Save(new SaveData(0f, levelChoosen));
+        SaveData.Save(new SaveData(0f, 0, levelChoosen));
         this.ResetGameVar();
         this.LoadALevel(levelChoosen);
     }
@@ -270,7 +262,6 @@ public class GameManager : Manager<GameManager>, IEventHandler
         SaveData saveGame = SaveData.LoadPlayerRefs();
         this.SetGameState(saveGame.GameState);
         this.SetTimePassed(saveGame.Time);
-        this.SetBestTime(saveGame.BestTime);
         this.LoadALevel(saveGame.Level);
         this.VictoryGame();
         this.ChangeLevel();
@@ -280,9 +271,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
      *  <summary>Finish the current LVL</summary>
      *  <remarks>Change the game state and the LVL</remarks>
      */
-    private void EndGame()
+    private void EndLevel()
     {
         GameManager.m_TimePassed += this.m_TimerUtils.TimePassed;
+        GameManager.m_Score += this.m_CurrentScore;
         this.SetGameState(GameState.ENDLVL);
         this.ChangeLevel();
     }
@@ -294,9 +286,9 @@ public class GameManager : Manager<GameManager>, IEventHandler
      * <param name="bestTime">The best time in the game</param>
      * <param name="gameState">The game state of the game</param>
      */
-    private static void SaveGame(float timePassed, GameScene gameScene, float bestTime, GameState gameState)
+    private static void SaveGame(float timePassed, float bestTime, int score, int bestScore, GameScene gameScene,  GameState gameState)
     {
-        SaveData.Save(new SaveData(timePassed, gameScene, bestTime, gameState));
+        SaveData.Save(new SaveData(timePassed, bestTime, score, bestScore, gameScene, gameState));
     }
 
     /**
@@ -326,7 +318,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!gameObject) return;
 
-        int totalNewlyGainedScore = this.m_Score;
+        int totalNewlyGainedScore = this.m_CurrentScore;
         IScore[] scores = gameObject.GetComponentsInChildren<IScore>();
 
         for (int i = 0; i < scores.Length; i++)
@@ -365,13 +357,14 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
         GameState nextGameState = GameState.PLAY;
         GameScene nextGameScene = m_CurrentScene + 1;
+        
         if (this.IsLastLevel)
         {
             nextGameState = GameState.WIN;
             nextGameScene = GameScene.VICTORYSCENE;
         }
 
-        GameManager.SaveGame(GameManager.m_TimePassed, nextGameScene, GameManager.m_TimePassed, nextGameState);
+        GameManager.SaveGame(GameManager.m_TimePassed, GameManager.m_TimePassed, GameManager.m_Score, GameManager.m_Score, nextGameScene, nextGameState);
         this.SetGameState(nextGameState);
         this.LoadALevel(nextGameScene);
     }
@@ -487,19 +480,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (!this.m_TimerUtils) return;
 
         GameManager.m_TimePassed = timePassed;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = GameManager.m_TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
-    }
-
-    /**
-     * <summary>Set the best time</summary>
-     * <param name="bestTime">The best time</param>
-     */
-    private void SetBestTime(float bestTime)
-    {
-        if (!this.m_TimerUtils) return;
-
-        GameManager.m_BestTime = bestTime;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestTime = GameManager.m_BestTime, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_CurrentScore });
     }
 
     /**
@@ -508,7 +489,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void SetCountdown(float countdown)
     {
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown, eScore = this.m_Score });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = countdown, eScore = this.m_CurrentScore });
     }
 
     /**
@@ -517,8 +498,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void SetScore(int score)
     {
-        this.m_Score = score;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eTime = this.m_TimerUtils.TimePassed, eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_Score });
+        this.m_CurrentScore = score;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eCountdown = this.m_TimerUtils.TimeLeft, eScore = this.m_CurrentScore });
     }
 
     /**

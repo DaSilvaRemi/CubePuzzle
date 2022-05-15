@@ -7,10 +7,10 @@ TagManager:
   - Ground
   - Enemy
   - ThrowableObject
-  - Ennemy
   - Button
   - Dalle
   - Target
+  - PlayerAnimal
   layers:
   - Default
   - TransparentFX

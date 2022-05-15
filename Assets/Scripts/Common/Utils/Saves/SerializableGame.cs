@@ -11,6 +11,10 @@ public class SerializableGame
 
     public float bestTime;
 
+    public int score;
+
+    public int bestScore;
+
     public Tools.GameScene level;
 
     public Tools.GameState gameState;
@@ -19,7 +23,7 @@ public class SerializableGame
     /// SerializableGame copy constructor
     /// </summary>
     /// <param name="serializableGame">The serializableGame to copy</param>
-    public SerializableGame(SerializableGame serializableGame): this(serializableGame.time, serializableGame.level, serializableGame.bestTime, serializableGame.gameState)
+    public SerializableGame(SerializableGame serializableGame): this(serializableGame.time, serializableGame.bestTime, serializableGame.score, serializableGame.bestScore, serializableGame.level,  serializableGame.gameState)
     {
     }
 
@@ -30,11 +34,13 @@ public class SerializableGame
     /// <param name="level">The level</param>
     /// <param name="bestTime">The best time</param>
     /// <param name="gameState">The game state</param>
-    public SerializableGame(float time, Tools.GameScene level, float bestTime, Tools.GameState gameState)
+    public SerializableGame(float time, float bestTime, int score, int bestScore, Tools.GameScene level, Tools.GameState gameState)
     {
         this.time = time;
-        this.level = level;
         this.bestTime = bestTime;
+        this.score = score;
+        this.bestScore = bestScore;
+        this.level = level;
         this.gameState = gameState;
     }
 
@@ -44,6 +50,6 @@ public class SerializableGame
     /// <returns>The string form the object</returns>
     public override string ToString()
     {
-        return $"Game Time : {this.time}, Best Time : {this.bestTime}, Level : {this.level}, GameState: {this.gameState}";
+        return $"Game Time : {this.time}, Best Time : {this.bestTime}, Score : {this.score}, Best Score : {this.bestScore}, Level : {this.level}, GameState: {this.gameState}";
     }
 }

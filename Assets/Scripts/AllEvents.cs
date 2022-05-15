@@ -34,8 +34,6 @@ public class GameEndLVLEvent : SDD.Events.Event
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
 	public int eScore { get; set; }
-	public float eBestTime { get; set; }
-	public float eTime { get; set; }
 	public float eCountdown { get; set; }
 }
 #endregion
@@ -123,7 +121,7 @@ public class PlaySFXEvent : SDD.Events.Event
 	public AudioClip eAudioClip { get; set; }
 }
 
-public class StopSFXWithEvent : SDD.Events.Event
+public class StopSFXEvent : SDD.Events.Event
 {
 	public AudioSource eAudioSource { get; set; }
 	public AudioClip eAudioClip { get; set; }
@@ -190,6 +188,10 @@ public class SelectGameObjectToInvertEvent : SDD.Events.Event
 
 #region HUD Events
 public class ContinueGameEvent : SDD.Events.Event
+{
+}
+
+public class CameraChangeUIButtonEvent : SDD.Events.Event
 {
 }
 #endregion

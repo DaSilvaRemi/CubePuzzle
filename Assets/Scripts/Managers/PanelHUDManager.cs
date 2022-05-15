@@ -1,10 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
 public class PanelHUDManager : Manager<PanelHUDManager>
 {
     protected List<GameObject> Panels { get; private set; }
+
+    #region PanelHUDManager Handlers
+    /// <summary>
+    /// When back to menu button clicked we  send <see cref="MainMenuButtonClickedEvent"/>
+    /// </summary>
+    public void HandleBackToMenuButton()
+    {
+        EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
+    }
+    #endregion
+
 
     #region PanelHUDManager methods
     /// <summary>
