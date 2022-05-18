@@ -9294,6 +9294,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4476969445833896439, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
+      propertyPath: m_RotatingSpeed
+      value: 3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476969445833896439, guid: e42911cebc3efcb4081ebdd6f32bbca3, type: 3}
       propertyPath: m_CharacterWalkClip
       value: 
       objectReference: {fileID: 8300000, guid: e111678e38e97b44ebfe756df01abb28, type: 3}
