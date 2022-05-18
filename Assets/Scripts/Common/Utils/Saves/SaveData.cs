@@ -47,7 +47,7 @@ public class SaveData: IGameState
     /// <param name="bestScore">The best score</param>
     /// <param name="level">The level</param>
     /// <param name="gameState">The game State</param>
-    public SaveData(float time, float bestTime, int score, int bestScore, Tools.GameScene level, Tools.GameState gameState) : this(new SerializableGame(Tools.GetRoundedFloat(time), Tools.GetRoundedFloat(bestTime), score, bestScore, level, gameState))
+    public SaveData(float time, float bestTime, int score, int bestScore, Tools.GameScene level, Tools.GameState gameState) : this(new SerializableGame(Tools.GetRoundedFloat(time, 1), Tools.GetRoundedFloat(bestTime, 1), score, bestScore, level, gameState))
     {
     }
 
