@@ -47,7 +47,7 @@ public class SaveData: IGameState
     /// <param name="bestScore">The best score</param>
     /// <param name="level">The level</param>
     /// <param name="gameState">The game State</param>
-    public SaveData(float time, float bestTime, int score, int bestScore, Tools.GameScene level, Tools.GameState gameState) : this(new SerializableGame(time, bestTime, score, bestScore, level, gameState))
+    public SaveData(float time, float bestTime, int score, int bestScore, Tools.GameScene level, Tools.GameState gameState) : this(new SerializableGame(Tools.GetRoundedFloat(time), Tools.GetRoundedFloat(bestTime), score, bestScore, level, gameState))
     {
     }
 
@@ -116,7 +116,7 @@ public class SaveData: IGameState
         Tools.GameScene loadedGameScene = (Tools.GameScene) PlayerPrefs.GetInt("level");
         Tools.GameState loadedGameState = (Tools.GameState) PlayerPrefs.GetInt("gameState");
         
-        SaveData loadedSave = new SaveData(new SerializableGame(loadedGameTime, loadedGameBestTime, loadedGameScore, loadedGameBestScore, loadedGameScene, loadedGameState));
+        SaveData loadedSave = new SaveData(loadedGameTime, loadedGameBestTime, loadedGameScore, loadedGameBestScore, loadedGameScene, loadedGameState);
         Debug.Log("Load");
         Debug.Log(JsonUtility.ToJson(loadedSave.m_SerializableGame));
 
