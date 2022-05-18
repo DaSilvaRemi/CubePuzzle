@@ -74,8 +74,8 @@ public class VictoryHUDManager : PanelHUDManager
     private void Start()
     {
         SaveData save = SaveData.LoadPlayerRefs();
-        this.SetTimeValueText(save.Time);
-        this.SetBestTimeValueText(save.BestTime);
+        this.SetTimeValueText(Tools.GetRoundedFloat(save.Time));
+        this.SetBestTimeValueText(Tools.GetRoundedFloat(save.BestTime));
         this.SetScoreValueText(save.Score);
         this.SetBestScoreText(save.BestScore);
     }
