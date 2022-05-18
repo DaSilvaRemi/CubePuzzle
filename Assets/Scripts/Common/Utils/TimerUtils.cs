@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class TimerUtils : MonoBehaviour
     /**
      * <summary>The time left to the counter</summary> 
      */
-    public float TimeLeft { get => this.m_timeLeft; private set { if (value >= 0) this.m_timeLeft = value; } }
+    public float TimeLeft { get => MathF.Round(this.m_timeLeft, 2, MidpointRounding.AwayFromZero); private set { if (value >= 0) this.m_timeLeft = value; } }
 
     /**
      * <summary>The time passed</summary> 
@@ -49,7 +50,7 @@ public class TimerUtils : MonoBehaviour
      * <summary>If the timer is finish</summary>
      * <remarks>The timer is finish only if the TimeLeft <= 0 </remarks>
      */
-    public bool IsFinish { get => this.TimeLeft <= 0; }
+    public bool IsFinish { get => MathF.Round(this.TimeLeft, 1, MidpointRounding.AwayFromZero) <= 0.0f; }
     #endregion
 
     #region TimerUtils methods
