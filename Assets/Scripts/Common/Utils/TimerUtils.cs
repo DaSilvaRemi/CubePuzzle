@@ -19,7 +19,7 @@ public class TimerUtils : MonoBehaviour
     /**
      * <summary>The time left to the counter</summary> 
      */
-    public float TimeLeft { get => Tools.GetRoundedFloat(this.TimeLeft, 2); private set { if (value >= 0) this.m_timeLeft = value; } }
+    public float TimeLeft { get => Tools.GetRoundedFloat(this.m_timeLeft, 2); private set { if (value >= 0) this.m_timeLeft = value; } }
 
     /**
      * <summary>The time passed</summary> 
