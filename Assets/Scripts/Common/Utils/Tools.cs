@@ -78,6 +78,16 @@ public class Tools
         Debug.LogError(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    public static float GetRoundedFloat(float number)
+    {
+        return Tools.GetRoundedFloat(number, 1);
+    }
+
+    public static float GetRoundedFloat(float number, int precision)
+    {
+        return MathF.Round(number, precision, MidpointRounding.AwayFromZero);
+    }
+
     /// <summary>
     /// Format a float number to string
     /// </summary>
