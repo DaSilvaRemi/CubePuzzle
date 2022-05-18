@@ -5259,7 +5259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_TimeGoActivate
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_DurationGoActivate
@@ -5283,15 +5283,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_GOLinkedColorBeforeCollision.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_GOLinkedColorBeforeCollision.g
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_GOLinkedColorBeforeCollision.r
-      value: 0.34117648
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2166687236517003612, guid: ac13eddc64cc12940b3bc03f5da9e63f, type: 3}
       propertyPath: m_GOLinkedToColorChange.Array.size
