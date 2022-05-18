@@ -44,21 +44,37 @@ public class VictoryHUDManager : PanelHUDManager
     }
     #endregion
 
+    /// <summary>
+    /// Set the text value of the time
+    /// </summary>
+    /// <param name="time">The time to set on the texte</param>
     private void SetTimeValueText(float time)
     {
         this.m_TimeValueText.text = time.ToString();
     }
 
+    /// <summary>
+    /// Set the text value of the best time
+    /// </summary>
+    /// <param name="bestTime">The best time</param>
     private void SetBestTimeValueText(float bestTime)
     {
         this.m_BestTimeValueText.text = bestTime.ToString();
     }
 
+    /// <summary>
+    /// Set the text value of the score
+    /// </summary>
+    /// <param name="score">The score</param>
     private void SetScoreValueText(int score)
     {
         this.m_ScoreValueText.text = score.ToString();
     }
 
+    /// <summary>
+    /// Set the text value of the bestScore
+    /// </summary>
+    /// <param name="bestScore">The bestScore</param>
     private void SetBestScoreText(int bestScore)
     {
         this.m_BestScoreValueText.text = bestScore.ToString();
