@@ -71,6 +71,7 @@ public class Target : ObjectWillEarnThings
         if (collision != null && collision.gameObject != null && collision.gameObject.CompareTag("ThrowableObject"))
         {
             this.OnInteractionWithTheObjectEarnScore(collision.gameObject);
+            EventManager.Instance.Raise(new SpawnedGameObjectToDestroyEvent() { eGameObjectToDestroy = this.gameObject });
         }
     }
 

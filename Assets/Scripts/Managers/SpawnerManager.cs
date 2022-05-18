@@ -218,8 +218,11 @@ public class SpawnerManager : Manager<SpawnerManager>, IEventHandler
     /// <param name="gameObjectToDestroy">The GameObject</param>
     private void DestroyAnGameObjectSpawned(GameObject gameObjectToDestroy)
     {
-        this.m_GameObjectsSpawned.Remove(gameObjectToDestroy);
-        GameObject.Destroy(gameObjectToDestroy);
+        if (this.m_GameObjectsSpawned.Contains(gameObjectToDestroy))
+        {
+            this.m_GameObjectsSpawned.Remove(gameObjectToDestroy);
+            GameObject.Destroy(gameObjectToDestroy);
+        }
     }
 
     /// <summary>
