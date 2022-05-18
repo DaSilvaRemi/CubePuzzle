@@ -584,7 +584,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      * 
      * <param name="timerUtils">The TimerUtils object</param>
      */
-    protected void UpdateGame(TimerUtils timerUtils)
+    private void UpdateGame(TimerUtils timerUtils)
     {
         if (GameManager.IsPlaying && Input.GetButton("ResetGame"))
         {
@@ -609,7 +609,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      * 
      * <param name="timerUtils">The TimerUtils object</param>
      */
-    protected void UpdateCountdown(TimerUtils timerUtils)
+    private void UpdateCountdown(TimerUtils timerUtils)
     {
         if (GameManager.IsPlaying)
         {
@@ -623,7 +623,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      * 
      * <param name="timerUtils">The TimerUtils object</param>
      */
-    protected void UpdateGameState(TimerUtils timerUtils)
+    private void UpdateGameState(TimerUtils timerUtils)
     {
         if (GameManager.IsPlaying && timerUtils.IsFinish)
         {
