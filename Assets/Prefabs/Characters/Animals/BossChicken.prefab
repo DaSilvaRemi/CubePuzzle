@@ -369,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TranslationSpeed: 4
   m_JumpSpeed: 3
-  m_RotatingSpeed: 2
+  m_RotatingSpeed: 40
   m_CharacterWalkClip: {fileID: 0}
   m_CharacterShootClip: {fileID: 0}
   m_CharacterJumpClip: {fileID: 0}
