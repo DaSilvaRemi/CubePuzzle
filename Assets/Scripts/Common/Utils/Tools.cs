@@ -78,11 +78,23 @@ public class Tools
         Debug.LogError(Time.frameCount + " " + component.GetType().Name + " " + msg);
     }
 
+    /// <summary>
+    /// Get the rounded float
+    /// </summary>
+    /// <param name="number">The number</param>
+    /// <returns>float rounded</returns>
     public static float GetRoundedFloat(float number)
     {
         return Tools.GetRoundedFloat(number, 1);
     }
 
+
+    /// <summary>
+    /// Get the rounded float with a precision
+    /// </summary>
+    /// <param name="number">The number</param>
+    /// <param name="precision">The precision</param>
+    /// <returns>float rounded</returns>
     public static float GetRoundedFloat(float number, int precision)
     {
         return MathF.Round(number, precision, MidpointRounding.AwayFromZero);
