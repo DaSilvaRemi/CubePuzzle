@@ -1,4 +1,4 @@
- # CubePuzzle_UNITY_ESIEE_PROJECT
+ # CubePuzzle
  
  # Authors
  - Rémi Da Silva
